@@ -1,0 +1,114 @@
+/**
+ * [Design System Tokens]
+ * Standard REM System (1rem = 16px)
+ * * [Typography Strategy - Refined]
+ * - 시각적 위계(Visual Hierarchy)를 명확히 하기 위해 확실한 대비를 둡니다.
+ * - 너무 촘촘한 단계는 디자인의 일관성을 해치므로, 논리적인 배수 기반으로 설계되었습니다.
+ */
+
+
+
+
+:root {
+  /* --- 1. Brand Colors --- */
+  --color-primary: #007AFF;
+  --color-bg: #050505;
+  --color-surface: #121212;
+  --color-text-main: #FFFFFF;
+  --color-text-sub: #A1A1A6;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-glass: rgba(255, 255, 255, 0.05);
+
+  /* --- 2. Typography Hierarchy (16px based) --- */
+  --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
+  --font-en: 'Inter', sans-serif;
+
+  /* Display & Headlines */
+  --fz-display-lg: 7.5rem;  /* 120px - 메인 히어로 타이틀 */
+  --fz-display-md: 6rem;    /* 96px  - 강조형 섹션 헤드라인 (추가) */
+  --fz-h1: 5rem;            /* 80px  - 일반 섹션 대제목 */
+  --fz-h2: 3.5rem;          /* 56px  - 서브 섹션 타이틀 (간격 조정: 64 -> 56) */
+  --fz-h3: 2.5rem;          /* 40px  - 강조 서브 타이틀 (간격 조정: 48 -> 40) */
+  --fz-h4: 1.75rem;         /* 28px  - 카드/그룹 타이틀 (간격 조정: 32 -> 28) */
+  --fz-h5: 1.25rem;         /* 20px  - 카드 내부 강조 */
+  --fz-h6: 1.125rem;        /* 18px  - 최소 단위 제목 */
+
+  /* Body Text */
+  --fz-body-lg: 1.125rem; /* 18px */
+  --fz-body-md: 1rem;     /* 16px */
+  --fz-body-sm: 0.875rem; /* 14px */
+
+  /* Captions & UI Hints */
+  --fz-caption: 0.75rem;  /* 12px */
+  --fz-tiny: 0.625rem;    /* 10px */
+
+  /* Font Weights */
+  --fw-black: 900;
+  --fw-bold: 700;
+  --fw-semibold: 600;
+  --fw-medium: 500;
+  --fw-regular: 400;
+
+  /* --- 3. Spacing System (4px Incremental) --- */
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-12: 0.75rem;
+  --spacing-16: 1rem;
+  --spacing-20: 1.25rem;
+  --spacing-24: 1.5rem;
+  --spacing-32: 2rem;
+  --spacing-40: 2.5rem;
+  --spacing-48: 3rem;
+  --spacing-64: 4rem;
+  --spacing-80: 5rem;
+  --spacing-100: 6.25rem;
+  --spacing-120: 7.5rem;
+  --spacing-160: 10rem;
+
+  /* Layout Tokens */
+  --container-max-width: 75rem;   /* 1200px */
+  --section-padding: var(--spacing-120); /* 120px */
+
+  /* --- 4. Radius System --- */
+  --radius-2: 0.125rem;
+  --radius-4: 0.25rem;
+  --radius-8: 0.5rem;
+  --radius-12: 0.75rem;
+  --radius-16: 1rem;
+  --radius-20: 1.25rem;
+  --radius-24: 1.5rem;
+  --radius-32: 2rem;
+  --radius-40: 2.5rem;
+  --radius-full: 99.9rem;
+  
+  /* --- 5. Effects & Motion --- */
+  --blur-glass: blur(20px);
+  --transition-base: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --------------------------------------------------
+  [SCSS Internal Logic]
+-------------------------------------------------- */
+
+$bp-desktop: 1440px;
+$bp-laptop: 1280px;
+$bp-tablet: 1024px;
+$bp-mobile-lg: 768px;
+$bp-mobile-sm: 480px;
+
+@mixin laptop { @media (max-width: #{$bp-laptop}) { @content; } }
+@mixin tablet { @media (max-width: #{$bp-tablet}) { @content; } }
+@mixin mobile { @media (max-width: #{$bp-mobile-lg}) { @content; } }
+
+@mixin glass-effect {
+  background: var(--color-glass);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--color-border);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
