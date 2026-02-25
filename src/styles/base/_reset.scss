@@ -1,0 +1,101 @@
+/**
+ * [Modern Reset & Base Styles]
+*/
+
+/* 1. Box sizing rules - 모든 요소의 크기 계산 방식을 border-box로 통일 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default padding & margin - 브라우저 기본 여백 제거 */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 4. Set core body defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 4.1. Global Typography Reset for Korean text */
+p {
+  word-break: keep-all;
+}
+
+/* 5. Elements that don't have a class get default styles - 시맨틱 마크업 보존 */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* 6. Make images easier to work with - 이미지 반응형 기본 설정 */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* 7. Inherit fonts for inputs and buttons - 폼 요소가 부모의 폰트를 상속받도록 설정 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* 8. Button reset - 버튼 요소의 기본 인터랙션 설정 */
+button {
+  cursor: pointer;
+}
+
+/* 9. Remove all animations, transitions and smooth scroll for people that prefer not to see them - 웹 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 10. Table reset - 테이블 간격 초기화 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

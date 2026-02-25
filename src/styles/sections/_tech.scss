@@ -1,0 +1,294 @@
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+.tech {
+  position: relative;
+  width: 100%;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12.5rem; // ~200px gap replacing margins
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  // Fade Up Utility
+  .tech-fade-up {
+    will-change: transform, opacity;
+  }
+
+  // --- 1. Hero Header ---
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 11.5rem; // ~184px
+  }
+
+  &__badge {
+    @include text-style("badge");
+    margin-bottom: var(--spacing-20);
+  }
+
+  &__title {
+    @include text-style("heading");
+    // color: var(--color-text-main);
+    // margin-bottom: var(--spacing-20);
+  }
+
+  &__desc {
+    color: var(--color-text-sub);
+    font-size: var(--fz-body-lg);
+    line-height: 1.6;
+    max-width: 43rem;
+  }
+
+  // --- 2. ANC Monitor Section ---
+  &__anc {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__anc-panel {
+    @include glass-effect;
+    flex: 0 0 42.5rem; /* 680px */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--spacing-32);
+    border-radius: var(--radius-24);
+    height: 24.5rem; /* 392px */
+    position: relative;
+    z-index: 2;
+  }
+
+  &__anc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__anc-status-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  &__anc-title {
+    @include text-style("heading");
+    font-size: var(--fz-body-xl);
+  }
+
+  &__anc-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+
+  &__anc-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast);
+
+    &--active {
+      background-color: var(--color-accent); // Green #05DF72
+    }
+    
+    &--inactive {
+      background-color: var(--color-error); // Red
+    }
+  }
+
+  &__anc-latency {
+    font-size: var(--fz-caption-md);
+    color: var(--color-text-muted);
+  }
+
+  &__btn-toggle {
+    @include text-style("badge");
+    padding: 0.6875rem 1.3125rem; // 11px 21px
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    background: transparent;
+    cursor: pointer;
+
+    &--on {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      color: var(--color-text-main);
+      
+      &:hover {
+        background-color: color.adjust(#007AFF, $lightness: 10%);
+      }
+    }
+
+    &--off {
+      border: 1px solid var(--color-border);
+      color: var(--color-text-sub);
+
+      &:hover {
+        background-color: var(--color-glass);
+        color: var(--color-text-main);
+      }
+    }
+  }
+
+  &__anc-subtitle {
+    font-size: var(--fz-caption-md);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-4);
+  }
+
+  &__wave-container {
+    flex: 1;
+    height: 10rem; /* 160px */
+  }
+
+  &__wave-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__anc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__anc-stats {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+
+  &__anc-stat-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+
+    &--active {
+      background-color: var(--color-accent);
+    }
+    &--inactive {
+      background-color: var(--color-error);
+    }
+  }
+
+  &__anc-desc {
+    color: var(--color-text-sub);
+    font-size: var(--fz-body-sm);
+    line-height: 1.6;
+  }
+
+  &__anc-latency-footer {
+    font-size: var(--fz-caption-md);
+    color: var(--color-text-muted);
+  }
+
+  &__anc-visual {
+    flex: 0 0 42.5rem; /* 680px */
+    position: relative;
+    right: -2rem;
+  }
+
+  &__anc-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  // --- 3. Built Different Grid Section ---
+  &__features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+  }
+
+  &__features-header {
+    text-align: center;
+    margin-bottom: 6.25rem; // 100px
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-16);
+  }
+
+  &__features-title {
+    @include text-style("heading");
+    font-size: 2.75rem; /* 44px */
+  }
+
+  &__features-desc {
+    color: var(--color-text-sub);
+    font-size: var(--fz-body-md);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-32);
+    width: 100%;
+  }
+
+  &__feature {
+    @include glass-effect;
+    border-radius: var(--radius-24);
+    padding: var(--spacing-32);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 14.5rem; /* 233px */
+  }
+
+  &__feature-icon-wrapper {
+    width: 3.5rem; /* 56px */
+    height: 3.5rem; /* 56px */
+    border-radius: var(--radius-16);
+    background-color: rgba(0, 122, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: auto;
+  }
+
+  &__feature-icon {
+    width: 1.75rem; /* 28px */
+    height: 1.75rem; /* 28px */
+    object-fit: contain;
+  }
+
+  &__feature-title {
+    @include text-style("heading");
+    font-size: var(--fz-body-xl);
+    margin-bottom: var(--spacing-8);
+  }
+
+  &__feature-desc {
+    color: var(--color-text-sub);
+    font-size: var(--fz-body-sm);
+    line-height: 1.6;
+    max-width: 39.5rem; /* ~632px */
+  }
+}
+
+// Interference Keyframes
+@keyframes ancInterference {
+  0% { transform: translateY(-30%) scaleY(2); }
+  25% { transform: translateY(-60%) scaleY(1.5) rotate(1deg); }
+  50% { transform: translateY(-50%) scaleY(3); }
+  75% { transform: translateY(-40%) scaleY(0.8) rotate(-1deg); }
+  100% { transform: translateY(-70%) scaleY(2.2); }
+}

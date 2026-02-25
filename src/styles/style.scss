@@ -1,0 +1,41 @@
+@use 'abstracts/variables' as *;
+@use 'base/reset';
+
+@use 'layout/header';
+@use 'layout/footer';
+@use 'sections/main';
+@use 'sections/tech';
+@use 'sections/cta';
+@use 'sections/support';
+@use 'sections/shop';
+@use 'sections/specs';
+
+// -----------------------------------------------------------------------------
+// [Global Setup]
+// -----------------------------------------------------------------------------
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-sub);
+  font-family: var(--font-ko);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Global typography applications
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-main);
+  font-family: var(--font-en);
+  letter-spacing: -0.02rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.main-wrapper {
+  min-height: 100vh;
+  padding: var(--container-padding);
+}

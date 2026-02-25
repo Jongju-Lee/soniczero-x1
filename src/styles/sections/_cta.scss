@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+.cta {
+  width: 100%;
+  padding: 7.5rem 0 10rem; /* 120px 0 160px */
+  text-align: center;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 37.5rem; /* 600px */
+    will-change: transform, opacity;
+  }
+
+  &__title {
+    @include text-style("heading");
+    color: var(--color-text-main);
+    margin-bottom: var(--spacing-24);
+  }
+
+  &__title-highlight {
+    color: var(--color-primary);
+  }
+
+  &__desc {
+    @include text-style("desc");
+    margin-bottom: var(--spacing-40);
+  }
+
+  &__btn {
+    @include btn-size("md");
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-12);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+
+    &:hover {
+      background-color: color.adjust(#007AFF, $lightness: 10%);
+      transform: translateY(-2px);
+    }
+  }
+}

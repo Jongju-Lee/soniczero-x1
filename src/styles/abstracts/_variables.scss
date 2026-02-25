@@ -1,0 +1,254 @@
+@use "sass:map";
+/**
+ * [Design System Tokens]
+ * Standard REM System (1rem = 16px)
+*/
+
+@font-face {
+  font-family: 'Inter Variable';
+  src: url('/assets/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  src: url('/assets/fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* --- 1. Brand Colors --- */
+  --color-primary: #007AFF;
+  --color-bg: #050505;
+  --color-bg-alpha: rgba(5, 5, 5, 0.75);
+  --color-surface: #121212;
+  --color-text-main: #FFFFFF;
+  --color-text-sub: #A1A1A6;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-glass: rgba(255, 255, 255, 0.05);
+
+  /* --- 2. Typography Hierarchy (16px based) --- */
+  --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
+  --font-en: 'Inter Variable', sans-serif;
+
+  /* Display & Headlines */
+  --fz-display-lg: 6rem;    /* 96px */
+  --fz-display-md: 3.75rem; /* 60px */
+  --fz-h1: 5rem;            /* 80px */
+  --fz-h2: 3.5rem;          /* 56px */
+  --fz-h3: 2.25rem;         /* 36px */
+  --fz-h4: 1.75rem;         /* 28px */
+  --fz-h5: 1.25rem;         /* 20px */
+  --fz-h6: 1.125rem;        /* 18px */
+
+  /* Body Text */
+  --fz-body-xl: 1.25rem; /* 20px */
+  --fz-body-lg: 1.125rem; /* 18px */
+  --fz-body-ml: 1.0625rem; /* 17px */
+  --fz-body-md: 1rem;     /* 16px */
+  --fz-body-sm: 0.875rem; /* 14px */
+
+  /* Captions & UI Hints */
+  --fz-caption-lg: 0.8125rem; /* 13px */
+  --fz-caption: 0.75rem;  /* 12px */
+  --fz-tiny: 0.625rem;    /* 10px */
+
+  /* Font Weights */
+  --fw-black: 900;
+  --fw-e-bold: 800;
+  --fw-bold: 700;
+  --fw-s-bold: 600;
+  --fw-md: 500;
+  --fw-regular: 400;
+  --fw-light: 400;
+
+  /* TEXT TRANSFORM */
+  --fc-upper: uppercase;
+
+  /* --- 3. Spacing System (4px Incremental) --- */
+  --spacing-4: 0.25rem;
+  --spacing-8: 0.5rem;
+  --spacing-12: 0.75rem;
+  --spacing-16: 1rem;
+  --spacing-20: 1.25rem;
+  --spacing-24: 1.5rem;
+  --spacing-32: 2rem;
+  --spacing-36: 2.25rem;
+  --spacing-40: 2.5rem;
+  --spacing-44: 2.75rem;
+  --spacing-48: 3rem;
+  --spacing-52: 3.25rem;
+  --spacing-56: 3.5rem;
+  --spacing-60: 3.75rem;
+  --spacing-64: 4rem;
+  --spacing-68: 4.25rem;
+  --spacing-72: 4.5rem;
+  --spacing-76: 4.75rem;
+  --spacing-80: 5rem;
+  --spacing-84: 5.25rem;
+  --spacing-88: 5.5rem;
+  --spacing-92: 5.75rem;
+  --spacing-96: 6rem;
+  --spacing-100: 6.25rem;
+  --spacing-120: 7.5rem;
+  --spacing-160: 10rem;
+
+  /* Layout Tokens */
+  --container-max-width: 90rem;   /* 1200px */
+  --container-padding: calc(var(--spacing-120) + 4.75rem) var(--spacing-120) var(--spacing-120); /* 120px */
+
+  /* --- 4. Radius System --- */
+  --radius-2: 0.125rem;
+  --radius-4: 0.25rem;
+  --radius-8: 0.5rem;
+  --radius-12: 0.75rem;
+  --radius-16: 1rem;
+  --radius-20: 1.25rem;
+  --radius-24: 1.5rem;
+  --radius-32: 2rem;
+  --radius-40: 2.5rem;
+  --radius-full: 99.9rem;
+  
+  /* --- 5. Effects & Motion --- */
+  --blur-glass: blur(20px);
+  --transition-base: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --------------------------------------------------
+  [SCSS Internal Logic]
+-------------------------------------------------- */
+
+$bp-desktop: 1440px;
+$bp-laptop: 1280px;
+$bp-tablet: 1024px;
+$bp-mobile-lg: 768px;
+$bp-mobile-sm: 480px;
+
+@mixin laptop { @media (max-width: #{$bp-laptop}) { @content; } }
+@mixin tablet { @media (max-width: #{$bp-tablet}) { @content; } }
+@mixin mobile-lg { @media (max-width: #{$bp-mobile-lg}) { @content; } }
+@mixin mobile-sm { @media (max-width: #{$bp-mobile-sm}) { @content; } }
+
+@mixin glass-effect {
+  background: var(--color-glass);
+  backdrop-filter: var(--blur-glass);
+  border: 1px solid var(--color-border);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// 1. Typography Design System (Map)
+$text-styles: (
+  "display": (
+    "size": var(--fz-display-lg),
+    "weight": var(--fw-black),
+    "lh": 1,
+    "ls": -0.04rem
+  ),
+  "heading": (
+    "size": var(--fz-display-md),
+    "weight": var(--fw-e-bold),
+    "lh": 1.2
+  ),
+  "desc": (
+    "family": var(--font-ko),
+    "size": var(--fz-body-lg),
+    "lh": 1.8,
+    "color": var(--color-text-sub)
+  ),
+  "badge": (
+    "family": var(--font-en),
+    "size": var(--fz-caption-lg),
+    "weight": var(--fw-s-bold),
+    "lh": 1.5,
+    "ls": 0.08125rem,
+    "color": var(--color-primary),
+    "case": var(--fc-upper),
+  ),
+  "menu": (
+    "size": var(--fz-body-md),
+    "weight": var(--fw-md)
+  ),
+
+  // -- Header Elements --
+  "nav-logo": (
+    "size": var(--fz-h5),
+    "weight": var(--fw-bold),
+    "color": var(--color-text-main)
+  ),
+
+  // -- Footer Elements --
+  "footer-title": (
+    "size": var(--fz-h5),
+    "color": var(--color-text-main)
+  ),
+  "footer-desc": (
+    "size": var(--fz-body-sm),
+    "color": var(--color-text-sub),
+    "lh": 1.6
+  ),
+  "footer-link": (
+    "size": var(--fz-body-sm),
+    "color": var(--color-text-sub)
+  ),
+  "footer-copy": (
+    "size": var(--fz-caption-lg),
+    "color": var(--color-text-sub)
+  )
+);
+
+// 2. Main Unified Mixin
+@mixin text-style($type) {
+  $style: map.get($text-styles, $type);
+  
+  @if map.has-key($style, "family") { font-family: map.get($style, "family"); }
+  @if map.has-key($style, "size") { font-size: map.get($style, "size"); }
+  @if map.has-key($style, "weight") { font-weight: map.get($style, "weight"); }
+  @if map.has-key($style, "lh") { line-height: map.get($style, "lh"); }
+  @if map.has-key($style, "ls") { letter-spacing: map.get($style, "ls"); }
+  @if map.has-key($style, "color") { color: map.get($style, "color"); }
+  @if map.has-key($style, "case") { text-transform: map.get($style, "case"); }
+}
+
+// --------------------------------------------------
+//   [Button Design System]
+// --------------------------------------------------
+$btn-sizes: (
+  "sm": (
+    "padding": var(--spacing-8) var(--spacing-20),
+    "font-size": var(--fz-body-sm)
+  ),
+  "md": (
+    "padding": var(--spacing-16) var(--spacing-40),
+    "font-size": var(--fz-body-lg)
+  ),
+  "lg": (
+    "padding": var(--spacing-16) var(--spacing-40),
+    "font-size": var(--fz-body-lg),
+    "width": 100%
+  )
+);
+
+@mixin btn-size($size) {
+  font-family: var(--font-en);
+  color: var(--color-text-main);
+  font-weight: var(--fw-s-bold);
+  background-color: var(--color-primary);
+  
+  $config: map.get($btn-sizes, $size);
+  padding: map.get($config, "padding");
+  font-size: map.get($config, "font-size");
+  
+  @if map.has-key($config, "width") {
+    width: map.get($config, "width");
+  }
+}

@@ -1,0 +1,98 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  &__banner {
+    background-color: var(--color-bg-alpha);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: var(--blur-glass);
+    height: 4.75rem; // 76px
+    display: flex;
+    align-items: center;
+  }
+
+  &__banner-inner {
+    width: 100%;
+    /* Further banner content styling depending on mobile/desktop variations */
+  }
+
+  &__nav {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--container-max-width);
+    padding: 0 var(--spacing-40);
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+  }
+
+  &__logo-icon {
+    width: 2rem; /* 32px */
+    height: 2rem; /* 32px */
+  }
+
+  &__logo-text {
+    @include text-style("nav-logo");
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-32);
+    margin: 0;
+    padding: 0;
+  }
+
+  &__menu-link {
+    @include text-style("menu");
+    color: var(--color-text-sub);
+    transition: color var(--transition-base);
+
+    &:hover {
+      color: var(--color-text-main);
+    }
+  }
+
+  &__btn {
+    @include btn-size("sm");
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-12);
+    transition: background-color var(--transition-base), transform var(--transition-base);
+
+    &--primary {
+      &:hover {
+        background-color: color.adjust(#007AFF, $lightness: 10%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  /* Responsive behavior */
+  @include tablet {
+    &__menu {
+      display: none; // Example: mobile menu implementation goes here later
+    }
+  }
+}
