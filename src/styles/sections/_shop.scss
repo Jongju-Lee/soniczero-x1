@@ -23,7 +23,7 @@
     }
 
     &-title {
-      @include text-style("heading");
+      @include text-style("title-lg");
     }
   }
 
@@ -166,7 +166,7 @@
 
     &-desc {
       color: var(--color-text-sub);
-      font-size: var(--fz-body-ml); // closest to 17px
+      font-size: var(--fz-body-lg); // closest to 17px
       font-family: var(--font-ko);
     }
 
@@ -294,7 +294,7 @@
         align-items: center;
         padding: 0 14.125rem; // Approx center based on Figma
         cursor: pointer;
-        transition: background-color var(--transition-base), transform var(--transition-base);
+        transition: background-color var(--transition-base), box-shadow var(--transition-base);
 
         // Adjust padding for a centered feel if width varies
         padding: 0 var(--spacing-24);
@@ -304,7 +304,7 @@
         span {
           color: var(--color-text-main);
           font-family: var(--font-ko);
-          font-size: var(--fz-body-ml); // 18px
+          font-size: var(--fz-body-lg); // 18px
           font-weight: var(--fw-s-bold);
         }
 
@@ -314,8 +314,12 @@
         }
 
         &:hover {
-          background-color: color.adjust(#007AFF, $lightness: 10%);
-          transform: translateY(-2px);
+          background-color: color.adjust(#007AFF, $lightness: 5%);
+          box-shadow: 0 0 32px rgba(var(--color-primary-rgb),0.7);
+        }
+
+        &:active {
+          transform: scale(0.97);
         }
       }
 
@@ -323,7 +327,7 @@
         text-align: center;
         color: #6E6E73;
         font-family: var(--font-ko);
-        font-size: var(--fz-caption-lg); // 13px
+        font-size: var(--fz-tiny-md); // 13px
       }
     }
 

@@ -23,13 +23,16 @@
 :root {
   /* --- 1. Brand Colors --- */
   --color-primary: #007AFF;
+  --color-primary-rgb: 0, 122, 255;
   --color-bg: #050505;
   --color-bg-alpha: rgba(5, 5, 5, 0.75);
   --color-surface: #121212;
   --color-text-main: #FFFFFF;
   --color-text-sub: #A1A1A6;
+  --color-text-mute: #6E6E73;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-glass: rgba(255, 255, 255, 0.05);
+  --color-danger: #ff6366;
 
   /* --- 2. Typography Hierarchy (16px based) --- */
   --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
@@ -38,31 +41,33 @@
   /* Display & Headlines */
   --fz-display-lg: 6rem;    /* 96px */
   --fz-display-md: 3.75rem; /* 60px */
-  --fz-h1: 5rem;            /* 80px */
-  --fz-h2: 3.5rem;          /* 56px */
-  --fz-h3: 2.25rem;         /* 36px */
-  --fz-h4: 1.75rem;         /* 28px */
-  --fz-h5: 1.25rem;         /* 20px */
-  --fz-h6: 1.125rem;        /* 18px */
+  --fz-h1: 3rem;            /* 48px */
+  --fz-h2: 2.5rem;          /* 40px */
+  --fz-h3: 2rem;           /* 32px */
+  --fz-h4: 1.5rem;         /* 24px */
+  --fz-h5: 1.25rem;        /* 20px */
+
+  /* Caption & Label */
+  --fz-caption-lg: 1.25rem; /* 20px */
+  --fz-caption-md: 1.125rem; /* 18px */
+  --fz-caption-sm: 1.0625rem; /* 17px */
+  --fz-tiny-lg: 0.875rem; /* 14px */
+  --fz-tiny-md: 0.8125rem; /* 13px */
+  --fz-tiny-sm: 0.75rem;  /* 12px */
 
   /* Body Text */
-  --fz-body-xl: 1.25rem; /* 20px */
-  --fz-body-lg: 1.125rem; /* 18px */
-  --fz-body-ml: 1.0625rem; /* 17px */
+  --fz-body-2xl: 1.25rem; /* 20px */
+  --fz-body-xl: 1.125rem; /* 18px */
+  --fz-body-lg: 1.0625rem; /* 17px */
   --fz-body-md: 1rem;     /* 16px */
   --fz-body-sm: 0.875rem; /* 14px */
-
-  /* Captions & UI Hints */
-  --fz-caption-lg: 0.8125rem; /* 13px */
-  --fz-caption: 0.75rem;  /* 12px */
-  --fz-tiny: 0.625rem;    /* 10px */
-
+  
   /* Font Weights */
   --fw-black: 900;
   --fw-e-bold: 800;
   --fw-bold: 700;
   --fw-s-bold: 600;
-  --fw-md: 500;
+  --fw-medium: 500;
   --fw-regular: 400;
   --fw-light: 400;
 
@@ -98,8 +103,8 @@
   --spacing-160: 10rem;
 
   /* Layout Tokens */
-  --container-max-width: 90rem;   /* 1200px */
-  --container-padding: calc(var(--spacing-120) + 4.75rem) var(--spacing-120) var(--spacing-120); /* 120px */
+  --container-max-width: 90rem;   /* 1440px */
+  --container-padding: var(--spacing-120);
 
   /* --- 4. Radius System --- */
   --radius-2: 0.125rem;
@@ -116,7 +121,7 @@
   /* --- 5. Effects & Motion --- */
   --blur-glass: blur(20px);
   --transition-base: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-premium: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --------------------------------------------------
@@ -134,76 +139,141 @@ $bp-mobile-sm: 480px;
 @mixin mobile-lg { @media (max-width: #{$bp-mobile-lg}) { @content; } }
 @mixin mobile-sm { @media (max-width: #{$bp-mobile-sm}) { @content; } }
 
+
+//  GLASS STYLE
 @mixin glass-effect {
   background: var(--color-glass);
   backdrop-filter: var(--blur-glass);
   border: 1px solid var(--color-border);
 }
 
+
+// FLEX STYLE
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+@mixin flex-center-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-// 1. Typography Design System (Map)
+
+// 1. Typography Design System
 $text-styles: (
+  /* ---------- TITLE ---------- */
   "display": (
+    "family": var(--font-en),
     "size": var(--fz-display-lg),
     "weight": var(--fw-black),
-    "lh": 1,
-    "ls": -0.04rem
+    "lh": 1.1,
+    "ls": -0.125rem
   ),
-  "heading": (
+  "title-lg": (
+    "family": var(--font-en),
     "size": var(--fz-display-md),
     "weight": var(--fw-e-bold),
-    "lh": 1.2
+    "lh": 1.2,
+    "ls": -0.125rem
   ),
-  "desc": (
-    "family": var(--font-ko),
-    "size": var(--fz-body-lg),
-    "lh": 1.8,
-    "color": var(--color-text-sub)
+  "title-md": (
+    "family": var(--font-en),
+    "size": var(--fz-h1),
+    "weight": var(--fw-e-bold),
+    "lh": 1.2,
+    "ls": -0.0625rem
   ),
+  "title-sm": (
+    "family": var(--font-en),
+    "size": var(--fz-h2),
+    "weight": var(--fw-e-bold),
+    "lh": 1.2,
+    "ls": -0.0625rem
+  ),
+  "title-xs": (
+    "family": var(--font-en),
+    "size": var(--fz-h5),
+    "weight": var(--fw-bold),
+    "lh": 1.3,
+  ),
+
+  /* ---------- CAPTION & LABEL ---------- */
   "badge": (
     "family": var(--font-en),
-    "size": var(--fz-caption-lg),
-    "weight": var(--fw-s-bold),
+    "size": var(--fz-tiny-md),
+    "weight": var(--fw-bold),
     "lh": 1.5,
-    "ls": 0.08125rem,
+    "ls": 0.0875rem,
     "color": var(--color-primary),
     "case": var(--fc-upper),
   ),
-  "menu": (
-    "size": var(--fz-body-md),
-    "weight": var(--fw-md)
-  ),
-
-  // -- Header Elements --
-  "nav-logo": (
+  "logo": (
     "size": var(--fz-h5),
     "weight": var(--fw-bold),
     "color": var(--color-text-main)
   ),
-
-  // -- Footer Elements --
-  "footer-title": (
-    "size": var(--fz-h5),
-    "color": var(--color-text-main)
-  ),
-  "footer-desc": (
-    "size": var(--fz-body-sm),
-    "color": var(--color-text-sub),
-    "lh": 1.6
-  ),
-  "footer-link": (
-    "size": var(--fz-body-sm),
-    "color": var(--color-text-sub)
-  ),
-  "footer-copy": (
+  "caption-lg": (
+    "family": var(--font-ko),
     "size": var(--fz-caption-lg),
+    "lh": 1.6,
     "color": var(--color-text-sub)
-  )
+  ),
+  "caption-md": (
+    "family": var(--font-ko),
+    "size": var(--fz-caption-md),
+    "lh": 1.7,
+    "color": var(--color-text-sub)
+  ),
+  "caption-sm": (
+    "family": var(--font-ko),
+    "size": var(--fz-caption-sm),
+    "lh": 1.7,
+    "color": var(--color-text-sub)
+  ),
+
+  /* ---------- PARAGRAPH ---------- */
+  "desc-lg": (
+    "family": var(--font-ko),
+    "size": var(--fz-body-lg),
+    "weight": var(--fw-s-bold),
+    "lh": 1.6,
+  ),
+  "desc-md": (
+    "family": var(--font-ko),
+    "size": var(--fz-body-md),
+    "weight": var(--fw-s-bold),
+    "lh": 1.6,
+  ),
+  "desc-sm": (
+    "family": var(--font-ko),
+    "size": var(--fz-body-sm),
+    "weight": var(--fw-s-bold),
+    "lh": 1.6,
+  ),
+  "tiny-lg": (
+    "family": var(--font-ko),
+    "size": var(--fz-tiny-lg),
+    "weight": var(--fw-medium),
+    "lh": 1.6,
+    "color": var(--color-text-mute)
+  ),
+  "tiny-md": (
+    "family": var(--font-ko),
+    "size": var(--fz-tiny-md),
+    "weight": var(--fw-medium),
+    "lh": 1.6,
+    "color": var(--color-text-mute)
+  ),
+  "tiny-sm": (
+    "family": var(--font-ko),
+    "size": var(--fz-tiny-sm),
+    "weight": var(--fw-medium),
+    "lh": 1.6,
+    "color": var(--color-text-mute)
+  ),
 );
 
 // 2. Main Unified Mixin
@@ -219,36 +289,3 @@ $text-styles: (
   @if map.has-key($style, "case") { text-transform: map.get($style, "case"); }
 }
 
-// --------------------------------------------------
-//   [Button Design System]
-// --------------------------------------------------
-$btn-sizes: (
-  "sm": (
-    "padding": var(--spacing-8) var(--spacing-20),
-    "font-size": var(--fz-body-sm)
-  ),
-  "md": (
-    "padding": var(--spacing-16) var(--spacing-40),
-    "font-size": var(--fz-body-lg)
-  ),
-  "lg": (
-    "padding": var(--spacing-16) var(--spacing-40),
-    "font-size": var(--fz-body-lg),
-    "width": 100%
-  )
-);
-
-@mixin btn-size($size) {
-  font-family: var(--font-en);
-  color: var(--color-text-main);
-  font-weight: var(--fw-s-bold);
-  background-color: var(--color-primary);
-  
-  $config: map.get($btn-sizes, $size);
-  padding: map.get($config, "padding");
-  font-size: map.get($config, "font-size");
-  
-  @if map.has-key($config, "width") {
-    width: map.get($config, "width");
-  }
-}

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from 'react-router-dom';
+import Button from '../../components/ui/Button';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,9 +40,9 @@ const Cta = () => {
             <span className="cta__title-highlight">True Silence?</span>
           </h2>
           <p className="cta__desc">
-            사전예약으로 SonicZero X1을 특별한 혜택방식으로 가장 먼저 경험하세요.
+            사전예약을 통해 SonicZero X1을 특별한 혜택으로 가장 먼저 경험하세요.
           </p>
-          <Link to="/shop" className="cta__btn">Pre-order Now</Link>
+          <Button to="/shop" size="md" variant="glow" className="cta__btn">Pre-order Now</Button>
         </div>
       </div>
     </section>

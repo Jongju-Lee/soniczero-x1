@@ -9,8 +9,11 @@ const Footer = () => {
         {/* Top Footer Area */}
         <div className="footer__top">
           <div className="footer__brand">
-            <h3 className="footer__brand-title">SonicZero X1</h3>
-            <p className="footer__brand-desc">완벽을 위해 설계된 프리미엄 오디오.</p>
+            <h3 className="footer__brand-title">SonicZero</h3>
+            <p className="footer__brand-desc">
+              정적의 미래<br />  
+              완벽을 위해 설계된 프리미엄 오디오.
+            </p>
           </div>
 
           <div className="footer__links">
@@ -47,9 +50,8 @@ const Footer = () => {
         {/* Bottom Footer Area */}
         <div className="footer__bottom">
           <p className="footer__copyright">© 2026 SonicZero. All rights reserved.</p>
-          <p className="footer__slogan">캘리포니아에서 디자인. 세계를 위한 엔지니어링.</p>
+          <p className="footer__slogan">웹 퍼블리셔 이 종 주 </p>
         </div>
-
       </div>
     </footer>
   );

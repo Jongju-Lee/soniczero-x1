@@ -6,13 +6,8 @@
 
   // Header Section
   &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 11.5rem; // ~184px
     gap: var(--spacing-24); // 20px in Figma, using nearest variable
     text-align: center;
-    margin-bottom: 18rem; // ~288px distance to table top
 
     &-badge {
       @include text-style("badge");
@@ -28,7 +23,7 @@
 
     &-desc {
       font-family: var(--font-ko);
-      font-size: var(--fz-body-ml); // 18px
+      font-size: var(--fz-body-lg); // 18px
       color: var(--color-text-sub);
     }
   }
@@ -59,7 +54,7 @@
 
       h3 {
         font-family: var(--font-ko);
-        font-size: var(--fz-body-ml); // 18px
+        font-size: var(--fz-body-lg); // 18px
         font-weight: var(--fw-bold);
         color: var(--color-text-main);
       }
@@ -156,7 +151,7 @@
 
         span:not(.dot) {
           font-family: var(--font-ko);
-          font-size: var(--fz-caption-lg); // 13px
+          font-size: var(--fz-tiny-md); // 13px
           color: var(--color-text-sub);
         }
 
@@ -194,7 +189,7 @@
 
       .y-label {
         font-family: var(--font-ko);
-        font-size: var(--fz-caption-lg); // 13px
+        font-size: var(--fz-tiny-md); // 13px
         color: var(--color-text-sub);
         text-align: right;
         height: 3rem; // 48px row gap matching Figma
@@ -235,7 +230,7 @@
           position: relative;
           color: #6E6E73;
           font-family: var(--font-en);
-          font-size: var(--fz-caption); // 12px
+          font-size: var(--fz-tiny-sm); // 12px
           width: 2rem;
           text-align: center;
           transform: translateX(-50%);

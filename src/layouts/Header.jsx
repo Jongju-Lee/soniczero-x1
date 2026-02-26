@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Button from '../components/ui/Button';
 
 const Header = () => {
   return (
@@ -29,7 +30,7 @@ const Header = () => {
           </ul>
 
           <div className="header__actions">
-            <Link to="/shop" className="header__btn header__btn--primary">Pre-order</Link>
+            <Button to="/shop" size="sm" variant="primary">Pre-order</Button>
           </div>
         </div>
       </nav>

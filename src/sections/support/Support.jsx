@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import CustomSelect from '../../components/ui/CustomSelect';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,8 +32,17 @@ const faqData = [
   }
 ];
 
+const contactTypeOptions = [
+  { value: 'product', label: 'Product Inquiry (제품 문의)' },
+  { value: 'order', label: 'Order & Shipping (주문 / 배송)' },
+  { value: 'warranty', label: 'Warranty & Repair (보증 / 수리)' },
+  { value: 'technical', label: 'Technical Support (기술 지원)' },
+  { value: 'feedback', label: 'Feedback & Suggestions (피드백)' },
+];
+
 const Support = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [contactType, setContactType] = useState('');
   
   const sectionRef = useRef(null);
   const elementsRef = useRef([]);
@@ -182,32 +192,32 @@ const Support = () => {
           <form className="support__contact-form" onSubmit={(e) => e.preventDefault()}>
             <div className="form-row">
               <div className="form-group">
-                <label>성함 *</label>
+                <label>성함 <span className="required">*</span></label>
                 <input type="text" placeholder="홍길동" required />
               </div>
               <div className="form-group">
-                <label>이메일 *</label>
+                <label>이메일 <span className="required">*</span></label>
                 <input type="email" placeholder="email@example.com" required />
               </div>
             </div>
             
             <div className="form-group">
-              <label>문의 유형 *</label>
-              <select required>
-                <option value="" disabled selected>문의 유형을 선택해 주세요</option>
-                <option value="product">제품 문의</option>
-                <option value="as">A/S 및 수리</option>
-                <option value="other">기타</option>
-              </select>
+              <label>문의 유형 <span className="required">*</span></label>
+              <CustomSelect
+                options={contactTypeOptions}
+                placeholder="문의 유형을 선택해 주세요"
+                value={contactType}
+                onChange={setContactType}
+              />
             </div>
 
             <div className="form-group">
-              <label>문의 내용 *</label>
+              <label>문의 내용 <span className="required">*</span></label>
               <textarea placeholder="문의하실 내용을 상세히 적어주세요." required></textarea>
             </div>
 
-            <button type="submit" className="submit-btn" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'}}>
-              <span>Send Message</span>
+            <button type="submit" className="submit-btn btn btn--primary btn--lg" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'}}>
+              <span>문의하기</span>
               <img src="./assets/icons/paper-plane.svg" alt="Send" style={{width: '20px', height: '20px'}} />
             </button>
           </form>

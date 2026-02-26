@@ -1,9 +1,12 @@
 @use 'abstracts/variables' as *;
 @use 'base/reset';
+@use 'components/button';
+@use 'components/custom-select';
 
 @use 'layout/header';
 @use 'layout/footer';
 @use 'sections/main';
+@use 'sections/storytelling';
 @use 'sections/tech';
 @use 'sections/cta';
 @use 'sections/support';
@@ -37,5 +40,14 @@ a {
 
 .main-wrapper {
   min-height: 100vh;
-  padding: var(--container-padding);
+  padding-top: 4.75rem; /* header 높이만큼 */
+
+  & > section {
+    padding: var(--container-padding);
+
+    & > div {
+      max-width: var(--container-max-width);
+      margin: 0 auto;
+    }
+  }
 }

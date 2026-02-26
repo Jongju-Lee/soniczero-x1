@@ -21,8 +21,7 @@
   }
 
   &__title {
-    @include text-style("heading");
-    color: var(--color-text-main);
+    @include text-style("title-md");
     margin-bottom: var(--spacing-24);
   }
 
@@ -31,21 +30,9 @@
   }
 
   &__desc {
-    @include text-style("desc");
-    margin-bottom: var(--spacing-40);
+    @include text-style("desc-lg");
+    margin-bottom: var(--spacing-48);
   }
 
-  &__btn {
-    @include btn-size("md");
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-12);
-    transition: background-color var(--transition-base), transform var(--transition-base);
-
-    &:hover {
-      background-color: color.adjust(#007AFF, $lightness: 10%);
-      transform: translateY(-2px);
-    }
-  }
+  /* .cta__btn layout override handled via className prop on Button component */
 }

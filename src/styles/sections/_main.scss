@@ -57,8 +57,6 @@
 
   &__title-text {
     @include text-style("display");
-    color: var(--color-text-main);
-    // Initial state for GSAP
     will-change: transform, opacity;
   }
 
@@ -69,9 +67,7 @@
   }
 
   &__desc {
-    color: var(--color-text-sub);
-    font-family: var(--font-ko);
-    font-size: var(--fz-body-xl); /* 20px */
+    @include text-style("caption-lg");
     line-height: 1.6;
     margin-bottom: var(--spacing-40);
     max-width: 35rem; /* 560px */
@@ -82,33 +78,6 @@
     align-items: center;
     gap: var(--spacing-16);
     margin-bottom: 4rem; /* 64px */
-  }
-
-  &__btn {
-    @include btn-size("md");
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-12);
-    transition: background-color var(--transition-base), transform var(--transition-base), border-color var(--transition-base);
-
-    &--primary {
-      &:hover {
-        background-color: color.adjust(#007AFF, $lightness: 10%);
-        transform: translateY(-0.125rem); /* -2px */
-      }
-    }
-
-    &--outline {
-      border: 1px solid transparent; /* Remove explicit border, rely on background hover */
-      background-color: transparent;
-
-      &:hover {
-        background-color: var(--color-glass);
-        border: 1px solid var(--color-border);
-        transform: translateY(-0.125rem); /* -2px */
-      }
-    }
   }
 
   &__visual {

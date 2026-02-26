@@ -21,27 +21,23 @@
 
   // --- 1. Hero Header ---
   &__header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     text-align: center;
-    padding-top: 11.5rem; // ~184px
   }
 
   &__badge {
     @include text-style("badge");
-    margin-bottom: var(--spacing-20);
+    display: inline-block;
+    margin-bottom: var(--spacing-12);
   }
 
   &__title {
-    @include text-style("heading");
-    // color: var(--color-text-main);
-    // margin-bottom: var(--spacing-20);
+    @include text-style("title-lg");
+    margin-bottom: var(--spacing-24);
   }
 
   &__desc {
     color: var(--color-text-sub);
-    font-size: var(--fz-body-lg);
+    font-size: var(--fz-body-xl);
     line-height: 1.6;
     max-width: 43rem;
   }
@@ -81,8 +77,8 @@
   }
 
   &__anc-title {
-    @include text-style("heading");
-    font-size: var(--fz-body-xl);
+    @include text-style("title-lg");
+    font-size: var(--fz-body-2xl);
   }
 
   &__anc-indicator {
@@ -107,7 +103,7 @@
   }
 
   &__anc-latency {
-    font-size: var(--fz-caption-md);
+    font-size: var(--fz-tiny-md);
     color: var(--color-text-muted);
   }
 
@@ -141,7 +137,7 @@
   }
 
   &__anc-subtitle {
-    font-size: var(--fz-caption-md);
+    font-size: var(--fz-tiny-md);
     color: var(--color-text-muted);
     margin-top: var(--spacing-4);
   }
@@ -190,7 +186,7 @@
   }
 
   &__anc-latency-footer {
-    font-size: var(--fz-caption-md);
+    font-size: var(--fz-tiny-md);
     color: var(--color-text-muted);
   }
 
@@ -226,7 +222,7 @@
   }
 
   &__features-title {
-    @include text-style("heading");
+    @include text-style("title-lg");
     font-size: 2.75rem; /* 44px */
   }
 
@@ -257,7 +253,7 @@
     width: 3.5rem; /* 56px */
     height: 3.5rem; /* 56px */
     border-radius: var(--radius-16);
-    background-color: rgba(0, 122, 255, 0.1);
+    background-color: rgba(var(--color-primary-rgb),0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -271,8 +267,8 @@
   }
 
   &__feature-title {
-    @include text-style("heading");
-    font-size: var(--fz-body-xl);
+    @include text-style("title-lg");
+    font-size: var(--fz-body-2xl);
     margin-bottom: var(--spacing-8);
   }
 

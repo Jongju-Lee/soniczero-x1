@@ -17,11 +17,6 @@
     align-items: center;
   }
 
-  &__banner-inner {
-    width: 100%;
-    /* Further banner content styling depending on mobile/desktop variations */
-  }
-
   &__nav {
     width: 100%;
     position: absolute;
@@ -37,7 +32,7 @@
     justify-content: space-between;
     width: 100%;
     max-width: var(--container-max-width);
-    padding: 0 var(--spacing-40);
+    padding: 0 var(--spacing-80);
   }
 
   &__logo {
@@ -52,19 +47,19 @@
   }
 
   &__logo-text {
-    @include text-style("nav-logo");
+    @include text-style("logo");
   }
 
   &__menu {
     display: flex;
     align-items: center;
-    gap: var(--spacing-32);
+    gap: var(--spacing-48);
     margin: 0;
     padding: 0;
   }
 
   &__menu-link {
-    @include text-style("menu");
+    font-weight: var(--fw-medium);
     color: var(--color-text-sub);
     transition: color var(--transition-base);
 
@@ -73,21 +68,7 @@
     }
   }
 
-  &__btn {
-    @include btn-size("sm");
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-12);
-    transition: background-color var(--transition-base), transform var(--transition-base);
 
-    &--primary {
-      &:hover {
-        background-color: color.adjust(#007AFF, $lightness: 10%);
-        transform: translateY(-2px);
-      }
-    }
-  }
 
   /* Responsive behavior */
   @include tablet {

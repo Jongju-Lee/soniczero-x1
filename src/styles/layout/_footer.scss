@@ -2,51 +2,55 @@
 
 .footer {
   border-top: 1px solid var(--color-border);
-  padding: var(--spacing-64) 0;
-
+  
   &__inner {
     max-width: var(--container-max-width);
     margin: 0 auto;
-    padding: 0 var(--spacing-40);
+    padding: var(--spacing-64) var(--spacing-80);
   }
 
   &__top {
     display: flex;
-    justify-content: space-between;
     margin-bottom: var(--spacing-64);
     flex-wrap: wrap;
-    gap: var(--spacing-40);
+    gap: var(--spacing-80);
   }
 
   &__brand {
-    max-width: 15.625rem; /* 250px */
+    flex: 1;
+    max-width: 16.25rem; /* 260px */
   }
 
   &__brand-title {
-    @include text-style("footer-title");
+    @include text-style("logo");
     margin-bottom: var(--spacing-16);
   }
 
   &__brand-desc {
-    @include text-style("footer-desc");
+    @include text-style("tiny-lg");
+    pointer-events: none;
   }
 
   &__links {
+    flex: 1;
     display: flex;
-    gap: 5rem; /* 80px */
+    gap: var(--spacing-80);
     flex-wrap: wrap;
   }
 
   &__nav-group {
+    flex: 1;
+    max-width: 16.25rem; /* 260px */
     display: flex;
     flex-direction: column;
     gap: var(--spacing-16);
+    font-size: var(--fz-body-sm);
   }
 
   &__nav-title {
-    color: var(--color-text-main);
-    font-size: var(--fz-body-sm);
+    line-height: 1.5;
     font-weight: var(--fw-s-bold);
+    letter-spacing: 0;
   }
 
   &__nav-list {
@@ -56,7 +60,7 @@
   }
 
   &__nav-link {
-    @include text-style("footer-link");
+    @include text-style("tiny-lg");
     transition: color var(--transition-base);
 
     &:hover {
@@ -65,7 +69,8 @@
   }
 
   &__bottom {
-    @include text-style("footer-copy");
+    @include text-style("tiny-lg");
+    font-size: var(--fz-tiny-md);
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Link } from 'react-router-dom';
+import Button from '../../components/ui/Button';
 
 const Main = () => {
   const title1Ref = useRef(null);
@@ -48,8 +48,8 @@ const Main = () => {
           </p>
 
           <div className="hero__actions">
-            <Link to="/shop" className="hero__btn hero__btn--primary">Pre-order Now — $399</Link>
-            <Link to="/tech" className="hero__btn hero__btn--outline">Explore Technology</Link>
+            <Button to="/shop" size="md" variant="primary">Pre-order Now — $399</Button>
+            <Button to="/technology" size="md" variant="outline">Explore Technology</Button>
           </div>
         </div>
 

@@ -1,0 +1,204 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+
+.btn {
+  @include flex-center;
+  border-radius: var(--radius-12);
+  font-family: var(--font-en);
+  font-weight: var(--fw-s-bold);
+  color: var(--color-text-main);
+  transition:
+    background-color var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    color var(--transition-base);
+
+  // --------------------------------------------------
+  // Size Variants
+  // --------------------------------------------------
+  &--sm {
+    padding: var(--spacing-8) var(--spacing-20);
+    font-size: var(--fz-body-sm);
+  }
+
+  &--md {
+    padding: var(--spacing-16) var(--spacing-40);
+    font-size: var(--fz-body-xl);
+  }
+
+  &--lg {
+    padding: var(--spacing-16) var(--spacing-40);
+    font-size: var(--fz-body-xl);
+    width: 100%;
+  }
+
+  // --------------------------------------------------
+  // Visual Variants
+  // --------------------------------------------------
+  &--primary {
+    background-color: var(--color-primary);
+
+    &:hover {
+      background-color: color.adjust(#007AFF, $lightness: 5%);
+      box-shadow: 0 0 2rem rgba(var(--color-primary-rgb), 0.7);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background-color: var(--color-glass);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+  &--glow {
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+    width: 100%;
+    position: relative;
+    z-index: 1; // ::before 위에 올려 중앙을 가림
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}
+
+// --------------------------------------------------
+// Glow Wrapper (shimmer border + spotlight)
+// --------------------------------------------------
+.btn-glow-wrap {
+  position: relative;
+  display: inline-flex;
+  border-radius: var(--radius-full);
+  padding: 0.3125rem; // 투명 테두리 두께 (5px)
+  background: linear-gradient(
+    135deg,
+    rgba(168, 85, 247, 0.35) 0%,
+    rgba(var(--color-primary-rgb),0.35) 50%,
+    rgba(6, 182, 212, 0.35) 100%
+  );
+  cursor: pointer;
+  // 기본 glow
+  box-shadow: 0 0 3.125rem rgba(var(--color-primary-rgb),0.6);
+  transition:
+    box-shadow var(--ease-premium),
+    transform var(--ease-premium);
+
+  &:hover {
+    box-shadow: 0 0 6.25rem rgba(var(--color-primary-rgb),0.7);
+    transform: scale(1.02);
+  }
+}
+
+// --------------------------------------------------
+// Sparkle Particles (glow 영역에서 불규칙하게 떠다님)
+// --------------------------------------------------
+.btn-glow-sparkle {
+  position: absolute;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--color-text-main);
+  border-radius: var(--radius-2);
+  rotate: 45deg; // 다이아몬드 형태
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+
+  // 각 파티클의 위치·크기
+  &--1 {
+    top: -0.75rem;
+    left: 20%;
+    width: 0.1875rem;
+    height: 0.1875rem;
+  }
+
+  &--2 {
+    top: 50%;
+    right: -0.875rem;
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  &--3 {
+    bottom: -0.625rem;
+    left: 55%;
+    width: 0.1875rem;
+    height: 0.1875rem;
+  }
+
+  &--4 {
+    top: -0.875rem;
+    right: 25%;
+    width: 0.125rem;
+    height: 0.125rem;
+  }
+
+  &--5 {
+    bottom: -0.75rem;
+    left: 15%;
+    width: 0.125rem;
+    height: 0.125rem;
+  }
+
+  // hover 시에만 애니메이션 적용
+  .btn-glow-wrap:hover & {
+    &--1 { animation: sparkle-float-1 3.2s ease-in-out infinite; }
+    &--2 { animation: sparkle-float-2 2.8s ease-in-out infinite 0.6s; }
+    &--3 { animation: sparkle-float-3 3.5s ease-in-out infinite 1.2s; }
+    &--4 { animation: sparkle-float-4 4s ease-in-out infinite 0.3s; }
+    &--5 { animation: sparkle-float-5 3s ease-in-out infinite 1.8s; }
+  }
+}
+
+// --------------------------------------------------
+// Sparkle Keyframes — 각각 다른 불규칙 경로
+// --------------------------------------------------
+@keyframes sparkle-float-1 {
+  0%, 100% { translate: 0 0;              opacity: 0; }
+  20%      { opacity: 0.22; }
+  50%      { translate: 1.125rem -0.875rem; opacity: 0.15; }
+  80%      { opacity: 0.2; }
+}
+
+@keyframes sparkle-float-2 {
+  0%, 100% { translate: 0 0;               opacity: 0; }
+  25%      { opacity: 0.18; }
+  50%      { translate: -0.75rem -1.125rem; opacity: 0.25; }
+  75%      { translate: 0.375rem -0.625rem; opacity: 0.12; }
+}
+
+@keyframes sparkle-float-3 {
+  0%, 100% { translate: 0 0;              opacity: 0; }
+  15%      { opacity: 0.2; }
+  40%      { translate: -0.875rem 0.625rem; opacity: 0.15; }
+  70%      { translate: 0.5rem 1rem;       opacity: 0.22; }
+}
+
+@keyframes sparkle-float-4 {
+  0%, 100% { translate: 0 0;              opacity: 0; }
+  30%      { opacity: 0.15; }
+  50%      { translate: 0.625rem -1.25rem; opacity: 0.2; }
+  70%      { translate: -0.375rem -0.75rem; opacity: 0.12; }
+}
+
+@keyframes sparkle-float-5 {
+  0%, 100% { translate: 0 0;              opacity: 0; }
+  20%      { opacity: 0.18; }
+  60%      { translate: 1.125rem 0.5rem;   opacity: 0.25; }
+  85%      { translate: 0.375rem 0.875rem; opacity: 0.1; }
+}
+
