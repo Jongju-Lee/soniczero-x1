@@ -55,19 +55,8 @@
 
       input {
         flex: 1;
-        background: transparent;
-        border: none;
+        @include text-style("desc-md");
         color: var(--color-text-main);
-        font-family: var(--font-ko);
-        font-size: var(--fz-body-md);
-
-        &::placeholder {
-          color: var(--color-text-sub);
-        }
-
-        &:focus {
-          outline: none;
-        }
       }
 
       button {
@@ -274,32 +263,30 @@
 
     &-form {
       @include glass-effect;
-      width: 100%;
-      border-radius: var(--radius-24);
-      padding: var(--spacing-40);
       display: flex;
       flex-direction: column;
       gap: var(--spacing-24);
+      width: 100%;
+      border-radius: var(--radius-24);
+      padding: var(--spacing-40);
 
       .form-row {
         display: flex;
         gap: var(--spacing-24);
-        
-        .form-group {
-          flex: 1;
-        }
       }
-
+      
       .form-group {
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: var(--spacing-8);
 
         label {
-          font-family: var(--font-ko);
-          font-size: var(--fz-body-sm);
-          font-weight: var(--fw-medium);
+          @include text-style("desc-sm");
+          padding-left: var(--spacing-8);
+          padding-left: 0.375rem; /* 6px */
           color: var(--color-text-main);
+          font-weight: var(--fw-medium);
 
           .required {
             color: var(--color-danger);
@@ -307,26 +294,18 @@
         }
 
         input, select, textarea {
-          background-color: var(--color-surface); // Used actual variable now instead of #0A0A0A
-          border: 1px solid var(--color-border); // Used actual variable instead of #333333
-          border-radius: var(--radius-12);
+          @include text-style("desc-md");
           padding: var(--spacing-16);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-12);
           color: var(--color-text-main);
-          font-family: var(--font-ko);
-          font-size: var(--fz-body-md);
+          background-color: var(--color-bg-foreground);
           transition: border-color var(--transition-base), box-shadow var(--transition-base);
 
           &:focus {
-            outline: none;
             border-color: var(--color-primary);
-            /* fallback */
-            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb),0.25);
-            /* modern: oklab color-mix for perceptually accurate glow */
+            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb),0.25); /* fallback */
             box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent);
-          }
-
-          &::placeholder {
-            color: var(--color-text-sub);
           }
         }
 
@@ -334,13 +313,11 @@
           resize: none;
           min-height: 7.5rem; // 120px
         }
-        
-
       }
 
       .support__contact-submit {
-        @include flex-center;
         gap: var(--spacing-8);
+        margin-top: var(--spacing-8);
 
         &-icon {
           width: 1.25rem;

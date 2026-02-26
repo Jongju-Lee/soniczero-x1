@@ -32,6 +32,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-en);
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-mute);
+  transition: var(--transition-base);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: transparent;
+}
+
 a {
   text-decoration: none;
   color: inherit;
