@@ -18,10 +18,10 @@
 // -----------------------------------------------------------------------------
 
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text-sub);
-  font-family: var(--font-ko);
   overflow-x: hidden;
+  font-family: var(--font-ko);
+  color: var(--color-text-sub);
+  background-color: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -30,12 +30,19 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-main);
   font-family: var(--font-en);
-  letter-spacing: -0.02rem;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+a:not([class*="btn"]) {
+  transition: color var(--transition-base);
+
+  &:hover {
+    color: var(--color-text-main);
+  }
 }
 
 .main-wrapper {

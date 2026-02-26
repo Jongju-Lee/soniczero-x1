@@ -30,9 +30,9 @@
   }
 
   &__desc {
-    @include text-style("desc-lg");
+    @include text-style("caption-md");
     margin-bottom: var(--spacing-48);
   }
 
-  /* .cta__btn layout override handled via className prop on Button component */
+  /* .cta__btn 레이아웃 오버라이드는 Button 컴포넌트의 className prop을 통해 처리됩니다 */
 }

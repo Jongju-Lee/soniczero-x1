@@ -69,10 +69,7 @@
   }
 
   &__desc {
-    font-family: var(--font-ko);
-    font-size: var(--fz-body-xl); /* 18px */
-    color: var(--color-text-sub);
-    line-height: 1.8;
+    @include text-style("caption-sm");
     margin: 0;
   }
 

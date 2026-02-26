@@ -50,7 +50,7 @@ const Footer = () => {
         {/* Bottom Footer Area */}
         <div className="footer__bottom">
           <p className="footer__copyright">© 2026 SonicZero. All rights reserved.</p>
-          <p className="footer__slogan">웹 퍼블리셔 이 종 주 </p>
+          <p className="footer__made">웹 퍼블리셔 이 종 주 </p>
         </div>
       </div>
     </footer>

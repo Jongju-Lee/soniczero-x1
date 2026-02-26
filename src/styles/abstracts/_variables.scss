@@ -166,35 +166,30 @@ $bp-mobile-sm: 480px;
 $text-styles: (
   /* ---------- TITLE ---------- */
   "display": (
-    "family": var(--font-en),
     "size": var(--fz-display-lg),
     "weight": var(--fw-black),
     "lh": 1.1,
     "ls": -0.125rem
   ),
   "title-lg": (
-    "family": var(--font-en),
     "size": var(--fz-display-md),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.125rem
   ),
   "title-md": (
-    "family": var(--font-en),
     "size": var(--fz-h1),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.0625rem
   ),
   "title-sm": (
-    "family": var(--font-en),
     "size": var(--fz-h2),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.0625rem
   ),
   "title-xs": (
-    "family": var(--font-en),
     "size": var(--fz-h5),
     "weight": var(--fw-bold),
     "lh": 1.3,
@@ -219,19 +214,16 @@ $text-styles: (
     "family": var(--font-ko),
     "size": var(--fz-caption-lg),
     "lh": 1.6,
-    "color": var(--color-text-sub)
   ),
   "caption-md": (
     "family": var(--font-ko),
     "size": var(--fz-caption-md),
     "lh": 1.7,
-    "color": var(--color-text-sub)
   ),
   "caption-sm": (
     "family": var(--font-ko),
     "size": var(--fz-caption-sm),
     "lh": 1.7,
-    "color": var(--color-text-sub)
   ),
 
   /* ---------- PARAGRAPH ---------- */
@@ -263,7 +255,7 @@ $text-styles: (
   "tiny-md": (
     "family": var(--font-ko),
     "size": var(--fz-tiny-md),
-    "weight": var(--fw-medium),
+    "weight": var(--fw-regular),
     "lh": 1.6,
     "color": var(--color-text-mute)
   ),
