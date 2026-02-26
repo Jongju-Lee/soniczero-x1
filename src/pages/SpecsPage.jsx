@@ -83,29 +83,34 @@ const SpecsPage = () => {
   }, []);
 
   return (
-    <div className="specs" ref={containerRef}>
-      <header className="specs__header">
-        <span className="specs__header-badge">Specifications</span>
-        <h1 className="specs__header-title">Every Detail Matters</h1>
-        <p className="specs__header-desc">혁신의 모든 디테일, SonicZero X1의 정밀한 기술 사양을 확인하세요.</p>
-      </header>
+    <section className="specs" ref={containerRef}>
+      <div className='specs__inner'>
 
-      <section className="specs__content">
-        <div className="specs__table">
-          <div className="specs__table-header">
-            <h3>기술 사양</h3>
+        {/* Section 1: Header + Table */}
+        <section className="specs__table-section">
+          <div className="specs__header">
+            <span className="specs__header-badge">Specifications</span>
+            <h1 className="specs__header-title">Every Detail Matters</h1>
+            <p className="specs__header-desc">혁신의 모든 디테일, SonicZero X1의 정밀한 기술 사양을 확인하세요.</p>
           </div>
-          <div className="specs__table-body">
-            {specsData.map((item, index) => (
-              <div className="specs__table-row" key={index}>
-                <span className="label">{item.label}</span>
-                <span className="value">{item.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="specs__chart-section">
+          <div className="specs__table">
+            <div className="specs__table-header">
+              <h3>기술 사양</h3>
+            </div>
+            <div className="specs__table-body">
+              {specsData.map((item, index) => (
+                <div className="specs__table-row" key={index}>
+                  <span className="label">{item.label}</span>
+                  <span className="value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 2: Comparison Chart */}
+        <section className="specs__chart-section">
           <div className="specs__chart-header">
             <h2>A Generational Leap</h2>
             <p>이전 세대 대비 X1의 주요 성능 지표를 비교해 보세요.</p>
@@ -124,39 +129,35 @@ const SpecsPage = () => {
             </div>
 
             <div className="specs__chart-container">
-              <div className="y-axis">
+              <div className="chart-rows">
                 {chartData.map((item, index) => (
-                  <div key={index} className="y-label">{item.label}</div>
-                ))}
-              </div>
-              
-              <div className="chart-area">
-                <div className="grid-lines">
-                  <span>0</span>
-                  <span>25</span>
-                  <span>50</span>
-                  <span>75</span>
-                  <span>100</span>
-                </div>
-                
-                <div className="bars">
-                  {chartData.map((item, index) => (
-                    <div className="bar-group" key={index}>
-                      <div className="bar-track">
-                        <div className="bar-fill prev" style={{ width: `${item.prev}%` }}></div>
-                      </div>
+                  <div className="chart-row" key={index}>
+                    <span className="chart-row__label">{item.label}</span>
+                    <div className="chart-row__bars">
                       <div className="bar-track">
                         <div className="bar-fill current" style={{ width: `${item.current}%` }}></div>
                       </div>
+                      <div className="bar-track">
+                        <div className="bar-fill prev" style={{ width: `${item.prev}%` }}></div>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+              </div>
+              <div className="x-axis">
+                <span>0</span>
+                <span>25</span>
+                <span>50</span>
+                <span>75</span>
+                <span>100</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+      </div>
+    </section>
+
   );
 };
 

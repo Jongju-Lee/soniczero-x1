@@ -1,62 +1,54 @@
 @use '../abstracts/variables' as *;
 
 .specs {
-  background-color: var(--color-bg);
-  padding-bottom: 15rem;
+  &__inner {
+    @include flex-center-column;
+    gap: var(--spacing-160);
+  }
 
-  // Header Section
   &__header {
-    gap: var(--spacing-24); // 20px in Figma, using nearest variable
     text-align: center;
 
     &-badge {
       @include text-style("badge");
+      display: inline-block;
+      margin-bottom: var(--spacing-16);
     }
 
     &-title {
-      font-family: var(--font-en);
-      font-size: var(--fz-h2); // 60px
-      font-weight: var(--fw-black);
-      line-height: 1.1;
-      color: var(--color-text-main);
+      @include text-style("title-lg");
+      margin-bottom: var(--spacing-24);
     }
 
     &-desc {
-      font-family: var(--font-ko);
-      font-size: var(--fz-body-lg); // 18px
-      color: var(--color-text-sub);
+      @include text-style("caption-md");
     }
   }
 
-  // Content Wrapper
-  &__content {
-    max-width: 60rem; // 960px container
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-64); // Need a large gap between table and chart, Figma shows ~650px. Wait, 1546px - 472px = 1074 -> Gap of about 176px.
-    gap: 11.125rem; // ~178px
+  /* =============== TABLE SECTION =============== */
+  &__table-section {
+    @include flex-center-column;
+    gap: var(--spacing-120);
+    width: 100%;
+    max-width: 60rem; // 960px
   }
 
   // Specs Table Layout
   &__table {
-    width: 100%;
-    background-color: var(--color-glass); // rgba(255,255,255, 0.05)
-    border: 1px solid var(--color-border);
+    @include glass-effect;
     border-radius: var(--radius-24);
+    width: 100%;
     overflow: hidden;
 
     &-header {
       padding: var(--spacing-20) var(--spacing-32);
+      background-color: var(--color-glass);
       border-bottom: 1px solid var(--color-border);
-      background-color: rgba(255, 255, 255, 0.02);
 
       h3 {
-        font-family: var(--font-ko);
-        font-size: var(--fz-body-lg); // 18px
-        font-weight: var(--fw-bold);
-        color: var(--color-text-main);
+        @include text-style("caption-lg");
+        font-size: var(--fz-body-xl);
+        line-height: 1.4;
       }
     }
 
@@ -65,53 +57,34 @@
       flex-direction: column;
 
       .specs__table-row {
+        @include text-style("desc-sm");
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: var(--spacing-16) var(--spacing-32);
-        border-bottom: 1px solid var(--color-border);
-        height: 3.5rem; // 56px
-
-        &:nth-child(even) {
-          background-color: #121212; // From Figma specification
-        }
         
-        &:last-child {
-          border-bottom: none;
-        }
-
-        .label {
-          font-family: var(--font-ko);
-          font-size: var(--fz-body-sm); // 15px
-          color: var(--color-text-sub);
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--color-border);
         }
 
         .value {
-          font-family: var(--font-ko);
-          font-size: var(--fz-body-sm); // 15px
-          font-weight: var(--fw-s-bold);
+          font-weight: var(--fw-medium);
           color: var(--color-text-main);
-          
-          // Mixed font usage for values like "32Ω"
-          // We apply EN font specifically if needed, but ko covers both ok visually.
         }
       }
     }
   }
 
-  // Comparison Chart Layout
+
+  /* =============== CHART SECTION =============== */
   &__chart-section {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem; // ~64px
-    align-items: center;
+    @include flex-center-column;
+    gap: var(--spacing-80);
   }
 
   &__chart-header {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+    @include flex-center-column;
     gap: var(--spacing-16);
 
     h2 {
@@ -130,6 +103,7 @@
 
   &__chart {
     width: 100%;
+    max-width: 60rem; /* 960px */
     background-color: var(--color-glass);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-24);
@@ -140,7 +114,6 @@
 
     &-legend {
       display: flex;
-      justify-content: flex-end;
       gap: var(--spacing-24);
       width: 100%;
 
@@ -174,123 +147,100 @@
 
   &__chart-container {
     display: flex;
-    align-items: stretch;
-    gap: var(--spacing-24);
-    position: relative;
-    padding-bottom: var(--spacing-24);
+    flex-direction: column;
+    gap: 0;
 
-    .y-axis {
-      width: 5.5rem; // ~88px, leaving room
+    // Wrapper for all data rows — hosts the single continuous grid overlay
+    .chart-rows {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding-top: 1.5rem; // offset to align with bars
+      gap: var(--spacing-4);
+      position: relative;
 
-      .y-label {
-        font-family: var(--font-ko);
-        font-size: var(--fz-tiny-md); // 13px
-        color: var(--color-text-sub);
-        text-align: right;
-        height: 3rem; // 48px row gap matching Figma
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
+      // Single continuous dashed grid overlay at 25%, 50%, 75%
+      &::before {
+        content: '';
+        position: absolute;
+        left: calc(5.5rem + var(--spacing-24));
+        right: 0;
+        top: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image:
+          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px);
+        background-size: 1px 7px, 1px 7px, 1px 7px;
+        background-position: 25% 0, 50% 0, 75% 0;
+        background-repeat: repeat-y;
       }
     }
 
-    .chart-area {
-      flex: 1;
+    .chart-row {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-24);
+      min-height: 3rem;
       position: relative;
-      min-height: 23.125rem; // 370px
+      z-index: 1;
 
-      .grid-lines {
-        position: absolute;
-        bottom: -2rem;
-        left: 0;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        
-        // Vertical lines
-        &::before, &::after, & > span::before {
-          content: "";
-          position: absolute;
-          top: -23.125rem;
-          width: 1px;
-          height: 23.125rem;
-          background-color: var(--color-border);
-          z-index: 1;
-        }
-        
-        &::before { left: 0; }
-        &::after { right: 0; }
-
-        span {
-          position: relative;
-          color: #6E6E73;
-          font-family: var(--font-en);
-          font-size: var(--fz-tiny-sm); // 12px
-          width: 2rem;
-          text-align: center;
-          transform: translateX(-50%);
-
-          &:first-child { transform: translateX(0); text-align: left; }
-          &:last-child { transform: translateX(0); text-align: right; }
-          
-          &:nth-child(2) { left: 25%; position: absolute; }
-          &:nth-child(3) { left: 50%; position: absolute; }
-          &:nth-child(4) { left: 75%; position: absolute; }
-          &:nth-child(5) { right: 0; position: absolute; }
-
-          &::before {
-            top: -24rem; // Move line up
-            left: 50%;
-          }
-        }
-
-        span:first-child::before, span:last-child::before {
-          display: none; // Handled by outer box
-        }
+      &__label {
+        width: 5.5rem;
+        flex-shrink: 0;
+        text-align: right;
+        font-family: var(--font-ko);
+        font-size: var(--fz-tiny-md);
+        color: var(--color-text-sub);
       }
 
-      .bars {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+      &__bars {
+        flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        padding-top: 0.5rem; // 8px Offset to align
-        z-index: 2;
+        gap: 4px;
+      }
+    }
 
-        .bar-group {
-          display: flex;
-          flex-direction: column;
-          gap: 4px; // Small gap between the two bars
-          height: 3rem; // 48px matching row gap
-          justify-content: center;
+    .bar-track {
+      width: 100%;
+      height: 1.125rem;
 
-          .bar-track {
-            width: 100%;
-            height: 1.125rem; // 18px height from Figma
+      .bar-fill {
+        height: 100%;
+        border-radius: 0 var(--radius-4) var(--radius-4) 0;
 
-            .bar-fill {
-              height: 100%;
-              border-radius: 0 4px 4px 0; // Curve right side
-              
-              &.prev {
-                background-color: rgba(255, 255, 255, 0.15);
-              }
-              &.current {
-                background-color: var(--color-primary);
-              }
-            }
-          }
+        &.current {
+          background-color: var(--color-primary);
         }
+        &.prev {
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+      }
+    }
+
+    // X-axis with precisely aligned numbers using absolute positioning
+    .x-axis {
+      margin-left: calc(5.5rem + var(--spacing-24));
+      position: relative;
+      height: 2rem;
+      border-top: 1px solid var(--color-border);
+
+      span {
+        position: absolute;
+        top: var(--spacing-8);
+        font-family: var(--font-en);
+        font-size: var(--fz-tiny-sm);
+        color: var(--color-text-mute);
+
+        &:nth-child(1) { left: 0; }
+        &:nth-child(2) { left: 25%; transform: translateX(-50%); }
+        &:nth-child(3) { left: 50%; transform: translateX(-50%); }
+        &:nth-child(4) { left: 75%; transform: translateX(-50%); }
+        &:nth-child(5) { right: 0; }
       }
     }
   }
 }
+
+

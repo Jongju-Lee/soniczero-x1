@@ -2,7 +2,6 @@
 @use 'sass:color';
 
 .tech {
-  position: relative;
   width: 100%;
 
   &__inner {
@@ -18,28 +17,35 @@
     will-change: transform, opacity;
   }
 
-  // --- 1. Hero Header ---
-  &__header {
+  // --- 1. ANC Section Wrapper ---
+  &__anc-section {
+    @include flex-center-column;
+    gap: var(--spacing-120);
+    width: 100%;
+  }
+
+  // --- 1a. ANC Intro (Section Header) ---
+  &__anc-intro {
     text-align: center;
   }
 
-  &__badge {
+  &__anc-badge {
     @include text-style("badge");
     display: inline-block;
     margin-bottom: var(--spacing-12);
   }
 
-  &__title {
+  &__anc-title {
     @include text-style("title-lg");
     margin-bottom: var(--spacing-24);
   }
 
-  &__desc {
+  &__anc-desc {
     @include text-style("caption-md");
   }
 
-  // --- 2. ANC Monitor Section ---
-  &__anc {
+  // --- 1b. ANC Widget (Interactive Demo) ---
+  &__anc-widget {
     @include flex-center;
     width: 100%;
     gap: 5rem;
@@ -58,7 +64,7 @@
     z-index: 2;
   }
 
-  &__anc-header {
+  &__anc-monitor-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -70,7 +76,7 @@
     gap: var(--spacing-4);
   }
 
-  &__anc-title {
+  &__anc-monitor-title {
     @include text-style("title-xs");
   }
 
@@ -99,7 +105,7 @@
     }
   }
 
-  &__anc-subtitle {
+  &__anc-monitor-subtitle {
     @include text-style("tiny-md");
     margin-top: var(--spacing-4);
   }
@@ -145,15 +151,15 @@
     min-width: 33.75rem; /* 540px */
   }
   
-  // --- 3. Built Different Grid Section ---
+  // --- 2. Built Different Grid Section ---
   &__features {
     @include flex-center-column;
+    gap: var(--spacing-80);
     width: 100%;
   }
 
   &__features-header {
     @include flex-center-column;
-    margin-bottom: var(--spacing-80);
     gap: var(--spacing-16);
   }
 

@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomSelect from '../../components/ui/CustomSelect';
+import Button from '../../components/ui/Button';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,42 +87,42 @@ const Support = () => {
 
   return (
     <section className="support" id="support" ref={sectionRef}>
-      <div className="container support__inner">
-        
-        {/* Hero / Search */}
-        <div className="support__hero" ref={addToRefs}>
+      <div className="support__inner">
+
+        {/* 1. Hero + Search */}
+        <section className="support__hero" ref={addToRefs}>
           <div className="support__hero-badge">Support Center</div>
-          <h2 className="support__hero-title">HOW CAN WE HELP?</h2>
+          <h1 className="support__hero-title">HOW CAN WE HELP?</h1>
           <p className="support__hero-desc">SonicZero X1에 대한 모든 궁금증을 해결해 드립니다.</p>
-          
+
           <div className="support__search">
             <div className="support__search-bar">
-              <img src="./assets/icons/magnifier.svg" alt="Search" style={{width: '24px', height: '24px', marginRight: '16px'}} />
+              <img src="./assets/icons/magnifier.svg" alt="" className="support__search-icon" />
               <input type="text" placeholder="도움이 필요하신 내용을 검색해 보세요." />
-              <button type="button">Search</button>
+              <Button size="sm" variant="primary">Search</Button>
             </div>
             <div className="support__search-tags">
               <span>Popular:</span>
-              <button>정품 등록</button>
-              <button>서비스 상태</button>
-              <button>매뉴얼 다운로드</button>
+              <Button size="sm" variant="outline">정품 등록</Button>
+              <Button size="sm" variant="outline">서비스 상태</Button>
+              <Button size="sm" variant="outline">매뉴얼 다운로드</Button>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* FAQ */}
-        <div className="support__faq" ref={addToRefs}>
+        {/* 2. FAQ */}
+        <section className="support__faq" ref={addToRefs}>
           <div className="support__faq-header">
             <h2>Frequently Asked Questions</h2>
             <p>SonicZero X1에 대해 가장 많이 문의하시는 질문들입니다.</p>
           </div>
-          
+
           <div className="support__faq-list">
             {faqData.map((faq, index) => {
               const isActive = openFaqIndex === index;
               return (
                 <div key={index} className={`support__faq-item ${isActive ? 'is-active' : ''}`}>
-                  <button 
+                  <button
                     className={`support__faq-question ${isActive ? 'is-active' : ''}`}
                     onClick={() => toggleFaq(index)}
                   >
@@ -138,15 +140,15 @@ const Support = () => {
               );
             })}
           </div>
-        </div>
+        </section>
 
-        {/* Downloads */}
-        <div className="support__downloads" ref={addToRefs}>
+        {/* 3. Downloads */}
+        <section className="support__downloads" ref={addToRefs}>
           <div className="support__downloads-header">
             <h2>Downloads</h2>
             <p>최신 매뉴얼, 펌웨어, 보증 가이드를 다운로드하세요.</p>
           </div>
-          
+
           <div className="support__downloads-grid">
             <div className="support__downloads-card">
               <div className="icon-box">
@@ -158,10 +160,10 @@ const Support = () => {
                 <span className="size">12.4 MB</span>
               </div>
               <p className="desc">SonicZero X1 사용 설명서 전체 버전</p>
-              <button className="download-btn">
+              <Button size="sm" variant="primary" className="download-btn">
+                <img src="./assets/icons/download.svg" alt="" />
                 <span>Download</span>
-                <img src="./assets/icons/download.svg" alt="Download Icon" />
-              </button>
+              </Button>
             </div>
 
             <div className="support__downloads-card">
@@ -174,21 +176,37 @@ const Support = () => {
                 <span className="size">48.2 MB</span>
               </div>
               <p className="desc">최신 안정화 펌웨어 (2026.02 릴리즈)</p>
-              <button className="download-btn">
+              <Button size="sm" variant="primary" className="download-btn">
+                <img src="./assets/icons/download.svg" alt="" />
                 <span>Download</span>
-                <img src="./assets/icons/download.svg" alt="Download Icon" />
-              </button>
+              </Button>
+            </div>
+
+            <div className="support__downloads-card">
+              <div className="icon-box">
+                <img src="./assets/icons/core.svg" alt="Warranty Icon" />
+              </div>
+              <h3>제품 보증 안내</h3>
+              <div className="meta">
+                <span className="format">PDF</span>
+                <span className="size">3.1 MB</span>
+              </div>
+              <p className="desc">보증 정책 및 서비스 안내 문서</p>
+              <Button size="sm" variant="primary" className="download-btn">
+                <img src="./assets/icons/download.svg" alt="" />
+                <span>Download</span>
+              </Button>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Contact Form */}
-        <div className="support__contact" ref={addToRefs}>
+        {/* 4. Contact */}
+        <section className="support__contact" ref={addToRefs}>
           <div className="support__contact-header">
             <h2>Contact Us</h2>
             <p>FAQ에서 답을 찾지 못하셨나요? 직접 문의해 주세요.</p>
           </div>
-          
+
           <form className="support__contact-form" onSubmit={(e) => e.preventDefault()}>
             <div className="form-row">
               <div className="form-group">
@@ -200,7 +218,7 @@ const Support = () => {
                 <input type="email" placeholder="email@example.com" required />
               </div>
             </div>
-            
+
             <div className="form-group">
               <label>문의 유형 <span className="required">*</span></label>
               <CustomSelect
@@ -216,16 +234,17 @@ const Support = () => {
               <textarea placeholder="문의하실 내용을 상세히 적어주세요." required></textarea>
             </div>
 
-            <button type="submit" className="submit-btn btn btn--primary btn--lg" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'}}>
+            <button type="submit" className="support__contact-submit btn btn--primary btn--lg">
               <span>문의하기</span>
-              <img src="./assets/icons/paper-plane.svg" alt="Send" style={{width: '20px', height: '20px'}} />
+              <img src="./assets/icons/paper-plane.svg" alt="" className="support__contact-submit-icon" />
             </button>
           </form>
-        </div>
-        
+        </section>
+
       </div>
     </section>
   );
+
 };
 
 export default Support;

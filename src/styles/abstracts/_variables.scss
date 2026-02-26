@@ -32,6 +32,7 @@
   --color-text-mute: #6E6E73;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-active: rgba(255, 255, 255, 0.08);
   --color-positive: #05DF72;
   --color-danger: #FF6366;
 
@@ -145,7 +146,7 @@ $bp-mobile-sm: 480px;
 
 //  GLASS STYLE
 @mixin glass-effect {
-  background: var(--color-glass);
+  background-color: var(--color-glass);
   backdrop-filter: var(--blur-glass);
   border: 1px solid var(--color-border);
 }
