@@ -32,7 +32,8 @@
   --color-text-mute: #6E6E73;
   --color-border: rgba(255, 255, 255, 0.1);
   --color-glass: rgba(255, 255, 255, 0.05);
-  --color-danger: #ff6366;
+  --color-positive: #05DF72;
+  --color-danger: #FF6366;
 
   /* --- 2. Typography Hierarchy (16px based) --- */
   --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
@@ -60,7 +61,7 @@
   --fz-body-xl: 1.125rem; /* 18px */
   --fz-body-lg: 1.0625rem; /* 17px */
   --fz-body-md: 1rem;     /* 16px */
-  --fz-body-sm: 0.875rem; /* 14px */
+  --fz-body-sm: 0.9375rem; /* 15px */
   
   /* Font Weights */
   --fw-black: 900;
@@ -81,6 +82,7 @@
   --spacing-16: 1rem;
   --spacing-20: 1.25rem;
   --spacing-24: 1.5rem;
+  --spacing-28: 1.75rem;
   --spacing-32: 2rem;
   --spacing-36: 2.25rem;
   --spacing-40: 2.5rem;
@@ -101,6 +103,7 @@
   --spacing-100: 6.25rem;
   --spacing-120: 7.5rem;
   --spacing-160: 10rem;
+  --spacing-180: 11.25rem;
 
   /* Layout Tokens */
   --container-max-width: 90rem;   /* 1440px */
@@ -230,19 +233,19 @@ $text-styles: (
   "desc-lg": (
     "family": var(--font-ko),
     "size": var(--fz-body-lg),
-    "weight": var(--fw-s-bold),
+    "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "desc-md": (
     "family": var(--font-ko),
     "size": var(--fz-body-md),
-    "weight": var(--fw-s-bold),
+    "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "desc-sm": (
     "family": var(--font-ko),
     "size": var(--fz-body-sm),
-    "weight": var(--fw-s-bold),
+    "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "tiny-lg": (

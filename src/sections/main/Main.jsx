@@ -44,7 +44,9 @@ const Main = () => {
 
           <p className="hero__desc">
             차세대 노이즈 캔슬링 기술로 소음의 한계를 넘어선 정적을 경험해 보세요. 프리미엄 오디오,
-            몰입감 있는 사운드, 하루 종일 편안한 착용감 — 헤드폰의 새로운 기준을 제시합니다.
+            몰입감 있는 사운드, 하루 종일 편안한 착용감
+            <br />
+            헤드폰의 새로운 기준을 제시합니다.
           </p>
 
           <div className="hero__actions">
@@ -57,7 +59,8 @@ const Main = () => {
           <div className="hero__visual-glow"></div>
           <img 
             ref={imageRef}
-            src="./assets/images/midnight-black.png" 
+            // src="./assets/images/midnight-black.png" 
+            src="./assets/images/hero-img.png" 
             alt="SonicZero X1 Midnight Black" 
             className="hero__visual-image" 
           />

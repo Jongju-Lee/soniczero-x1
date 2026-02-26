@@ -118,7 +118,7 @@ const TechPage = () => {
   }, { scope: containerRef });
 
   return (
-    <div className="tech" ref={containerRef}>
+    <section className="tech" ref={containerRef}>
       <div className="tech__inner">
         {/* Hero Section */}
         <header className="tech__header tech-fade-up">
@@ -140,7 +140,7 @@ const TechPage = () => {
                 </p>
               </div>
               <button 
-                className={`tech__btn-toggle ${isAncActive ? 'tech__btn-toggle--on' : 'tech__btn-toggle--off'}`}
+                className={`btn btn--sm tech__btn-toggle ${isAncActive ? 'tech__btn-toggle--on' : 'tech__btn-toggle--off'}`}
                 onClick={() => setIsAncActive(!isAncActive)}
               >
                 {isAncActive ? 'ANC ON' : 'ANC OFF'}
@@ -244,7 +244,7 @@ const TechPage = () => {
            </div>
         </section>
       </div>
-    </div>
+    </section>
   );
 };
 

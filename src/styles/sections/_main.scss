@@ -2,33 +2,22 @@
 @use 'sass:color';
 
 .hero {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh; /* fallback */
+  min-height: 100dvh;
 
   &__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+    @include flex-center-column;
     z-index: 10;
   }
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex-center-column;
     text-align: center;
     max-width: 37.5rem; /* 600px */
   }
 
   &__badge {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-center;
     gap: var(--spacing-8);
     padding: var(--spacing-8) var(--spacing-16);
     border-radius: var(--radius-full);
@@ -50,19 +39,16 @@
   }
 
   &__title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include text-style("display");
+    @include flex-center-column;
     margin-bottom: var(--spacing-24);
   }
 
   &__title-text {
-    @include text-style("display");
     will-change: transform, opacity;
   }
 
   &__title-highlight {
-    @include text-style("display");
     color: var(--color-primary);
     will-change: transform, opacity;
   }
@@ -75,8 +61,7 @@
   }
 
   &__actions {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     gap: var(--spacing-16);
     margin-bottom: 4rem; /* 64px */
   }
@@ -85,7 +70,7 @@
     position: relative;
     width: 37.5rem; /* 600px */
     height: 37.5rem; /* 600px */
-    margin-top: -2.5rem; /* -40px */
+    margin-top: -1.25rem; /* -40px */
   }
 
   &__visual-glow {
@@ -96,18 +81,13 @@
     width: 37.5rem; /* 600px */
     height: 37.5rem; /* 600px */
     background-color: var(--color-primary);
-    filter: blur(128px);
+    filter: blur(8.75rem);
     border-radius: var(--radius-full);
     z-index: -1;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   &__visual-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    // Initial state for GSAP
     will-change: transform, opacity;
   }
 }
