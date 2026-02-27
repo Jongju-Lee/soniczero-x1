@@ -4,18 +4,13 @@
 .tech {
   width: 100%;
 
-  &__inner {
-    @include flex-center-column;
-    gap: var(--spacing-160);
-  }
-
   // 페이드 업 (Fade Up) 유틸리티
   .tech-fade-up {
     will-change: transform, opacity;
   }
 
   // --- 1. ANC 섹션 래퍼 ---
-  &__anc-section {
+  &__anc {
     @include flex-center-column;
     gap: var(--spacing-120);
     width: 100%;

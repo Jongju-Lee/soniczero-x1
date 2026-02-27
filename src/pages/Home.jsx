@@ -1,15 +1,15 @@
 import React from 'react';
-import Main from '../sections/main/Main';
-import Storytelling from '../sections/storytelling/Storytelling';
-import Cta from '../sections/cta/Cta';
+import Main from '../sections/home/main/Main';
+import Storytelling from '../sections/home/storytelling/Storytelling';
+import Cta from '../sections/home/cta/Cta';
 
 const Home = () => {
   return (
-    <>
+    <article className="home">
       <Main />
       <Storytelling />
       <Cta />
-    </>
+    </article>
   );
 };
 

@@ -20,9 +20,9 @@ soniczero-x1/
 │   │   ├── Header.jsx
 │   │   ├── Footer.jsx
 │   │   └── Container.jsx
-│   ├── sections/           # [Sections] Content blocks for each page
-│   │   ├── main/           # Main Landing (Hero, Story)
-│   │   ├── tech/           # Technology Page Sections
+│   ├── sections/           # [Sections] Content blocks organized by page domain
+│   │   ├── home/           # Main Landing Page Sections (Main, Storytelling, Cta)
+│   │   ├── technology/     # Technology Page Sections (TechAnc, TechFeatures)
 │   │   ├── specs/          # Specifications Page Sections
 │   │   ├── shop/           # Shop Page Sections
 │   │   └── support/        # Support Page Sections

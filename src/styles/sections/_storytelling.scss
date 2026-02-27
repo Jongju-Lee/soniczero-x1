@@ -11,7 +11,7 @@
     }
 
     &:not(:last-child) {
-      margin-bottom: calc(var(--spacing-80) * 2);
+      margin-bottom: var(--spacing-80);
     }
 
     @include laptop {

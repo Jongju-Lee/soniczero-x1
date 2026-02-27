@@ -58,14 +58,17 @@ a:not([class*="btn"]) {
 
 .main-wrapper {
   min-height: 100vh;
-  padding-top: 4.75rem; /* header 높이만큼 */
+  padding: var(--container-padding);
+  padding-top: calc(4.75rem + var(--container-padding)); /* header 높이만큼 */
 
-  & > section {
-    padding: var(--container-padding);
+  & > article {
+    @include flex-center-column;
+    gap: var(--spacing-160);
+    max-width: var(--container-max-width);
+    margin: 0 auto;
 
-    & > div {
-      max-width: var(--container-max-width);
-      margin: 0 auto;
+    & > section {
+      width: 100%;
     }
   }
 }
