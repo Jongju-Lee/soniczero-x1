@@ -84,20 +84,15 @@
   }
 
   &__chart-header {
-    @include flex-center-column;
-    gap: var(--spacing-16);
-
+    text-align: center;
+    
     h2 {
-      font-family: var(--font-en);
-      font-size: var(--fz-h3); // 40px
-      font-weight: var(--fw-black);
-      color: var(--color-text-main);
+      @include text-style("title-md");
+      margin-bottom: var(--spacing-16);
     }
 
     p {
-      font-family: var(--font-ko);
-      font-size: var(--fz-body-md); // 17px
-      color: var(--color-text-sub);
+      @include text-style("caption-sm");
     }
   }
 

@@ -144,7 +144,7 @@
     &-answer {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows var(--ease-premium);
+      transition: grid-template-rows var(--transition-premium);
       
       .is-active & {
         grid-template-rows: 1fr;

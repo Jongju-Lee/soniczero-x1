@@ -168,7 +168,7 @@
   }
 
   &__features-desc {
-    @include text-style("caption-md");
+    @include text-style("caption-sm");
   }
 
   &__grid {

@@ -8,11 +8,11 @@
   font-weight: var(--fw-s-bold);
   color: var(--color-text-main);
   transition:
-    background-color var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base),
-    transform var(--transition-base),
-    color var(--transition-base);
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    color var(--transition-fast);
 
   // --------------------------------------------------
   // Size Variants
@@ -94,8 +94,8 @@
   // 기본 glow
   box-shadow: 0 0 3.125rem rgba(var(--color-primary-rgb),0.6);
   transition:
-    box-shadow var(--ease-premium),
-    transform var(--ease-premium);
+    box-shadow var(--transition-premium),
+    transform var(--transition-premium);
 
   &:hover {
     box-shadow: 0 0 6.25rem rgba(var(--color-primary-rgb),0.7);

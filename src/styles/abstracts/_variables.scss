@@ -25,6 +25,7 @@
   --color-primary: #007AFF;
   --color-primary-rgb: 0, 122, 255;
   --color-bg: #050505;
+  --color-bg-white: #FFFFFF;
   --color-bg-foreground: #0A0A0A;
   --color-bg-alpha: rgba(5, 5, 5, 0.75);
   --color-surface: #121212;
@@ -46,9 +47,16 @@
   --fz-display-md: 3.75rem; /* 60px */
   --fz-h1: 3rem;            /* 48px */
   --fz-h2: 2.5rem;          /* 40px */
-  --fz-h3: 2rem;           /* 32px */
+  --fz-h3: 2.25rem;           /* 36px */
   --fz-h4: 1.5rem;         /* 24px */
   --fz-h5: 1.25rem;        /* 20px */
+
+  /* Body Text */
+  --fz-body-2xl: 1.25rem; /* 20px */
+  --fz-body-xl: 1.125rem; /* 18px */
+  --fz-body-lg: 1.0625rem; /* 17px */
+  --fz-body-md: 1rem;     /* 16px */
+  --fz-body-sm: 0.9375rem; /* 15px */
 
   /* Caption & Label */
   --fz-caption-lg: 1.25rem; /* 20px */
@@ -57,13 +65,6 @@
   --fz-tiny-lg: 0.875rem; /* 14px */
   --fz-tiny-md: 0.8125rem; /* 13px */
   --fz-tiny-sm: 0.75rem;  /* 12px */
-
-  /* Body Text */
-  --fz-body-2xl: 1.25rem; /* 20px */
-  --fz-body-xl: 1.125rem; /* 18px */
-  --fz-body-lg: 1.0625rem; /* 17px */
-  --fz-body-md: 1rem;     /* 16px */
-  --fz-body-sm: 0.9375rem; /* 15px */
   
   /* Font Weights */
   --fw-black: 900;
@@ -125,8 +126,9 @@
   
   /* --- 5. Effects & Motion --- */
   --blur-glass: blur(20px);
-  --transition-base: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-premium: 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-premium: 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* --------------------------------------------------
@@ -216,56 +218,47 @@ $text-styles: (
     "color": var(--color-text-main)
   ),
   "caption-lg": (
-    "family": var(--font-ko),
     "size": var(--fz-caption-lg),
     "lh": 1.6,
   ),
   "caption-md": (
-    "family": var(--font-ko),
     "size": var(--fz-caption-md),
     "lh": 1.7,
   ),
   "caption-sm": (
-    "family": var(--font-ko),
     "size": var(--fz-caption-sm),
     "lh": 1.7,
   ),
 
   /* ---------- PARAGRAPH ---------- */
   "desc-lg": (
-    "family": var(--font-ko),
     "size": var(--fz-body-lg),
     "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "desc-md": (
-    "family": var(--font-ko),
     "size": var(--fz-body-md),
     "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "desc-sm": (
-    "family": var(--font-ko),
     "size": var(--fz-body-sm),
     "weight": var(--fw-regular),
     "lh": 1.6,
   ),
   "tiny-lg": (
-    "family": var(--font-ko),
     "size": var(--fz-tiny-lg),
     "weight": var(--fw-medium),
     "lh": 1.6,
     "color": var(--color-text-mute)
   ),
   "tiny-md": (
-    "family": var(--font-ko),
     "size": var(--fz-tiny-md),
     "weight": var(--fw-regular),
     "lh": 1.6,
     "color": var(--color-text-mute)
   ),
   "tiny-sm": (
-    "family": var(--font-ko),
     "size": var(--fz-tiny-sm),
     "weight": var(--fw-medium),
     "lh": 1.6,

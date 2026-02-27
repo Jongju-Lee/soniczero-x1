@@ -62,10 +62,6 @@
   &__title {
     @include text-style("title-md");
     margin-bottom: var(--spacing-24);
-
-    @include mobile-lg {
-      font-size: var(--fz-h3);
-    }
   }
 
   &__desc {
