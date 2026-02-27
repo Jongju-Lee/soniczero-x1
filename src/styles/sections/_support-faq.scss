@@ -32,6 +32,7 @@
       overflow: hidden;
       transition: background-color var(--transition-base);
 
+      &:hover,
       &.is-active {
         background-color: var(--color-glass-active);
       }
@@ -46,10 +47,24 @@
       padding: var(--spacing-24) var(--spacing-32);
       font-weight: var(--fw-s-bold);
       color: var(--color-text-main);
+    }
+
+    &-icon {
+      @include flex-center;
+      width: 2rem; // 32px
+      height: 2rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-base);
+      flex-shrink: 0;
+
+      &.is-active {
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+      }
 
       img {
-        width: 2rem; // 32px
-        height: 2rem;
+        width: 1rem; // 16px
         transition: transform var(--transition-base);
       }
     }

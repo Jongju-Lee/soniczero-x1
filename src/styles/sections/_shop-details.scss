@@ -41,15 +41,28 @@
         margin-top: var(--spacing-16);
 
         .color-btn {
+          @include flex-center;
           width: 3rem; // 48px
           height: 3rem;
           border-radius: var(--radius-full);
           border: 2px solid var(--color-border);
           transition: transform var(--transition-fast), border-color var(--transition-fast);
 
+          .check-icon {
+            width: 1.25rem; // 20px
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all var(--transition-fast);
+          }
+
           &.active {
-            transform: scale(1.08);
+            transform: scale(1.1);
             border-color: var(--color-bg-white);
+            
+            .check-icon {
+              opacity: 1;
+              transform: scale(1);
+            }
           }
         }
       }
@@ -75,10 +88,14 @@
           @include flex-center;
           width: 3rem; // 48px
           height: 3rem;
+
+          &:disabled {
+            cursor: not-allowed;
+          }
           
           img {
-            width: 1.5rem; /* 24px */
-            height: 1.5rem; /* 24px */
+            width: 1rem; /* 16px */
+            height: 1rem; /* 16px */
           }
         }
 

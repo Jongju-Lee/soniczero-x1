@@ -86,7 +86,9 @@ const SupportFaq = () => {
                 aria-controls={faqId}
               >
                 <span>{faq.q}</span>
-                <img src={`/assets/icons/${isActive ? 'minus' : 'plus'}.svg`} alt={isActive ? "Collapse" : "Expand"} />
+                <span className={`support__faq-icon ${isActive ? 'is-active' : ''}`}>
+                  <img src={`/assets/icons/${isActive ? 'support-minus' : 'support-plus'}.svg`} alt={isActive ? "Collapse" : "Expand"} loading="lazy" />
+                </span>
               </button>
               <div className="support__faq-answer" id={faqId}>
                 <div className="support__faq-answer-inner">

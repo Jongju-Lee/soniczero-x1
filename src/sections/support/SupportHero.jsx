@@ -11,8 +11,8 @@ const SupportHero = () => {
   useEffect(() => {
     // prefers-reduced-motion: 애니메이션 축소 모드일 시 정적 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       gsap.set(sectionRef.current, { opacity: 1, y: 0 });
-       return;
+      gsap.set(sectionRef.current, { opacity: 1, y: 0 });
+      return;
     }
 
     const ctx = gsap.context(() => {
@@ -43,7 +43,7 @@ const SupportHero = () => {
 
       <div className="support__search">
         <div className="support__search-bar">
-          <img src="/assets/icons/magnifier.svg" alt="" className="support__search-icon" />
+          <img src="/assets/icons/support-magnifier.svg" alt="" className="support__search-icon" />
           <input type="text" placeholder="도움이 필요하신 내용을 검색해 보세요." />
           <Button size="sm" variant="primary">Search</Button>
         </div>

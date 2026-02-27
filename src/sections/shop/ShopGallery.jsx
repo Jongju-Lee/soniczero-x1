@@ -41,6 +41,7 @@ const ShopGallery = ({
           src={products[activeColorIndex].image} 
           alt={`SonicZero X1 ${products[activeColorIndex].name}`} 
           className="shop__gallery-img"
+          loading="lazy"
         />
         
         <button 
@@ -55,11 +56,13 @@ const ShopGallery = ({
         
         <div className="shop__gallery-dots">
           {products.map((_, index) => (
-            <span 
-              key={index} 
+            <button 
+              key={index}
+              type="button"
               className={`dot ${activeColorIndex === index ? 'active' : ''}`}
               onClick={() => setActiveColorIndex(index)}
-            ></span>
+              aria-label={`Select Color ${index + 1}`}
+            ></button>
           ))}
         </div>
       </div>

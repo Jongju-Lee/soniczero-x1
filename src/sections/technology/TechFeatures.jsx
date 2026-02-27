@@ -39,7 +39,7 @@ const TechFeatures = () => {
         {FEATURES_DATA.map((feature) => (
           <article key={feature.id} className="tech__feature">
             <div className="tech__feature-icon-wrapper">
-              <img src={feature.icon} alt="" className="tech__feature-icon" />
+              <img src={feature.icon} alt="" className="tech__feature-icon" loading="lazy" />
             </div>
             <h3 className="tech__feature-title">{feature.title}</h3>
             <p className="tech__feature-desc">{feature.desc}</p>

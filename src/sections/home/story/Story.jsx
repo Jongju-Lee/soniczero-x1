@@ -105,7 +105,7 @@ const Story = () => {
         >
           <div className="story__text">
             <div className="story__badge">
-              <img src={feature.icon} alt="" className="story__badge-icon" aria-hidden="true" />
+              <img src={feature.icon} alt="" className="story__badge-icon" aria-hidden="true" loading="lazy" />
               <span>{feature.badge}</span>
             </div>
             <h2 className="story__title">{feature.title}</h2>
@@ -114,7 +114,7 @@ const Story = () => {
 
           <div className="story__visual">
             <div className="story__image-wrap">
-              <img src={feature.image} alt={feature.imageAlt} className="story__image" />
+              <img src={feature.image} alt={feature.imageAlt} className="story__image" loading="lazy" />
             </div>
           </div>
         </div>

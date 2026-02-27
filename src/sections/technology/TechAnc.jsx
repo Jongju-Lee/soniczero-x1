@@ -188,6 +188,7 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
             src="/assets/images/tech-headphone-exploded.png"
             alt="SonicZero X1 Internal Components Render"
             className="tech__anc-image"
+            loading="lazy"
           />
         </div>
       </div>

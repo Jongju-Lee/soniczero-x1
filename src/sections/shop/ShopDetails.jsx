@@ -17,7 +17,7 @@ const ShopDetails = ({
         <p className="shop__details-desc">프리미엄 노이즈 캔슬링 헤드폰</p>
       </div>
 
-      <h3 className="shop__details-price">$399.00</h3>
+      <h3 className="shop__details-price">${(399 * quantity).toFixed(2)}</h3>
 
       <div className="shop__details-color">
         <span className="label">Color — {products[activeColorIndex].name}</span>
@@ -30,7 +30,9 @@ const ShopDetails = ({
               onClick={() => setActiveColorIndex(index)}
               aria-label={product.name}
               style={{ backgroundColor: product.colorCode }}
-            />
+            >
+              <img src="/assets/icons/shop-check.svg" className="check-icon" alt="" />
+            </button>
           ))}
         </div>
       </div>
@@ -38,8 +40,16 @@ const ShopDetails = ({
       <div className="shop__details-quantity">
         <span className="label">수량</span>
         <div className="quantity-selector">
-          <button type="button" onClick={handleDecrease} aria-label="Decrease">
-            <img src="/assets/icons/shop-minus.svg" alt="Minus" />
+          <button 
+            type="button" 
+            onClick={handleDecrease} 
+            aria-label="Decrease"
+            disabled={quantity <= 1}
+          >
+            <img 
+              src={quantity <= 1 ? "/assets/icons/shop-minus-disabled.svg" : "/assets/icons/shop-minus.svg"} 
+              alt="Minus" 
+            />
           </button>
           <span className="value">{quantity}</span>
           <button type="button" onClick={handleIncrease} aria-label="Increase">
@@ -52,6 +62,7 @@ const ShopDetails = ({
         <Button size="lg" variant="primary" className="cart-btn">
           <img src="/assets/icons/shop-cart.svg" alt="Cart" />
           <span>장바구니 담기 — ${(399 * quantity).toFixed(2)}</span>
+          {/* <span>장바구니 담기</span> */}
         </Button>
         <p className="guarantee">전 세계 무료 배송. 30일 이내 환불 보장.</p>
       </div>
