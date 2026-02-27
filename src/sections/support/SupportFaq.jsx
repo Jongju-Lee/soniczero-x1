@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState } from 'react';
+import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 
 const faqData = [
   {
@@ -33,37 +30,11 @@ const faqData = [
 
 const SupportFaq = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  const sectionRef = useRef(null);
+  const sectionRef = useScrollFadeIn();
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
   };
-
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       gsap.set(sectionRef.current, { opacity: 1, y: 0 });
-       return;
-    }
-
-    const ctx = gsap.context(() => {
-      gsap.fromTo(sectionRef.current, 
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
-          }
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section className="support__faq" ref={sectionRef}>

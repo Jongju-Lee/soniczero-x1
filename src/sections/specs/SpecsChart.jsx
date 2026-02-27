@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,40 +17,37 @@ const chartData = [
 const SpecsChart = () => {
   const containerRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // prefers-reduced-motion 처리를 통해 스타일 width가 바로 보일 수 있도록 우회
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
+       // 원래 React 요소에 인라인 style로 width가 들어가 있으므로, 아무것도 안 하면 기본적으로 100% 랜더링됨
+       return;
     }
 
-    let ctx = gsap.context(() => {
-      // Chart Bars Animation
-      gsap.from('.bar-fill.current', {
-        scrollTrigger: {
-          trigger: '.specs__chart-wrapper',
-          start: 'top 75%',
-        },
-        width: 0,
-        duration: 1.5,
-        stagger: 0.1,
-        ease: 'power3.out'
-      });
+    // Chart Bars Animation
+    gsap.from('.bar-fill.current', {
+      scrollTrigger: {
+        trigger: '.specs__chart-wrapper',
+        start: 'top 75%',
+      },
+      width: 0,
+      duration: 1.5,
+      stagger: 0.1,
+      ease: 'power3.out'
+    });
 
-      gsap.from('.bar-fill.prev', {
-        scrollTrigger: {
-          trigger: '.specs__chart-wrapper',
-          start: 'top 75%',
-        },
-        width: 0,
-        duration: 1.5,
-        stagger: 0.1,
-        delay: 0.2,
-        ease: 'power3.out'
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    gsap.from('.bar-fill.prev', {
+      scrollTrigger: {
+        trigger: '.specs__chart-wrapper',
+        start: 'top 75%',
+      },
+      width: 0,
+      duration: 1.5,
+      stagger: 0.1,
+      delay: 0.2,
+      ease: 'power3.out'
+    });
+  }, { scope: containerRef });
 
   return (
     <section className="specs__chart" ref={containerRef}>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ShopGallery from '../sections/shop/ShopGallery';
 import ShopDetails from '../sections/shop/ShopDetails';
@@ -58,42 +59,18 @@ const ShopPage = () => {
     setQuantity(prev => prev + 1);
   };
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.from('.shop__hero-badge', {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out'
-      });
+  useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+       gsap.set(['.shop__hero-badge', '.shop__hero-title', '.shop__gallery', '.shop__details'], { opacity: 1, y: 0, x: 0 });
+       return;
+    }
 
-      gsap.from('.shop__hero-title', {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.1,
-        ease: 'power3.out'
-      });
+    gsap.fromTo('.shop__hero-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+    gsap.fromTo('.shop__hero-title', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+    gsap.fromTo('.shop__gallery', { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 1, delay: 0.2, ease: 'power3.out' });
+    gsap.fromTo('.shop__details', { x: 40, opacity: 0 }, { x: 0, opacity: 1, duration: 1, delay: 0.3, ease: 'power3.out' });
 
-      gsap.from('.shop__gallery', {
-        x: -40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.2,
-        ease: 'power3.out'
-      });
-
-      gsap.from('.shop__details', {
-        x: 40,
-        opacity: 0,
-        duration: 1,
-        delay: 0.3,
-        ease: 'power3.out'
-      });
-    }, shopRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: shopRef });
 
   return (
     <section className="shop" ref={shopRef}>

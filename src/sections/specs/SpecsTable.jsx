@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,35 +26,33 @@ const specsData = [
 const SpecsTable = () => {
   const containerRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // prefers-reduced-motion: 애니메이션 축소 모드일 시 바로 정적 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
        gsap.set(['.specs__header-badge', '.specs__header-title', '.specs__header-desc', '.specs__table-row'], { opacity: 1, y: 0 });
        return;
     }
 
-    let ctx = gsap.context(() => {
-      // Header Animation
-      gsap.from('.specs__header-badge', { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' });
-      gsap.from('.specs__header-title', { y: 30, opacity: 0, duration: 0.8, delay: 0.1, ease: 'power3.out' });
-      gsap.from('.specs__header-desc', { y: 30, opacity: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+    // Header Animation
+    gsap.fromTo('.specs__header-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
+    gsap.fromTo('.specs__header-title', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+    gsap.fromTo('.specs__header-desc', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out' });
 
-      // Table Row Animation
-      gsap.from('.specs__table-row', {
+    // Table Row Animation
+    gsap.fromTo('.specs__table-row', 
+      { y: 20, opacity: 0 },
+      {
+        y: 0, opacity: 1,
         scrollTrigger: {
           trigger: '.specs__table-wrapper',
           start: 'top 80%',
         },
-        y: 20,
-        opacity: 0,
         duration: 0.5,
         stagger: 0.05,
         ease: 'power2.out'
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+      }
+    );
+  }, { scope: containerRef });
 
   return (
     <section className="specs__table" ref={containerRef}>

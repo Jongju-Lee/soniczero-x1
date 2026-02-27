@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,70 +39,61 @@ const features = [
 ];
 
 const Story = () => {
-  const rowRefs = useRef([]);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // prefers-reduced-motion: 사용자가 애니메이션 줄이기 설정 시 즉시 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      rowRefs.current.forEach((row) => {
-        if (!row) return;
-        const textEl = row.querySelector('.story__text');
-        const imageEl = row.querySelector('.story__visual');
-        gsap.set([textEl, imageEl], { opacity: 1, y: 0 });
-      });
+      gsap.set(['.story__text', '.story__visual'], { opacity: 1, y: 0 });
       return;
     }
 
-    const ctx = gsap.context(() => {
-      rowRefs.current.forEach((row) => {
-        if (!row) return;
-        const textEl = row.querySelector('.story__text');
-        const imageEl = row.querySelector('.story__visual');
+    const rows = gsap.utils.toArray('.story__row');
 
-        gsap.fromTo(
-          textEl,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: row,
-              start: 'top 78%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-        gsap.fromTo(
-          imageEl,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.1,
-            delay: 0.15,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: row,
-              start: 'top 78%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
+    rows.forEach((row) => {
+      const textEl = row.querySelector('.story__text');
+      const imageEl = row.querySelector('.story__visual');
+
+      gsap.fromTo(
+        textEl,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+      gsap.fromTo(
+        imageEl,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.1,
+          delay: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: row,
+            start: 'top 78%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
     });
-
-    return () => ctx.revert();
-  }, []);
+  }, { scope: containerRef });
 
   return (
-    <section className="story" id="story">
+    <section className="story" id="story" ref={containerRef}>
       {features.map((feature, index) => (
         <div
           key={feature.id}
           className={`story__row${feature.reverse ? ' story__row--reverse' : ''}`}
-          ref={(el) => (rowRefs.current[index] = el)}
         >
           <div className="story__text">
             <div className="story__badge">

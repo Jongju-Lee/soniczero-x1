@@ -14,6 +14,11 @@ const ShopGallery = ({
 
   // 갤러리 이미지 전환 애니메이션
   useGSAP(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+       gsap.set(galleryImgRef.current, { opacity: 1, scale: 1, filter: 'blur(0px)' });
+       return;
+    }
+
     if (galleryImgRef.current) {
       gsap.fromTo(
         galleryImgRef.current,

@@ -1,41 +1,40 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { gsap } from 'gsap';
+import { useGSAP } from '@gsap/react';
 import Button from '../../../components/ui/Button';
 
 const Main = () => {
-  const title1Ref = useRef(null);
-  const title2Ref = useRef(null);
-  const imageRef = useRef(null);
+  const containerRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     // prefers-reduced-motion: 사용자가 애니메이션 줄이기 설정 시 즉시 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set([title1Ref.current, title2Ref.current, imageRef.current], { opacity: 1, y: 0, scale: 1 });
+      gsap.set(['.hero__title-text', '.hero__title-highlight', '.hero__visual-image'], { opacity: 1, y: 0, scale: 1 });
       return;
     }
 
     // Phase 2: Interacting timeline as requested by User's Guide
     const tl = gsap.timeline();
 
-    tl.fromTo(title1Ref.current,
+    tl.fromTo('.hero__title-text',
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
     )
-    .fromTo(title2Ref.current,
+    .fromTo('.hero__title-highlight',
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
       "-=0.6" // overlapping start
     )
-    .fromTo(imageRef.current,
+    .fromTo('.hero__visual-image',
       { scale: 0.9, opacity: 0 },
       { scale: 1, opacity: 1, duration: 1, ease: "power2.out" },
       "-=0.4"
     );
 
-  }, []);
+  }, { scope: containerRef });
 
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" ref={containerRef}>
       <div className="container hero__inner">
         <div className="hero__content">
           <div className="hero__badge">
@@ -44,8 +43,8 @@ const Main = () => {
           </div>
 
           <h1 className="hero__title">
-            <span className="hero__title-text" ref={title1Ref}>SILENCE</span>
-            <span className="hero__title-highlight" ref={title2Ref}>REVOLUTION</span>
+            <span className="hero__title-text">SILENCE</span>
+            <span className="hero__title-highlight">REVOLUTION</span>
           </h1>
 
           <p className="hero__desc">
@@ -65,7 +64,6 @@ const Main = () => {
         <div className="hero__visual">
           <div className="hero__visual-glow"></div>
           <img 
-            ref={imageRef}
             src="./assets/images/hero-img.png" 
             alt="SonicZero X1 Midnight Black" 
             className="hero__visual-image" 

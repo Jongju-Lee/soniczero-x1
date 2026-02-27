@@ -72,7 +72,7 @@ const TechPage = () => {
         }
       }
     );
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [isAncActive] });
 
   return (
     <article className="tech" ref={containerRef}>
