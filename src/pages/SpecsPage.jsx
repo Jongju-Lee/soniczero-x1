@@ -96,16 +96,25 @@ const SpecsPage = () => {
 
           <div className="specs__table">
             <div className="specs__table-header">
-              <h3>기술 사양</h3>
+              <h2>기술 사양</h2>
             </div>
-            <div className="specs__table-body">
-              {specsData.map((item, index) => (
-                <div className="specs__table-row" key={index}>
-                  <span className="label">{item.label}</span>
-                  <span className="value">{item.value}</span>
-                </div>
-              ))}
-            </div>
+            <table className="specs__table-content">
+              <caption className="sr-only">상세 기술 사양 표</caption>
+              <thead className="sr-only">
+                <tr>
+                  <th scope="col">사양명</th>
+                  <th scope="col">사양값</th>
+                </tr>
+              </thead>
+              <tbody className="specs__table-body">
+                {specsData.map((item) => (
+                  <tr className="specs__table-row" key={item.label}>
+                    <th scope="row" className="label">{item.label}</th>
+                    <td className="value">{item.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -116,7 +125,7 @@ const SpecsPage = () => {
             <p>이전 세대 대비 X1의 주요 성능 지표를 비교해 보세요.</p>
           </div>
           
-          <div className="specs__chart">
+          <div className="specs__chart" aria-hidden="true">
             <div className="specs__chart-legend">
               <div className="legend-item">
                 <span className="dot current"></span>
@@ -130,8 +139,8 @@ const SpecsPage = () => {
 
             <div className="specs__chart-container">
               <div className="chart-rows">
-                {chartData.map((item, index) => (
-                  <div className="chart-row" key={index}>
+                {chartData.map((item) => (
+                  <div className="chart-row" key={item.label}>
                     <span className="chart-row__label">{item.label}</span>
                     <div className="chart-row__bars">
                       <div className="bar-track">
@@ -153,6 +162,27 @@ const SpecsPage = () => {
               </div>
             </div>
           </div>
+
+          {/* Screen Reader Only Chart Data */}
+          <table className="sr-only">
+            <caption>이전 세대 대비 X1 주요 성능 지표 비교 표</caption>
+            <thead>
+              <tr>
+                <th scope="col">성능 지표</th>
+                <th scope="col">SonicZero X1 단위(%)</th>
+                <th scope="col">이전 세대 단위(%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {chartData.map((item) => (
+                <tr key={item.label}>
+                  <th scope="row">{item.label}</th>
+                  <td>{item.current}</td>
+                  <td>{item.prev}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
 
       </div>
