@@ -44,7 +44,18 @@ const contactTypeOptions = [
 
 const Support = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
-  const [contactType, setContactType] = useState('');
+  
+  // 폼 상태 관리
+  const [formData, setFormData] = useState({
+    contactName: '',
+    contactEmail: '',
+    contactType: '',
+    contactMessage: ''
+  });
+
+  // 에러 상태 및 터치 상태 관리
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   
   const sectionRef = useRef(null);
   const elementsRef = useRef([]);
@@ -56,6 +67,73 @@ const Support = () => {
   const addToRefs = (el) => {
     if (el && !elementsRef.current.includes(el)) {
       elementsRef.current.push(el);
+    }
+  };
+
+  const validateField = (name, value) => {
+    let error = '';
+    switch (name) {
+      case 'contactName':
+        if (!value.trim()) error = '이름을 입력해 주세요.';
+        break;
+      case 'contactEmail':
+        if (!value.trim()) {
+          error = '이메일을 입력해 주세요.';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error = '유효한 이메일 형식을 입력해 주세요.';
+        }
+        break;
+      case 'contactType':
+        if (!value) error = '문의 유형을 선택해 주세요.';
+        break;
+      case 'contactMessage':
+        if (!value.trim()) error = '메시지를 입력해 주세요.';
+        break;
+      default:
+        break;
+    }
+    return error;
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+    if (touched[id]) {
+      setErrors(prev => ({ ...prev, [id]: validateField(id, value) }));
+    }
+  };
+
+  const handleSelectChange = (value) => {
+    setFormData(prev => ({ ...prev, contactType: value }));
+    if (touched.contactType) {
+      setErrors(prev => ({ ...prev, contactType: validateField('contactType', value) }));
+    }
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    
+    // 전체 폼 검증
+    const newErrors = {};
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key]);
+      if (error) newErrors[key] = error;
+    });
+
+    setErrors(newErrors);
+    
+    // 모든 필드를 터치한 것으로 간주하여 에러 메시지 표시
+    const allTouched = Object.keys(formData).reduce((acc, key) => {
+      acc[key] = true;
+      return acc;
+    }, {});
+    setTouched(allTouched);
+
+    if (Object.keys(newErrors).length === 0) {
+      // 폼 제출 로직 (정상 제출)
+      console.log('Form submitted successfully:', formData);
+      alert('문의가 접수되었습니다.');
+      // 폼 초기화 로직 등
     }
   };
 
@@ -120,16 +198,20 @@ const Support = () => {
           <div className="support__faq-list">
             {faqData.map((faq, index) => {
               const isActive = openFaqIndex === index;
+              const faqId = `faq-answer-${index}`;
+              
               return (
-                <div key={index} className={`support__faq-item ${isActive ? 'is-active' : ''}`}>
+                <div key={faq.q} className={`support__faq-item ${isActive ? 'is-active' : ''}`}>
                   <button
                     className={`support__faq-question ${isActive ? 'is-active' : ''}`}
                     onClick={() => toggleFaq(index)}
+                    aria-expanded={isActive}
+                    aria-controls={faqId}
                   >
                     <span>{faq.q}</span>
                     <img src={`./assets/icons/${isActive ? 'minus' : 'plus'}.svg`} alt={isActive ? "Collapse" : "Expand"} />
                   </button>
-                  <div className="support__faq-answer">
+                  <div className="support__faq-answer" id={faqId}>
                     <div className="support__faq-answer-inner">
                       <div className="support__faq-answer-content">
                         {faq.a}
@@ -207,31 +289,53 @@ const Support = () => {
             <p>FAQ에서 답을 찾지 못하셨나요? 직접 문의해 주세요.</p>
           </div>
 
-          <form className="support__contact-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="support__contact-form" onSubmit={handleContactSubmit}>
             <div className="form-row">
-              <div className="form-group">
-                <label>성함 <span className="required">*</span></label>
-                <input type="text" placeholder="홍길동" required />
+              <div className={`form-group ${touched.contactName && errors.contactName ? 'has-error' : ''}`}>
+                <label htmlFor="contactName">성함 <span className="required">*</span></label>
+                <input 
+                  type="text" 
+                  id="contactName" 
+                  placeholder="홍길동" 
+                  value={formData.contactName}
+                  onChange={handleInputChange}
+                />
+                {touched.contactName && errors.contactName && <span className="error-msg">{errors.contactName}</span>}
               </div>
-              <div className="form-group">
-                <label>이메일 <span className="required">*</span></label>
-                <input type="email" placeholder="email@example.com" required />
+              <div className={`form-group ${touched.contactEmail && errors.contactEmail ? 'has-error' : ''}`}>
+                <label htmlFor="contactEmail">이메일 <span className="required">*</span></label>
+                <input 
+                  type="email" 
+                  id="contactEmail" 
+                  placeholder="email@example.com" 
+                  value={formData.contactEmail}
+                  onChange={handleInputChange}
+                />
+                {touched.contactEmail && errors.contactEmail && <span className="error-msg">{errors.contactEmail}</span>}
               </div>
             </div>
 
-            <div className="form-group">
-              <label>문의 유형 <span className="required">*</span></label>
+            <div className={`form-group ${touched.contactType && errors.contactType ? 'has-error' : ''}`}>
+              <label htmlFor="contactType">문의 유형 <span className="required">*</span></label>
               <CustomSelect
+                id="contactType"
                 options={contactTypeOptions}
                 placeholder="문의 유형을 선택해 주세요"
-                value={contactType}
-                onChange={setContactType}
+                value={formData.contactType}
+                onChange={handleSelectChange}
               />
+              {touched.contactType && errors.contactType && <span className="error-msg">{errors.contactType}</span>}
             </div>
 
-            <div className="form-group">
-              <label>문의 내용 <span className="required">*</span></label>
-              <textarea placeholder="문의하실 내용을 상세히 적어주세요." required></textarea>
+            <div className={`form-group ${touched.contactMessage && errors.contactMessage ? 'has-error' : ''}`}>
+              <label htmlFor="contactMessage">메시지 <span className="required">*</span></label>
+              <textarea 
+                id="contactMessage" 
+                placeholder="문의하실 내용을 상세히 적어주세요." 
+                value={formData.contactMessage}
+                onChange={handleInputChange}
+              ></textarea>
+              {touched.contactMessage && errors.contactMessage && <span className="error-msg">{errors.contactMessage}</span>}
             </div>
 
             <button type="submit" className="support__contact-submit btn btn--primary btn--lg">

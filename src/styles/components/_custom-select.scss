@@ -57,19 +57,26 @@
   // --------------------------------------------------
   // Dropdown List
   // --------------------------------------------------
-  // 
   &__list {
     @include glass-effect;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    max-height: 16rem; /* 256px */
+    max-height: 16.5rem; /* 264px */
     margin-top: var(--spacing-8);
     border-radius: var(--radius-12);
     background-color: var(--color-surface);
     overflow-y: auto;
     z-index: 100;
+    
+    opacity: 1;
+    transition: opacity var(--transition-base);
+
+    // 닫히는 중인 상태 (React의 Delay Unmount 중 작동)
+    &.is-closing {
+      opacity: 0;
+    }
 
     // 드롭다운 내부 스크롤바 스타일
     &::-webkit-scrollbar {

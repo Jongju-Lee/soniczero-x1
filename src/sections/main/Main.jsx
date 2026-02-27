@@ -66,7 +66,6 @@ const Main = () => {
           <div className="hero__visual-glow"></div>
           <img 
             ref={imageRef}
-            // src="./assets/images/midnight-black.png" 
             src="./assets/images/hero-img.png" 
             alt="SonicZero X1 Midnight Black" 
             className="hero__visual-image" 

@@ -16,6 +16,7 @@ const CustomSelect = ({
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef(null);
 
   const selectedOption = options.find((opt) => opt.value === value);
@@ -30,6 +31,16 @@ const CustomSelect = ({
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
+
+  // isOpen 상태 변화에 따른 isVisible 지연 처리 (애니메이션)
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    } else {
+      const timer = setTimeout(() => setIsVisible(false), 600); // var(--transition-base) 시간에 맞춰 600ms로 조정
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   const handleSelect = (optionValue) => {
     onChange?.(optionValue);
@@ -79,8 +90,8 @@ const CustomSelect = ({
       </button>
 
       {/* 드롭다운 목록 */}
-      {isOpen && (
-        <ul className="c-select__list" role="listbox">
+      {isVisible && (
+        <ul className={`c-select__list${!isOpen ? ' is-closing' : ''}`} role="listbox">
           {options.map((option) => (
             <li
               key={option.value}
