@@ -19,7 +19,7 @@ const SpecsChart = () => {
   useEffect(() => {
     // prefers-reduced-motion 처리를 통해 스타일 width가 바로 보일 수 있도록 우회
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       return;
+      return;
     }
 
     let ctx = gsap.context(() => {

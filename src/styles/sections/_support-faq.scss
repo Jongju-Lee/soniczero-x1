@@ -1,0 +1,76 @@
+@use '../abstracts/variables' as *;
+
+.support {
+  /* =============== FAQ SECTION =============== */
+  &__faq {
+    @include flex-center-column;
+    max-width: 55rem; /* 880px */
+    gap: var(--spacing-60);
+
+    &-header {
+      text-align: center;
+      
+      h2 {
+        @include text-style("title-sm");
+        margin-bottom: var(--spacing-12);
+      }
+
+      p {
+        @include text-style("caption-sm");
+      }
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-12);
+    }
+
+    &-item {
+      @include glass-effect;
+      border-radius: var(--radius-24);
+      overflow: hidden;
+      transition: background-color var(--transition-base);
+
+      &.is-active {
+        background-color: var(--color-glass-active);
+      }
+    }
+
+    &-question {
+      @include text-style("desc-md");
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-24) var(--spacing-32);
+      font-weight: var(--fw-s-bold);
+      color: var(--color-text-main);
+
+      img {
+        width: 2rem; // 32px
+        height: 2rem;
+        transition: transform var(--transition-base);
+      }
+    }
+
+    &-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--transition-premium);
+      
+      .is-active & {
+        grid-template-rows: 1fr;
+      }
+
+      &-inner {
+        overflow: hidden;
+      }
+      
+      &-content {
+      @include text-style("desc-sm");
+        padding: 0 var(--spacing-32) var(--spacing-32);
+      }
+    }
+  }
+}

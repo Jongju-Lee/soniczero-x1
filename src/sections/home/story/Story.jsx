@@ -37,7 +37,7 @@ const features = [
   },
 ];
 
-const Storytelling = () => {
+const Story = () => {
   const rowRefs = useRef([]);
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const Storytelling = () => {
   }, []);
 
   return (
-    <section className="story" id="storytelling">
+    <section className="story" id="story">
       {features.map((feature, index) => (
         <div
           key={feature.id}
@@ -123,4 +123,4 @@ const Storytelling = () => {
   );
 };
 
-export default Storytelling;
+export default Story;

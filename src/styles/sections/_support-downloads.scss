@@ -1,0 +1,83 @@
+@use '../abstracts/variables' as *;
+
+.support {
+  /* =============== DOWNLOADS SECTION =============== */
+  &__downloads {
+    @include flex-center-column;
+    gap: var(--spacing-60);
+    width: 100%;
+
+    &-header {
+      text-align: center;
+      
+      h2 {
+        @include text-style("title-sm");
+        margin-bottom: var(--spacing-8);
+      }
+
+      p {
+        @include text-style("caption-sm");
+      }
+    }
+
+    &-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-36);
+      width: 100%;
+    }
+
+    &-card {
+      @include flex-center-column;
+      @include glass-effect;
+      border-radius: var(--radius-24);
+      padding: var(--spacing-48) var(--spacing-40);
+
+      .icon-box {
+        @include flex-center;
+        width: 4rem; // 64px
+        height: 4rem;
+        margin-bottom: var(--spacing-24);
+        border-radius: var(--radius-16);
+        background-color: rgba(var(--color-primary-rgb), 0.1);
+      }
+
+      h3 {
+        @include text-style("title-xs");
+        font-family: var(--font-kr);
+        margin-bottom: var(--spacing-12)
+      }
+
+      .meta {
+        @include flex-center;
+        gap: var(--spacing-12);
+        margin-bottom: var(--spacing-16);
+        
+        .format {
+          @include text-style("tiny-sm");
+          @include glass-effect;
+          padding: var(--spacing-4) var(--spacing-8);
+          border-radius: var(--radius-4);
+          font-family: var(--font-en);
+          line-height: 1;
+          backdrop-filter: none;
+        }
+
+        .size {
+          @include text-style("tiny-md");
+          font-family: var(--font-en);
+        }
+      }
+
+      .desc {
+        @include text-style("desc-sm");
+        margin-bottom: var(--spacing-20);
+      }
+
+      .download-btn {
+        @include flex-center;
+        gap: var(--spacing-8);
+      }
+    }
+  }
+}

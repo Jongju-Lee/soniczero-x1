@@ -1,0 +1,83 @@
+@use '../abstracts/variables' as *;
+
+.support {
+  /* =============== SUPPORT HERO SECTION =============== */
+  &__hero {
+    @include flex-center-column;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__hero-badge {
+    @include text-style("badge");
+    margin-bottom: var(--spacing-16)
+  }
+
+  &__hero-title {
+    @include text-style("title-lg");
+    margin-bottom: var(--spacing-24)
+  }
+
+  &__hero-desc {
+    @include text-style("caption-md");
+    margin-bottom: var(--spacing-40)
+  }
+
+  /* ---------- Search Box ---------- */
+  &__search {
+    width: 100%;
+    max-width: 50rem;
+
+    &-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: var(--spacing-16);
+      margin-left: var(--spacing-8);
+    }
+
+    &-bar {
+      @include glass-effect;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4.125rem;
+      padding: 0 0.6875rem 0 1.3125rem;
+      padding: 0 var(--spacing-12);
+      border-radius: var(--radius-24);
+      margin-bottom: var(--spacing-28);
+
+      input {
+        flex: 1;
+        @include text-style("desc-md");
+        color: var(--color-text-main);
+      }
+
+      button {
+        line-height: 1.7;
+        padding: var(--spacing-8) var(--spacing-24);
+      }
+    }
+
+    &-tags {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-12);
+      font-size: var(--fz-tiny-md);
+
+      span {
+        color: var(--color-text-sub);
+        font-weight: var(--fw-medium);
+        font-family: var(--font-en);
+      }
+
+      button {
+        @include text-style("tiny-md");
+        padding: var(--spacing-4) var(--spacing-16);
+        border-radius: var(--radius-full);
+        color: var(--color-text-sub);
+        line-height: 1.8;
+      }
+    }
+  }
+}

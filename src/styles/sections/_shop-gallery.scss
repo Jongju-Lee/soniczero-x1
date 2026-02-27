@@ -1,0 +1,97 @@
+@use '../abstracts/variables' as *;
+@use 'sass:color';
+
+.shop {
+  /* ---------- GALLERY ---------- */ 
+  &__gallery {
+    @include flex-center-column;
+    flex: 1;
+    gap: var(--spacing-16);
+    max-width: 42.5rem; // 680px
+
+    &-main {
+      @include glass-effect;
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-24);
+      padding: var(--spacing-80) var(--spacing-120);
+
+      .shop__gallery-nav {
+        @include flex-center;
+        @include glass-effect;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3.5rem; /* 56px */
+        height: 3.5rem; /* 56px */
+        border-radius: var(--radius-full);
+        background-color: var(--color-bg-foreground);
+        transition: background-color var(--transition-base), opacity var(--transition-base);
+        z-index: 10;
+
+        &--prev {
+          left: 1.5rem; /* 24px */
+        }
+
+        &--next {
+          right: 1.5rem; /* 24px */
+        }
+
+        &:hover {
+          background-color: var(--color-glass-active);
+        }
+      }
+
+      &:hover .shop__gallery-nav {
+        opacity: 1;
+      }
+
+      .shop__gallery-dots {
+        @include flex-center;
+        position: absolute;
+        bottom: var(--spacing-36);
+        left: 50%;
+        transform: translateX(-50%);
+        gap: var(--spacing-8);
+
+        .dot {
+          width: 0.5rem; // 8px
+          height: 0.5rem;
+          background-color: rgba(255, 255, 255, 0.3);
+          border-radius: var(--radius-full);
+          transition: var(--transition-base);
+          cursor: pointer;
+
+          &.active {
+            width: 1.5rem; // 24px
+            background-color: var(--color-bg-white);
+          }
+        }
+      }
+    }
+
+    &-thumbs {
+      display: flex;
+      gap: var(--spacing-12);
+      width: 100%;
+
+      .thumb {
+        @include glass-effect;
+        width: 5.25rem; /* 84px */
+        height: 5.25rem; /* 84px */
+        border-radius: var(--radius-16);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 55%;
+        transition: border-color var(--transition-base), box-shadow var(--transition-base);
+
+        &.active, &:hover {
+          border-color: var(--color-primary);
+          box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb),0.25); /* fallback */
+          box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent);
+        }
+      }
+    }
+  }
+}

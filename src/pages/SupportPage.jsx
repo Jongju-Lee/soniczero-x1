@@ -1,11 +1,17 @@
 import React from 'react';
-import Support from '../sections/support/Support';
+import SupportHero from '../sections/support/SupportHero';
+import SupportFaq from '../sections/support/SupportFaq';
+import SupportDownloads from '../sections/support/SupportDownloads';
+import SupportContact from '../sections/support/SupportContact';
 
 const SupportPage = () => {
   return (
-    <>
-      <Support />
-    </>
+    <article className="support">
+      <SupportHero />
+      <SupportFaq />
+      <SupportDownloads />
+      <SupportContact />
+    </article>
   );
 };
 

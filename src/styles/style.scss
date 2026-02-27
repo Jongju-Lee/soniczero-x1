@@ -5,13 +5,18 @@
 
 @use 'layout/header';
 @use 'layout/footer';
-@use 'sections/main';
-@use 'sections/storytelling';
+@use 'sections/home-main';
+@use 'sections/home-story';
 @use 'sections/tech-anc';
 @use 'sections/tech-features';
-@use 'sections/cta';
-@use 'sections/support';
-@use 'sections/shop';
+@use 'sections/home-cta';
+@use 'sections/support-hero';
+@use 'sections/support-faq';
+@use 'sections/support-downloads';
+@use 'sections/support-contact';
+@use 'sections/shop-hero';
+@use 'sections/shop-gallery';
+@use 'sections/shop-details';
 @use 'sections/specs-table';
 @use 'sections/specs-chart';
 

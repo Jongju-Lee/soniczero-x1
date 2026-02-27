@@ -1,0 +1,30 @@
+@use '../abstracts/variables' as *;
+
+.shop {
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-120);
+  }
+
+  // Shop Hero Section
+  &__hero {
+    text-align: center;
+
+    &-badge {
+      @include text-style("badge");
+      margin-bottom: var(--spacing-16);
+    }
+
+    &-title {
+      @include text-style("title-lg");
+    }
+  }
+
+  // Content Grid Layout
+  &__content {
+    @include flex-center;
+    align-items: flex-start;
+    gap: var(--spacing-80);
+  }
+}
