@@ -28,7 +28,7 @@ const Button = ({
     return (
       <div className={`btn-glow-wrap${className ? ` ${className}` : ''}`}>
         {[...Array(5)].map((_, i) => (
-          <span key={i} className={`btn-glow-sparkle btn-glow-sparkle--${i + 1}`} />
+          <span key={i} aria-hidden="true" className={`btn-glow-sparkle btn-glow-sparkle--${i + 1}`} />
         ))}
         {inner}
       </div>

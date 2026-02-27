@@ -6,25 +6,22 @@
 
   &__inner {
     @include flex-center-column;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: var(--spacing-160);
   }
 
-  // Fade Up Utility
+  // 페이드 업 (Fade Up) 유틸리티
   .tech-fade-up {
     will-change: transform, opacity;
   }
 
-  // --- 1. ANC Section Wrapper ---
+  // --- 1. ANC 섹션 래퍼 ---
   &__anc-section {
     @include flex-center-column;
     gap: var(--spacing-120);
     width: 100%;
   }
 
-  // --- 1a. ANC Intro (Section Header) ---
+  // --- 1a. ANC 소개 (섹션 헤더) ---
   &__anc-intro {
     text-align: center;
   }
@@ -44,7 +41,7 @@
     @include text-style("caption-md");
   }
 
-  // --- 1b. ANC Widget (Interactive Demo) ---
+  // --- 1b. ANC 위젯 (인터랙티브 데모) ---
   &__anc-widget {
     @include flex-center;
     width: 100%;
@@ -82,13 +79,10 @@
 
   &__btn-toggle {
     width: 6.25rem;
-    white-space: nowrap;
 
     &--on {
-      background-color: var(--color-primary);
-      border: 1px solid var(--color-primary);
-      color: var(--color-text-main);
-      
+      border: 1px solid transparent;
+
       &:hover {
         background-color: color.adjust(#007AFF, $lightness: 10%);
       }
@@ -99,15 +93,36 @@
       color: var(--color-text-sub);
 
       &:hover {
-        background-color: var(--color-glass);
+        border: 1px solid var(--color-border);
+        background-color: var(--color-glass-active);
         color: var(--color-text-main);
       }
+    }
+  }
+
+  &__btn-labels {
+    display: grid;
+  }
+
+  &__btn-label {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    white-space: nowrap;
+
+    &--visible {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
     }
   }
 
   &__anc-monitor-subtitle {
     @include text-style("tiny-md");
     margin-top: var(--spacing-4);
+    animation: ancFadeIn var(--transition-base);
   }
 
   &__wave-container {
@@ -117,6 +132,15 @@
   &__wave-svg {
     width: 100%;
     height: 100%;
+
+    .tech__wave-main-path,
+    .tech__wave-glow-path {
+      transition: stroke var(--transition-base);
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
+    }
   }
 
   &__anc-footer {
@@ -136,6 +160,11 @@
     width: 0.5rem;
     height: 0.5rem;
     border-radius: var(--radius-full);
+    transition: background-color var(--transition-base);
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
 
     &--active {
       background-color: var(--color-positive);
@@ -145,13 +174,21 @@
     }
   }
 
+  &__anc-monitor-desc {
+    animation: ancFadeIn var(--transition-base);
+  }
+
+  &__anc-latency {
+    animation: ancFadeIn var(--transition-base);
+  }
+
   &__anc-visual {
     flex: 1;
     max-width: 42.5rem; /* 680px */
     min-width: 33.75rem; /* 540px */
   }
   
-  // --- 2. Built Different Grid Section ---
+  // --- 2. Built Different 그리드 섹션 ---
   &__features {
     @include flex-center-column;
     gap: var(--spacing-80);
@@ -215,11 +252,16 @@
   }
 }
 
-// Interference Keyframes
-@keyframes ancInterference {
-  0% { transform: translateY(-30%) scaleY(2); }
-  25% { transform: translateY(-60%) scaleY(1.5) rotate(1deg); }
-  50% { transform: translateY(-50%) scaleY(3); }
-  75% { transform: translateY(-40%) scaleY(0.8) rotate(-1deg); }
-  100% { transform: translateY(-70%) scaleY(2.2); }
+// ANC 토글 텍스트 진입 애니메이션
+@keyframes ancFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech__anc-monitor-subtitle,
+  .tech__anc-monitor-desc,
+  .tech__anc-latency {
+    animation: none;
+  }
 }

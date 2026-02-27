@@ -11,6 +11,12 @@ const Cta = () => {
   const contentRef = useRef(null);
 
   useEffect(() => {
+    // prefers-reduced-motion: 사용자가 애니메이션 줄이기 설정 시 즉시 표시
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(contentRef.current, { opacity: 1, y: 0 });
+      return;
+    }
+
     const ctx = gsap.context(() => {
       gsap.fromTo(contentRef.current,
         { y: 50, opacity: 0 },
