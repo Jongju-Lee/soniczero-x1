@@ -12,7 +12,7 @@ const TechFeatures = () => {
         {/* Card 1: AI Chipset */}
         <article className="tech__feature">
           <div className="tech__feature-icon-wrapper">
-            <img src="/assets/icons/tech-chip.svg" alt="" className="tech__feature-icon" />
+            <img src="/assets/icons/tech-core.svg" alt="" className="tech__feature-icon" />
           </div>
           <h3 className="tech__feature-title">AI Chipset</h3>
           <p className="tech__feature-desc">자체 개발 SonicZero SZ-1 프로세서가 머신 러닝을 활용하여 실시간으로 노이즈 캔슬링을 최적화합니다. 사용자의 환경을 학습하고 초당 10,000회 오디오 전달을 자동 조정합니다.</p>

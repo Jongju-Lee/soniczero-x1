@@ -7,11 +7,13 @@
 @use 'layout/footer';
 @use 'sections/main';
 @use 'sections/storytelling';
-@use 'sections/tech';
+@use 'sections/tech-anc';
+@use 'sections/tech-features';
 @use 'sections/cta';
 @use 'sections/support';
 @use 'sections/shop';
-@use 'sections/specs';
+@use 'sections/specs-table';
+@use 'sections/specs-chart';
 
 // -----------------------------------------------------------------------------
 // [Global Setup]
