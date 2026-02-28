@@ -72,7 +72,7 @@ const TechPage = () => {
         }
       }
     );
-  }, { scope: containerRef, dependencies: [isAncActive] });
+  }, { scope: containerRef }); // isAncActive 변경 시 요소들이 다시 마운트되면서 애니메이션이 재실행되는 문제 방지
 
   return (
     <article className="tech" ref={containerRef}>

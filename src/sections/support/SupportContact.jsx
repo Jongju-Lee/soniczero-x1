@@ -99,7 +99,7 @@ const SupportContact = () => {
         <p>FAQ에서 답을 찾지 못하셨나요? 직접 문의해 주세요.</p>
       </div>
 
-      <form className="support__contact-form" onSubmit={handleContactSubmit}>
+      <form className="support__contact-form" onSubmit={handleContactSubmit} noValidate>
         <div className="form-row">
           <div className={`form-group ${touched.contactName && errors.contactName ? 'has-error' : ''}`}>
             <label htmlFor="contactName">성함 <span className="required">*</span></label>

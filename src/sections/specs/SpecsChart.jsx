@@ -18,9 +18,7 @@ const SpecsChart = () => {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // prefers-reduced-motion 처리를 통해 스타일 width가 바로 보일 수 있도록 우회
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       // 원래 React 요소에 인라인 style로 width가 들어가 있으므로, 아무것도 안 하면 기본적으로 100% 랜더링됨
        return;
     }
 
@@ -30,7 +28,8 @@ const SpecsChart = () => {
         trigger: '.specs__chart-wrapper',
         start: 'top 75%',
       },
-      width: 0,
+      width: '0%',
+      clearProps: 'width', // 애니메이션 종료 후 inline width 제거하여 CSS 변수 적용상태로 복귀
       duration: 1.5,
       stagger: 0.1,
       ease: 'power3.out'
@@ -41,7 +40,8 @@ const SpecsChart = () => {
         trigger: '.specs__chart-wrapper',
         start: 'top 75%',
       },
-      width: 0,
+      width: '0%',
+      clearProps: 'width',
       duration: 1.5,
       stagger: 0.1,
       delay: 0.2,
@@ -74,11 +74,14 @@ const SpecsChart = () => {
               <div className="chart-row" key={item.label}>
                 <span className="chart-row__label">{item.label}</span>
                 <div className="chart-row__bars">
+                  {/*
+                    GSAP 애니메이션이 0%에서 시작해 동작이 완료되면 clearProps를 통해 변수 값으로 최종 적용됩니다.
+                  */}
                   <div className="bar-track">
-                    <div className="bar-fill current" style={{ width: `${item.current}%` }}></div>
+                    <div className="bar-fill current" style={{ '--chart-width': `${item.current}%` }}></div>
                   </div>
                   <div className="bar-track">
-                    <div className="bar-fill prev" style={{ width: `${item.prev}%` }}></div>
+                    <div className="bar-fill prev" style={{ '--chart-width': `${item.prev}%` }}></div>
                   </div>
                 </div>
               </div>

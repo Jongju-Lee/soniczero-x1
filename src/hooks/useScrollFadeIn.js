@@ -44,7 +44,7 @@ export const useScrollFadeIn = (disabled = false, options = {}) => {
         }
       }
     );
-  }, { scope: containerRef, dependencies: [disabled, options] });
+  }, { scope: containerRef, dependencies: [disabled] }); // 매 렌더링마다 새 객체가 생성되어 애니메이션이 재실행되는 문제 방지
 
   return containerRef;
 };
