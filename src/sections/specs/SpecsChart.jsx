@@ -19,33 +19,48 @@ const SpecsChart = () => {
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.set(['.specs__chart-header', '.bar-fill'], { opacity: 1, y: 0, width: 'var(--chart-width)' });
       return;
     }
 
+    // Header Animation
+    gsap.fromTo('.specs__chart-header',
+      { y: 60, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1.8, ease: 'power4.out',
+        scrollTrigger: {
+          trigger: '.specs__chart-header',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
     // Chart Bars Animation
     gsap.from('.bar-fill.current', {
       scrollTrigger: {
         trigger: '.specs__chart-wrapper',
-        start: 'top 75%',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
       },
       width: '0%',
-      clearProps: 'width', // 애니메이션 종료 후 inline width 제거하여 CSS 변수 적용상태로 복귀
-      duration: 1.5,
+      clearProps: 'width', // 애니메이션 종료 후 inline width 제거하여 CSS 변수 적용상태로 복교
+      duration: 1.8,
       stagger: 0.1,
-      ease: 'power3.out'
+      ease: 'power4.out'
     });
 
     gsap.from('.bar-fill.prev', {
       scrollTrigger: {
         trigger: '.specs__chart-wrapper',
-        start: 'top 75%',
+        start: 'top 80%',
+        toggleActions: 'play none none none',
       },
       width: '0%',
       clearProps: 'width',
-      duration: 1.5,
+      duration: 1.8,
       stagger: 0.1,
       delay: 0.2,
-      ease: 'power3.out'
+      ease: 'power4.out'
     });
   }, { scope: containerRef });
 

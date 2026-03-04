@@ -3,7 +3,7 @@ import { useScrollFadeIn } from '../../../hooks/useScrollFadeIn';
 import Button from '../../../components/ui/Button';
 
 const Cta = () => {
-  const ctaRef = useScrollFadeIn(false, { target: '.cta__content', start: "top 80%" });
+  const ctaRef = useScrollFadeIn(false, { target: '.cta__content', start: "top 85%" });
 
   return (
     <section className="cta" id="cta" ref={ctaRef}>

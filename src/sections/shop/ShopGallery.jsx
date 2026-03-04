@@ -23,7 +23,7 @@ const ShopGallery = ({
       gsap.fromTo(
         galleryImgRef.current,
         { opacity: 0, scale: 0.96, filter: 'blur(8px)' },
-        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.2, ease: 'power2.out' }
+        { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.5, ease: 'power2.out' }
       );
     }
   }, { dependencies: [activeColorIndex], scope: containerRef });

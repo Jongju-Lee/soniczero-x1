@@ -34,22 +34,23 @@ const SpecsTable = () => {
     }
 
     // Header Animation
-    gsap.fromTo('.specs__header-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' });
-    gsap.fromTo('.specs__header-title', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.1, ease: 'power3.out' });
-    gsap.fromTo('.specs__header-desc', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+    gsap.fromTo('.specs__header-badge', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.2, ease: 'power4.out' });
+    gsap.fromTo('.specs__header-title', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.3, ease: 'power4.out' });
+    gsap.fromTo('.specs__header-desc', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.4, ease: 'power4.out' });
 
     // Table Row Animation
     gsap.fromTo('.specs__table-row', 
-      { y: 20, opacity: 0 },
+      { y: 60, opacity: 0 },
       {
         y: 0, opacity: 1,
         scrollTrigger: {
           trigger: '.specs__table-wrapper',
-          start: 'top 80%',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
         },
-        duration: 0.5,
-        stagger: 0.05,
-        ease: 'power2.out'
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power4.out'
       }
     );
   }, { scope: containerRef });

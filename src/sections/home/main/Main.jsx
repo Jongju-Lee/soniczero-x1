@@ -9,26 +9,44 @@ const Main = () => {
   useGSAP(() => {
     // prefers-reduced-motion: 사용자가 애니메이션 줄이기 설정 시 즉시 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(['.hero__title-text', '.hero__title-highlight', '.hero__visual-image'], { opacity: 1, y: 0, scale: 1 });
+      gsap.set(
+        ['.hero__badge', '.hero__title', '.hero__desc', '.hero__desc--sub', '.hero__actions', '.hero__visual-image'],
+        { opacity: 1, y: 0, scale: 1 }
+      );
       return;
     }
 
-    // Phase 2: Interacting timeline as requested by User's Guide
-    const tl = gsap.timeline();
+    // 5단계 순차 등장 타임라인 (물 흐르듯 짧은 겹침으로 연결)
+    const tl = gsap.timeline({ delay: 0.2 });
 
-    tl.fromTo('.hero__title-text',
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+    // 1. badge
+    tl.fromTo('.hero__badge',
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 2.0, ease: 'power4.out' }
     )
-    .fromTo('.hero__title-highlight',
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-      "-=0.6" // overlapping start
+    // 2. 타이틀 (title-text, title-highlight 하나로 통합)
+    .fromTo('.hero__title',
+      { y: 60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 2.3, ease: 'power4.out' },
+      '<0.15'
     )
+    // 3. 설명 문단 두 개 동시 등장
+    .fromTo(['.hero__desc', '.hero__desc--sub'],
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 2.1, ease: 'power4.out' },
+      '<0.15'
+    )
+    // 4. 버튼 영역
+    .fromTo('.hero__actions',
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 2.0, ease: 'power4.out' },
+      '<0.15'
+    )
+    // 5. 헤드폰 이미지
     .fromTo('.hero__visual-image',
-      { scale: 0.9, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 1, ease: "power2.out" },
-      "-=0.4"
+      { scale: 0.94, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 2.5, ease: 'power4.out' },
+      '<0.15'
     );
 
   }, { scope: containerRef });

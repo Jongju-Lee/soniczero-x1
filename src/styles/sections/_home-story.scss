@@ -1,7 +1,14 @@
 @use '../abstracts/variables' as *;
 
 .story {
+  @include flex-center-column;
+  gap: var(--spacing-80);
+  margin-top: var(--spacing-64);
 
+  @include tablet {
+    // gap: var(--spacing-64)
+  }
+    
   &__row {
     @include flex-center;
     gap: var(--spacing-80); /* 80px */
@@ -10,13 +17,12 @@
       flex-direction: row-reverse;
     }
 
-    &:not(:last-child) {
-      margin-bottom: var(--spacing-80);
-    }
-
     @include tablet {
       flex-direction: column;
       gap: var(--spacing-48);
+      gap: 0;
+      max-width: 600px;
+      width: 80%
     }
 
     @include mobile-lg {
@@ -35,7 +41,6 @@
 
     @include tablet {
       max-width: 100%;
-      width: 100%;
     }
   }
 
@@ -69,23 +74,20 @@
   &__visual {
     flex: 1;
     max-width: 38.75rem; /* 620px */
-    padding: 0 var(--spacing-40);
 
     @include desktop {
       padding: 0;
+    }
+
+    @include tablet {
+      max-width: 100%;
     }
   }
 
   &__image-wrap {
     width: 100%;
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius-24);
     overflow: hidden;
-    padding: var(--spacing-32);
-  }
-
-  &__row:first-child .story__image-wrap {
     padding: 0;
   }
 

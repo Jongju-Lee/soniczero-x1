@@ -1,8 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './layouts/Header';
-import Footer from './layouts/Footer';
-import ScrollToTop from './components/utils/ScrollToTop';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+// Layout
+import RootLayout from './layouts/RootLayout';
 
 // Pages
 import Home from './pages/Home';
@@ -11,23 +11,26 @@ import SpecsPage from './pages/SpecsPage';
 import SupportPage from './pages/SupportPage';
 import ShopPage from './pages/ShopPage';
 
+// v6.4+ Data Router 구성
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />, // 껍데기 역할 (Header, Footer, ScrollRestoration 포함)
+    children: [
+      { index: true, element: <Home /> },
+      { path: "technology", element: <TechPage /> },
+      { path: "specs", element: <SpecsPage /> },
+      { path: "support", element: <SupportPage /> },
+      { path: "shop", element: <ShopPage /> },
+    ],
+  },
+]);
+
 const App = () => {
-  return (
-    <div className="app-wrapper">
-      <ScrollToTop />
-      <Header />
-      <main className="main-wrapper">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/technology" element={<TechPage />} />
-          <Route path="/specs" element={<SpecsPage />} />
-          <Route path="/support" element={<SupportPage />} />
-          <Route path="/shop" element={<ShopPage />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
+
+
+

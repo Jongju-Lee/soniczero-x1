@@ -3,7 +3,7 @@ import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 import Button from '../../components/ui/Button';
 
 const SupportHero = () => {
-  const sectionRef = useScrollFadeIn();
+  const sectionRef = useScrollFadeIn(false, { delay: 0.2 });
 
   return (
     <section className="support__hero" ref={sectionRef}>

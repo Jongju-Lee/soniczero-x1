@@ -22,14 +22,14 @@ export const useScrollFadeIn = (disabled = false, options = {}) => {
     }
 
     const { 
-      duration = 0.8, 
+      duration = 1.8, 
       delay = 0, 
-      y = 50,
+      y = 60,
       stagger = 0, 
-      ease = "power2.out", 
+      ease = "power4.out", 
       target = containerRef.current, // 기본값은 컨테이너 자체
       start = "top 85%",
-      toggleActions = "play none none reverse"
+      toggleActions = "play none none none"
     } = options;
 
     // target이 배열이나 문자열(클래스명)일 수 있으므로 일괄 적용

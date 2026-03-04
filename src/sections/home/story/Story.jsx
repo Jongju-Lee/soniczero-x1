@@ -56,31 +56,31 @@ const Story = () => {
 
       gsap.fromTo(
         textEl,
-        { y: 50, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.1,
-          ease: 'power3.out',
+          duration: 1.8,
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: row,
-            start: 'top 78%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         }
       );
       gsap.fromTo(
         imageEl,
-        { y: 50, opacity: 0 },
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1.1,
+          duration: 1.8,
           delay: 0.15,
-          ease: 'power3.out',
+          ease: 'power4.out',
           scrollTrigger: {
             trigger: row,
-            start: 'top 78%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         }
