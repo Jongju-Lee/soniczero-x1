@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Button from '../components/ui/Button';
+import { scrollToTop } from '../hooks/useScrollTriggerCleanup';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -89,13 +90,13 @@ const Header = () => {
 
           <ul className="header__menu">
             <li className="header__menu-item">
-              <NavLink to="/technology" className="header__menu-link">Technology</NavLink>
+              <NavLink to="/technology" className="header__menu-link" onClick={scrollToTop}>Technology</NavLink>
             </li>
             <li className="header__menu-item">
-              <NavLink to="/specs" className="header__menu-link">Specifications</NavLink>
+              <NavLink to="/specs" className="header__menu-link" onClick={scrollToTop}>Specifications</NavLink>
             </li>
             <li className="header__menu-item">
-              <NavLink to="/support" className="header__menu-link">Support</NavLink>
+              <NavLink to="/support" className="header__menu-link" onClick={scrollToTop}>Support</NavLink>
             </li>
           </ul>
 
@@ -147,17 +148,17 @@ const Header = () => {
           <nav className="header__mobile-menu-nav" aria-label="모바일 네비게이션">
             <ul className="header__mobile-menu-list">
               <li>
-                <NavLink to="/technology" className="header__mobile-menu-link" onClick={handleClose}>
+                <NavLink to="/technology" className="header__mobile-menu-link" onClick={() => { scrollToTop(); handleClose(); }}>
                   Technology
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/specs" className="header__mobile-menu-link" onClick={handleClose}>
+                <NavLink to="/specs" className="header__mobile-menu-link" onClick={() => { scrollToTop(); handleClose(); }}>
                   Specifications
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/support" className="header__mobile-menu-link" onClick={handleClose}>
+                <NavLink to="/support" className="header__mobile-menu-link" onClick={() => { scrollToTop(); handleClose(); }}>
                   Support
                 </NavLink>
               </li>

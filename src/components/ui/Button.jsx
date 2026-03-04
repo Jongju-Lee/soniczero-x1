@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { scrollToTop } from '../../hooks/useScrollTriggerCleanup';
 
 /**
  * Button Component
@@ -15,15 +16,21 @@ const Button = ({
   to,
   className = '',
   children,
+  onClick,
   ...rest
 }) => {
+  // to prop이 있는 경우: 즉시 스크롤 초기화 후 외부 onClick 실행
+  const handleLinkClick = (e) => {
+    scrollToTop();
+    if (onClick) onClick(e);
+  };
   const classes = `btn btn--${size} btn--${variant}`;
 
   // glow variant: shimmer를 올바르게 클리핑하기 위해 wrapper 필요
   if (variant === 'glow') {
     const inner = to
-      ? <Link to={to} className={classes} {...rest}>{children}</Link>
-      : <button type="button" className={classes} {...rest}>{children}</button>;
+      ? <Link to={to} className={classes} onClick={handleLinkClick} {...rest}>{children}</Link>
+      : <button type="button" className={classes} onClick={onClick} {...rest}>{children}</button>;
 
     return (
       <div className={`btn-glow-wrap${className ? ` ${className}` : ''}`}>
@@ -39,14 +46,14 @@ const Button = ({
 
   if (to) {
     return (
-      <Link to={to} className={baseClasses} {...rest}>
+      <Link to={to} className={baseClasses} onClick={handleLinkClick} {...rest}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={baseClasses} {...rest}>
+    <button className={baseClasses} onClick={onClick} {...rest}>
       {children}
     </button>
   );
