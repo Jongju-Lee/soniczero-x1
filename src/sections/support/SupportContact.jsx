@@ -149,8 +149,10 @@ const SupportContact = () => {
         </div>
 
         <button type="submit" className="support__contact-submit btn btn--primary btn--lg">
+          <img src="/assets/icons/support-send.svg" alt="" className="btn-icon" aria-hidden="true" />
           <span>문의하기</span>
         </button>
+        <p className="support__contact-subtext">영업일 기준 1~2일 이내 이메일로 답변드립니다.</p>
       </form>
     </section>
   );

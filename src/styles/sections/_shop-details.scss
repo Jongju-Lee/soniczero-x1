@@ -77,17 +77,23 @@
       }
 
       .quantity-selector {
-        @include glass-effect;
         display: flex;
         width: 10.25rem; // 164px
         height: 3.125rem; // 50px
         margin-top: var(--spacing-12);
+        border: 1px solid var(--color-border-light);
         border-radius: var(--radius-12);
+        overflow: hidden;
         
         button {
           @include flex-center;
           width: 3rem; // 48px
           height: 3rem;
+          transition: background-color var(--transition-fast);
+
+          &:hover:not(:disabled) {
+            background-color: var(--color-glass-active);
+          }
 
           &:disabled {
             cursor: not-allowed;
@@ -103,8 +109,8 @@
           @include flex-center;
           @include text-style("desc-md");
           flex: 1;
-          border-left: 1px solid var(--color-border);
-          border-right: 1px solid var(--color-border);
+          border-left: 1px solid var(--color-border-light);
+          border-right: 1px solid var(--color-border-light);
           font-family: var(--font-en);
           font-weight: var(--fw-s-bold);
           color: var(--color-text-main);

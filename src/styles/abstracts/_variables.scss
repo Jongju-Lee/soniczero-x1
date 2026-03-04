@@ -32,11 +32,17 @@
   --color-text-main: #FFFFFF;
   --color-text-sub: #A1A1A6;
   --color-text-mute: #6E6E73;
-  --color-border: rgba(255, 255, 255, 0.1);
   --color-glass: rgba(255, 255, 255, 0.05);
   --color-glass-active: rgba(255, 255, 255, 0.1);
   --color-positive: #05DF72;
-  --color-danger: #FF6366;
+  --color-danger: #FD484E;
+  --color-danger-rgb: 253, 72, 78;
+
+  /* Border */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.2);
+  --color-border-accent: rgba(var(--color-primary-rgb), 0.7);
+  --color-border-danger: rgba(var(--color-danger-rgb), 0.7);
 
   /* --- 2. Typography Hierarchy (16px based) --- */
   --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
@@ -154,6 +160,13 @@ $bp-mobile-sm: 480px;
   border: 1px solid var(--color-border);
 }
 
+
+// 1. Hover/Focus Ring Effect
+@mixin focus-ring {
+  border-color: var(--color-border-accent);
+  box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.25); /* fallback */
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent);
+}
 
 // FLEX STYLE
 @mixin flex-center {

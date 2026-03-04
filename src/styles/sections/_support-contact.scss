@@ -61,12 +61,10 @@
           border-radius: var(--radius-12);
           color: var(--color-text-main);
           background-color: var(--color-bg-foreground);
-          transition: border-color var(--transition-base), box-shadow var(--transition-base);
+          transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
           &:focus {
-            border-color: var(--color-primary);
-            box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb),0.25); /* fallback */
-            box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-primary) 30%, transparent);
+            @include focus-ring;
           }
         }
 
@@ -78,20 +76,20 @@
         /* --- 에러 상태 (유효성 검사 실패) --- */
         &.has-error {
           input, select, textarea {
-            border-color: var(--color-danger);
+            border-color: var(--color-border-danger);
             
             &:focus {
-              box-shadow: 0 0 0 2px rgba(255, 99, 102, 0.25); /* Fallback */
+              box-shadow: 0 0 0 2px rgba(var(--color-danger-rgb), 0.25); /* Fallback */
               box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-danger) 30%, transparent);
             }
           }
 
           /* 커스텀 셀렉트 컴포넌트 에러 테두리 덮어쓰기 */
           .c-select__trigger {
-            border-color: var(--color-danger);
+            border-color: var(--color-border-danger);
 
             &:focus {
-              box-shadow: 0 0 0 2px rgba(255, 99, 102, 0.25); /* Fallback */
+              box-shadow: 0 0 0 2px rgba(var(--color-danger-rgb), 0.25); /* Fallback */
               box-shadow: 0 0 0 2px color-mix(in oklab, var(--color-danger) 30%, transparent);
             }
           }
@@ -100,13 +98,19 @@
         .error-msg {
           @include text-style("tiny-md");
           color: var(--color-danger);
-          padding-left: 0.375rem; /* 라벨과 왼쪽 정렬 맞춤 */
-          margin-top: calc(var(--spacing-8) * -1 + 4px); /* 입력창 하단과의 연관성을 위해 간격 좁힘 */
+          padding-left: 0.375rem;
+          margin-top: calc(var(--spacing-8) * -1 + 0.375rem); /* 입력창 하단과의 연관성을 위해 간격 좁힘 */
         }
       }
 
       .support__contact-submit {
         margin-top: var(--spacing-8);
+        transition: var(--transition-base);
+      }
+
+      .support__contact-subtext {
+        @include text-style("tiny-md");
+        text-align: center;
       }
     }
   }

@@ -38,7 +38,17 @@
   &__logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-8);
+    gap: var(--spacing-12);
+
+    img, span {
+      transition: opacity var(--transition-fast);
+      opacity: 1;
+    }
+    
+    &:hover img,
+    &:hover span {
+      opacity: 0.7;
+    }
   }
 
   &__logo-icon {

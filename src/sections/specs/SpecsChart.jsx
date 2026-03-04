@@ -19,7 +19,7 @@ const SpecsChart = () => {
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       return;
+      return;
     }
 
     // Chart Bars Animation
