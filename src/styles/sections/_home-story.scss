@@ -4,7 +4,7 @@
 
   &__row {
     @include flex-center;
-    gap: 5rem; /* 80px */
+    gap: var(--spacing-80); /* 80px */
 
     &--reverse {
       flex-direction: row-reverse;
@@ -14,9 +14,12 @@
       margin-bottom: var(--spacing-80);
     }
 
+    @include desktop {
+      // gap: var(--spacing-36);
+    }
+
     @include laptop {
-      padding: var(--spacing-64) var(--spacing-80);
-      gap: 3.5rem;
+      gap: var(--spacing-24);
     }
 
     @include tablet {
@@ -35,6 +38,10 @@
     flex: 1;
     max-width: 38.75rem; /* 620px */
     padding: 0 var(--spacing-40);
+
+    @include desktop {
+      padding: 0;
+    }
 
     @include tablet {
       max-width: 100%;
@@ -73,6 +80,10 @@
     flex: 1;
     max-width: 38.75rem; /* 620px */
     padding: 0 var(--spacing-40);
+
+    @include desktop {
+      padding: 0;
+    }
   }
 
   &__image-wrap {

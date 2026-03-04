@@ -66,12 +66,12 @@
     overflow-y: auto;
     z-index: 100;
     
-    opacity: 1;
+    opacity: 0;
     transition: opacity var(--transition-base);
 
-    // 닫히는 중인 상태 (React의 Delay Unmount 중 작동)
-    &.is-closing {
-      opacity: 0;
+    // 열리는 상태
+    &.is-opening {
+      opacity: 1;
     }
 
     // 드롭다운 내부 스크롤바 스타일
@@ -99,14 +99,14 @@
     color: var(--color-text-main);
     background-color: var(--color-bg-foreground);
     cursor: pointer;
-    transition: background-color var(--transition-base), color var(--transition-base);
+    transition: background-color var(--transition-fast), color var(--transition-fast);
     
     &:not(:last-child) {
       border-bottom: 1px solid var(--color-border);
     }
 
     &:hover {
-    background-color: var(--color-surface);
+    background-color: var(--color-glass-active);
     }
 
     &--selected {

@@ -33,6 +33,10 @@
     width: 100%;
     max-width: var(--container-max-width);
     padding: 0 var(--spacing-80);
+
+    @include mobile-lg {
+      padding: 0 var(--container-padding);
+    }
   }
 
   &__logo {
@@ -44,7 +48,7 @@
       transition: opacity var(--transition-fast);
       opacity: 1;
     }
-    
+
     &:hover img,
     &:hover span {
       opacity: 0.7;
@@ -54,10 +58,19 @@
   &__logo-icon {
     width: 2rem; /* 32px */
     height: 2rem; /* 32px */
+
+    @include tablet {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
   }
 
   &__logo-text {
     @include text-style("logo");
+
+    @include tablet {
+      display: none;
+    }
   }
 
   &__menu {
@@ -66,6 +79,15 @@
     gap: var(--spacing-48);
     margin: 0;
     padding: 0;
+
+    @include tablet {
+      @include text-style("desc-sm");
+      gap: var(--spacing-36);
+    }
+
+    @include mobile-lg {
+      display: none;
+    }
   }
 
   &__menu-link {
@@ -78,12 +100,119 @@
     }
   }
 
+  &__actions {
+    @include mobile-lg {
+      display: none;
+    }
+  }
 
+  // --------------------------------------------------
+  // [Mobile Menu]
+  // --------------------------------------------------
 
-  /* Responsive behavior */
-  @include tablet {
-    &__menu {
-      display: none; // Example: mobile menu implementation goes here later
+  &__hamburger {
+    display: none;
+    padding: var(--spacing-8);
+    margin: calc(-1 * var(--spacing-8));
+    transition: opacity var(--transition-fast);
+
+    @include mobile-lg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+    }
+  }
+
+  &__mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg);
+    padding: 0 var(--container-padding);
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity var(--transition-base);
+    z-index: 200;
+
+    &.is-opening {
+      opacity: 1;
+    }
+
+    &-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.75rem; // 헤더 높이와 동일
+      border-bottom: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    &-close {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-8);
+      margin: calc(-1 * var(--spacing-8));
+      transition: opacity var(--transition-fast);
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+      }
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    &-nav {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--color-border);
+    }
+
+    &-link {
+      display: block;
+      padding: var(--spacing-20) 0;
+      font-family: var(--font-en);
+      font-size: var(--fz-h4);
+      font-weight: var(--fw-medium);
+      color: var(--color-text-sub);
+      border-bottom: 1px solid var(--color-border);
+      transition: color var(--transition-fast);
+
+      &:hover,
+      &.active {
+        color: var(--color-text-main);
+      }
+    }
+
+    &-footer {
+      padding: var(--spacing-32) 0;
+      flex-shrink: 0;
     }
   }
 }

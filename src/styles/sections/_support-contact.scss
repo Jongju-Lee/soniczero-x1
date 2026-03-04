@@ -99,7 +99,7 @@
           @include text-style("tiny-md");
           color: var(--color-danger);
           padding-left: 0.375rem;
-          margin-top: calc(var(--spacing-8) * -1 + 0.375rem); /* 입력창 하단과의 연관성을 위해 간격 좁힘 */
+          margin-top: calc(var(--spacing-8) * -1 + 0.375rem);
         }
       }
 
@@ -110,7 +110,9 @@
 
       .support__contact-subtext {
         @include text-style("tiny-md");
+        margin-top: var(--spacing-4);
         text-align: center;
+        line-height: 1;
       }
     }
   }

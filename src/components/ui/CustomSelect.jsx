@@ -17,6 +17,7 @@ const CustomSelect = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
   const containerRef = useRef(null);
 
   const selectedOption = options.find((opt) => opt.value === value);
@@ -32,14 +33,24 @@ const CustomSelect = ({
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
-  // isOpen 상태 변화에 따른 isVisible 지연 처리 (애니메이션)
   useEffect(() => {
+    let rafId1;
+    let rafId2;
+    let timerId;
     if (isOpen) {
       setIsVisible(true);
+      rafId1 = requestAnimationFrame(() => {
+        rafId2 = requestAnimationFrame(() => setIsOpening(true));
+      });
     } else {
-      const timer = setTimeout(() => setIsVisible(false), 600); // var(--transition-base) 시간에 맞춰 600ms로 조정
-      return () => clearTimeout(timer);
+      setIsOpening(false);
+      timerId = setTimeout(() => setIsVisible(false), 600);
     }
+    return () => {
+      cancelAnimationFrame(rafId1);
+      cancelAnimationFrame(rafId2);
+      clearTimeout(timerId);
+    };
   }, [isOpen]);
 
   const handleSelect = (optionValue) => {
@@ -91,7 +102,7 @@ const CustomSelect = ({
 
       {/* 드롭다운 목록 */}
       {isVisible && (
-        <ul className={`c-select__list${!isOpen ? ' is-closing' : ''}`} role="listbox">
+        <ul className={`c-select__list${isOpening ? ' is-opening' : ''}`} role="listbox">
           {options.map((option) => (
             <li
               key={option.value}
