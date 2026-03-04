@@ -29,7 +29,7 @@ const SpecsTable = () => {
   useGSAP(() => {
     // prefers-reduced-motion: 애니메이션 축소 모드일 시 바로 정적 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       gsap.set(['.specs__header-badge', '.specs__header-title', '.specs__header-desc', '.specs__table-row'], { opacity: 1, y: 0 });
+       gsap.set(['.specs__header-badge', '.specs__header-title', '.specs__header-desc', '.specs__table-wrapper', '.specs__table-row'], { opacity: 1, y: 0 });
        return;
     }
 
@@ -38,9 +38,22 @@ const SpecsTable = () => {
     gsap.fromTo('.specs__header-title', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.3, ease: 'power4.out' });
     gsap.fromTo('.specs__header-desc', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.4, ease: 'power4.out' });
 
-    // Table Row Animation
+    // Wrapper 등장 애니메이션 (먼저 스르륵 올라온 뒤 rows가 이어서 등장)
+    gsap.fromTo('.specs__table-wrapper',
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1.8, ease: 'power4.out',
+        scrollTrigger: {
+          trigger: '.specs__table-wrapper',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    // Table Row Animation (wrapper 등장과 겹쳐서 0.3초 뒤 시작)
     gsap.fromTo('.specs__table-row', 
-      { y: 60, opacity: 0 },
+      { y: 30, opacity: 0 },
       {
         y: 0, opacity: 1,
         scrollTrigger: {
@@ -48,8 +61,9 @@ const SpecsTable = () => {
           start: 'top 85%',
           toggleActions: 'play none none none',
         },
+        delay: 0.3,
         duration: 0.8,
-        stagger: 0.1,
+        stagger: 0.08,
         ease: 'power4.out'
       }
     );

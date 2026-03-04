@@ -19,7 +19,7 @@ const SpecsChart = () => {
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(['.specs__chart-header', '.bar-fill'], { opacity: 1, y: 0, width: 'var(--chart-width)' });
+      gsap.set(['.specs__chart-header', '.specs__chart-wrapper', '.bar-fill'], { opacity: 1, y: 0, width: 'var(--chart-width)' });
       return;
     }
 
@@ -35,16 +35,30 @@ const SpecsChart = () => {
         },
       }
     );
-    // Chart Bars Animation
+    // Chart Wrapper 등장 애니메이션 (bars보다 먼저 스르륵 등장)
+    gsap.fromTo('.specs__chart-wrapper',
+      { y: 40, opacity: 0 },
+      {
+        y: 0, opacity: 1, duration: 1.8, ease: 'power4.out',
+        scrollTrigger: {
+          trigger: '.specs__chart-wrapper',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    // Chart Bars Animation (wrapper 등장과 겹쳐서 0.3초 뒤 시작 → opacity 충돌 방지)
     gsap.from('.bar-fill.current', {
       scrollTrigger: {
         trigger: '.specs__chart-wrapper',
-        start: 'top 80%',
+        start: 'top 85%',
         toggleActions: 'play none none none',
       },
       width: '0%',
       clearProps: 'width', // 애니메이션 종료 후 inline width 제거하여 CSS 변수 적용상태로 복교
       duration: 1.8,
+      delay: 0.3,
       stagger: 0.1,
       ease: 'power4.out'
     });
@@ -52,14 +66,14 @@ const SpecsChart = () => {
     gsap.from('.bar-fill.prev', {
       scrollTrigger: {
         trigger: '.specs__chart-wrapper',
-        start: 'top 80%',
+        start: 'top 85%',
         toggleActions: 'play none none none',
       },
       width: '0%',
       clearProps: 'width',
       duration: 1.8,
+      delay: 0.5,
       stagger: 0.1,
-      delay: 0.2,
       ease: 'power4.out'
     });
   }, { scope: containerRef });
