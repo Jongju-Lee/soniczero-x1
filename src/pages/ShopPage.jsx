@@ -16,20 +16,20 @@ const ShopPage = () => {
   const products = [
     {
       name: 'Midnight Black',
-      image: '/assets/images/shop-gallery-1.png',
-      thumbImage: '/assets/images/shop-gallery-1.png',
+      image: '/assets/images/shop-gallery-1.webp',
+      thumbImage: '/assets/images/shop-gallery-1.webp',
       colorCode: '#1A1A1C'
     },
     {
       name: 'Stellar-Silver',
-      image: '/assets/images/shop-gallery-2.png',
-      thumbImage: '/assets/images/shop-gallery-2.png',
+      image: '/assets/images/shop-gallery-2.webp',
+      thumbImage: '/assets/images/shop-gallery-2.webp',
       colorCode: '#8E8E93'
     },
     {
       name: 'Electric Blue',
-      image: '/assets/images/shop-gallery-3.png',
-      thumbImage: '/assets/images/shop-gallery-3.png',
+      image: '/assets/images/shop-gallery-3.webp',
+      thumbImage: '/assets/images/shop-gallery-3.webp',
       colorCode: '#0047AB'
     }
   ];

@@ -5,7 +5,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  width: 100vw;
   z-index: 100;
 
   &__banner {
@@ -40,8 +41,7 @@
   }
 
   &__logo {
-    display: flex;
-    align-items: center;
+    @include flex-center;
     gap: var(--spacing-12);
 
     img, span {
@@ -57,11 +57,9 @@
 
   &__logo-icon {
     width: 2rem; /* 32px */
-    height: 2rem; /* 32px */
 
     @include tablet {
       width: 2.2rem;
-      height: 2.2rem;
     }
   }
 
@@ -70,6 +68,10 @@
 
     @include tablet {
       display: none;
+    }
+
+    @include mobile-lg {
+      display: block;
     }
   }
 
@@ -126,7 +128,6 @@
 
     img {
       width: 1.8rem;
-      height: 1.8rem;
     }
   }
 
@@ -164,7 +165,6 @@
 
       img {
         width: 1.8rem;
-        height: 1.8rem;
       }
 
       &:hover {

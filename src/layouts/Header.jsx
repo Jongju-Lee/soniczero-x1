@@ -131,6 +131,7 @@ const Header = () => {
           <div className="header__mobile-menu-top">
             <Link to="/" className="header__logo" onClick={handleClose}>
               <img src="./assets/icons/logo.svg" alt="SonicZero Logo" className="header__logo-icon" />
+              <span className='header__logo-text'>SonicZero</span>
             </Link>
             <button
               type="button"

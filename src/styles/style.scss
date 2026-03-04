@@ -26,6 +26,7 @@
 html {
   // 기본 데스크탑 1rem = 16px
   font-size: 100%;
+  overflow-x: hidden;
 
   // 1280px 이하일 때 1rem = 15px로 축소
   @include laptop {
@@ -39,7 +40,6 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   font-family: var(--font-ko);
   color: var(--color-text-sub);
   background-color: var(--color-bg);

@@ -64,7 +64,7 @@ const Main = () => {
         <div className="hero__visual">
           <div className="hero__visual-glow"></div>
           <img 
-            src="./assets/images/hero-img.png" 
+            src="./assets/images/hero-img.webp" 
             alt="SonicZero X1 Midnight Black" 
             className="hero__visual-image" 
           />
