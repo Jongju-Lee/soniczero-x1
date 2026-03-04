@@ -8,6 +8,7 @@ const Header = () => {
   const [isMenuOpening, setIsMenuOpening] = useState(false);
   const rafRef = useRef(null);
   const timerRef = useRef(null);
+  const menuRef = useRef(null);
 
   // 메뉴 열기
   const handleOpen = () => {
@@ -40,6 +41,18 @@ const Header = () => {
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
+  // 패널 외부 클릭 시 닫힘
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleOutsideClick = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        handleClose();
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [isMenuOpen]);
 
   // 뷰포트 리사이즈 대응 (데스크탑 너비로 늘릴 시 자동 닫힘)
@@ -112,6 +125,7 @@ const Header = () => {
           aria-modal="true"
           aria-label="모바일 메뉴"
           className={`header__mobile-menu${isMenuOpening ? ' is-opening' : ''}`}
+          ref={menuRef}
         >
           {/* 상단: 로고 + 닫기 버튼 */}
           <div className="header__mobile-menu-top">
