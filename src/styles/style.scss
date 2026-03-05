@@ -82,11 +82,19 @@ a:not([class*="btn"]) {
   padding: var(--container-padding);
   padding-top: calc(4.75rem + var(--container-padding)); /* header 높이만큼 */
 
+  @include mobile-lg {
+    padding-top: calc(4.75rem + var(--spacing-64));
+  }
+
   & > article {
     @include flex-center-column;
     gap: var(--spacing-160);
     max-width: var(--container-max-width);
     margin: 0 auto;
+
+    @include mobile-lg {
+      gap: var(--spacing-120);
+    }
 
     & > section {
       width: 100%;

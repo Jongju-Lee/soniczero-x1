@@ -98,8 +98,8 @@
         .error-msg {
           @include text-style("tiny-md");
           color: var(--color-danger);
-          padding-left: 0.375rem;
           margin-top: calc(var(--spacing-8) * -1 + 0.375rem);
+          padding-left: 0.375rem;
         }
       }
 

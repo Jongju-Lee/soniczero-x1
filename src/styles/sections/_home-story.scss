@@ -2,16 +2,12 @@
 
 .story {
   @include flex-center-column;
-  gap: var(--spacing-80);
+  gap: var(--spacing-48);
   margin-top: var(--spacing-64);
 
-  @include tablet {
-    // gap: var(--spacing-64)
-  }
-    
   &__row {
     @include flex-center;
-    gap: var(--spacing-80); /* 80px */
+    gap: var(--spacing-80);
 
     &--reverse {
       flex-direction: row-reverse;
@@ -21,12 +17,11 @@
       flex-direction: column;
       gap: var(--spacing-48);
       gap: 0;
-      max-width: 600px;
-      width: 80%
+      max-width: 33.75rem;
     }
 
     @include mobile-lg {
-      gap: var(--spacing-36);
+      gap: var(--spacing-12);
     }
   }
 
@@ -49,6 +44,14 @@
     align-items: center;
     gap: var(--spacing-8);
     margin-bottom: var(--spacing-16);
+
+    @include mobile-lg {
+      margin-bottom: var(--spacing-12);
+    }
+
+    @include mobile-sm {
+      justify-content: center;
+    }
     
     span {
       @include text-style("badge");
@@ -64,20 +67,24 @@
   &__title {
     @include text-style("title-md");
     margin-bottom: var(--spacing-24);
+
+    @include mobile-sm {
+      text-align: center;
+    }
   }
 
   &__desc {
     @include text-style("caption-sm");
     margin: 0;
+
+    @include mobile-sm {
+      text-align: center;
+    }
   }
 
   &__visual {
     flex: 1;
     max-width: 38.75rem; /* 620px */
-
-    @include desktop {
-      padding: 0;
-    }
 
     @include tablet {
       max-width: 100%;

@@ -22,15 +22,14 @@
   }
 
   &__chart-wrapper {
-    width: 100%;
-    max-width: 60rem; /* 960px */
-    background-color: var(--color-glass);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-24);
-    padding: var(--spacing-32) var(--spacing-40); // 33px padding approx
+    @include glass-effect;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-32);
+    width: 100%;
+    max-width: 60rem; /* 960px */
+    border-radius: var(--radius-24);
+    padding: var(--spacing-32) var(--spacing-40);
 
     .specs__chart-legend {
       display: flex;
@@ -38,18 +37,16 @@
       width: 100%;
 
       .legend-item {
-        display: flex;
-        align-items: center;
+        @include flex-center;
         gap: var(--spacing-8);
 
         span:not(.dot) {
-          font-family: var(--font-ko);
-          font-size: var(--fz-tiny-md); // 13px
+          @include text-style("tiny-md");
           color: var(--color-text-sub);
         }
 
         .dot {
-          width: 0.75rem; // 12px
+          width: 0.75rem; /* 12px */
           height: 0.75rem;
           border-radius: var(--radius-full);
 
@@ -68,16 +65,13 @@
   &__chart-container {
     display: flex;
     flex-direction: column;
-    gap: 0;
 
-    // Wrapper for all data rows — hosts the single continuous grid overlay
     .chart-rows {
+      position: relative;
       display: flex;
       flex-direction: column;
       gap: var(--spacing-4);
-      position: relative;
 
-      // Single continuous dashed grid overlay at 25%, 50%, 75%
       &::before {
         content: '';
         position: absolute;
@@ -85,32 +79,31 @@
         right: 0;
         top: 0;
         bottom: 0;
-        pointer-events: none;
-        z-index: 0;
         background-image:
-          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
-          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
-          repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px);
+        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px);
         background-size: 1px 7px, 1px 7px, 1px 7px;
         background-position: 25% 0, 50% 0, 75% 0;
         background-repeat: repeat-y;
+        pointer-events: none;
+        z-index: 0;
       }
     }
 
     .chart-row {
+      position: relative;
       display: flex;
       align-items: center;
       gap: var(--spacing-24);
       min-height: 3rem;
-      position: relative;
       z-index: 1;
 
       &__label {
-        width: 5.5rem;
+        @include text-style("tiny-md");
         flex-shrink: 0;
+        width: 5.5rem;
         text-align: right;
-        font-family: var(--font-ko);
-        font-size: var(--fz-tiny-md);
         color: var(--color-text-sub);
       }
 
@@ -118,7 +111,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: var(--spacing-4);
       }
     }
 
@@ -127,9 +120,9 @@
       height: 1.125rem;
 
       .bar-fill {
+        width: var(--chart-width, 0%);
         height: 100%;
         border-radius: 0 var(--radius-4) var(--radius-4) 0;
-        width: var(--chart-width, 0%);
 
         &.current {
           background-color: var(--color-primary);
@@ -140,19 +133,18 @@
       }
     }
 
-    // X-axis with precisely aligned numbers using absolute positioning
     .x-axis {
-      margin-left: calc(5.5rem + var(--spacing-24));
       position: relative;
       height: 2rem;
+      margin-left: calc(5.5rem + var(--spacing-24));
       border-top: 1px solid var(--color-border);
 
       span {
+        @include text-style("tiny-sm");
         position: absolute;
         top: var(--spacing-8);
         font-family: var(--font-en);
-        font-size: var(--fz-tiny-sm);
-        color: var(--color-text-mute);
+        font-weight: var(--fw-light);
 
         &:nth-child(1) { left: 0; }
         &:nth-child(2) { left: 25%; transform: translateX(-50%); }

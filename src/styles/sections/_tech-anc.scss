@@ -135,10 +135,10 @@
   }
 
   &__anc-footer {
+    @include text-style("tiny-md");
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include text-style("tiny-md");
   }
 
   &__anc-stats {

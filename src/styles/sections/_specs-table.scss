@@ -42,7 +42,7 @@
 
       h2 {
         @include text-style("caption-lg");
-        font-size: var(--fz-body-xl);
+        font-size: var(--fz-body-lg);
         line-height: 1.4;
       }
     }

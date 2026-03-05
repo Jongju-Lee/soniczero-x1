@@ -59,23 +59,20 @@
     }
 
     &-tags {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       gap: var(--spacing-12);
-      font-size: var(--fz-tiny-md);
-
+      
       span {
-        color: var(--color-text-sub);
+        @include text-style("tiny-md");
         font-weight: var(--fw-medium);
-        font-family: var(--font-en);
+        color: var(--color-text-sub);
       }
 
       button {
+        /* 버튼 컴포넌트 폰트스타일 오버라이드 */
         @include text-style("tiny-md");
         padding: var(--spacing-4) var(--spacing-16);
         border-radius: var(--radius-full);
-        color: var(--color-text-sub);
         line-height: 1.8;
       }
     }

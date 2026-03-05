@@ -18,7 +18,7 @@ const SupportHero = () => {
           <Button size="sm" variant="primary">Search</Button>
         </div>
         <div className="support__search-tags">
-          <span>Popular:</span>
+          <span>자주 찾는 :</span>
           <Button size="sm" variant="outline">정품 등록</Button>
           <Button size="sm" variant="outline">서비스 상태</Button>
           <Button size="sm" variant="outline">매뉴얼 다운로드</Button>

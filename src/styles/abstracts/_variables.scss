@@ -45,7 +45,7 @@ $bp-mobile-sm: 480px;
   --color-surface: #121212;
   --color-text-main: #FFFFFF;
   --color-text-sub: #A1A1A6;
-  --color-text-mute: #6E6E73;
+  --color-text-mute: #7D7D83;
   --color-glass: rgba(255, 255, 255, 0.05);
   --color-glass-active: rgba(255, 255, 255, 0.1);
   --color-positive: #05DF72;
@@ -62,29 +62,27 @@ $bp-mobile-sm: 480px;
   --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
   --font-en: 'Inter Variable', sans-serif;
 
-  /* Display & Headlines */
-  --fz-display-lg: 6rem;    /* 96px */
-  --fz-display-md: 3.75rem; /* 60px */
-  --fz-h1: 3rem;            /* 48px */
-  --fz-h2: 2.5rem;          /* 40px */
-  --fz-h3: 2.25rem;           /* 36px */
-  --fz-h4: 1.5rem;         /* 24px */
-  --fz-h5: 1.25rem;        /* 20px */
+  /* ===== Display & Headlines - 1rem = 16px → 14px ===== */
+  /* 폰트 관련 주석 설명 -->> 최소 px(360px 기준) → 최대 px */
+  /* CLAMP SYSTEM(1rem = 16px → 14px 고려) */
+  --fz-display-xl: clamp(3.125rem, 3.67vw + 2.7rem, 6rem);  /* 51px → 96px */
+  --fz-title-lg: clamp(2.25rem, 1.83vw + 2.1rem, 3.75rem);  /* 36px → 60px */
+  --fz-title-md: clamp(2rem, 1.11vw + 2rem, 3rem);          /* 32px → 48px */
+  --fz-title-sm: clamp(1.75rem, 0.78vw + 1.8rem, 2.5rem);   /* 28px → 40px */
+  --fz-title-xs: 1.25rem;                                   /* 17.5px → 20px */
 
   /* Body Text */
-  --fz-body-2xl: 1.25rem; /* 20px */
-  --fz-body-xl: 1.125rem; /* 18px */
-  --fz-body-lg: 1.0625rem; /* 17px */
+  --fz-body-lg: 1.125rem; /* 18px (Button 컴포넌트 사용중) */
   --fz-body-md: 1rem;     /* 16px */
-  --fz-body-sm: 0.9375rem; /* 15px */
+  --fz-body-sm: 0.9375rem; /* 15px (Button 컴포넌트 사용중) */
 
   /* Caption & Label */
-  --fz-caption-lg: 1.25rem; /* 20px */
-  --fz-caption-md: 1.125rem; /* 18px */
-  --fz-caption-sm: 1.0625rem; /* 17px */
-  --fz-tiny-lg: 0.875rem; /* 14px */
-  --fz-tiny-md: 0.8125rem; /* 13px */
-  --fz-tiny-sm: 0.75rem;  /* 12px */
+  --fz-caption-lg: clamp(1rem, 0.17vw + 1.1rem, 1.25rem);   /* 16px → 20px */
+  --fz-caption-md: clamp(0.9375rem, 0.03vw + 1.1rem, 1.125rem); /* 15.5px → 18px */
+  --fz-caption-sm: 1.0625rem; /* 14.9px → 17px */
+  --fz-tiny-lg: 0.875rem; /* 12.3px → 14px */
+  --fz-tiny-md: 0.8125rem; /* 11.3px → 13px */
+  --fz-tiny-sm: 0.75rem;  /* 10.5px → 12px */
   
   /* Font Weights */
   --fw-black: 900;
@@ -126,23 +124,15 @@ $bp-mobile-sm: 480px;
   --spacing-100: 6.25rem;
   --spacing-120: 7.5rem;
   --spacing-160: 10rem;
-  --spacing-180: 11.25rem;
 
   /* Layout Tokens */
   --container-max-width: 90rem;   /* 1440px */
+  /* 화면 크기에 따른 container-padding */
   --container-padding: var(--spacing-120);
-
-  @include laptop {
-    --container-padding: var(--spacing-100);
-  }
-
-  @include tablet {
-    --container-padding: var(--spacing-80);
-  }
-
-  @include mobile-lg {
-    --container-padding: var(--spacing-40);
-  }
+  @include laptop { --container-padding: var(--spacing-100); }
+  @include tablet { --container-padding: var(--spacing-80); }
+  @include mobile-lg { --container-padding: var(--spacing-40); }
+  @include mobile-sm { --container-padding: var(--spacing-28); }
 
   /* --- 4. Radius System --- */
   --radius-2: 0.125rem;
@@ -196,31 +186,31 @@ $bp-mobile-sm: 480px;
 $text-styles: (
   /* ---------- TITLE ---------- */
   "display": (
-    "size": var(--fz-display-lg),
+    "size": var(--fz-display-xl),
     "weight": var(--fw-black),
     "lh": 1.1,
     "ls": -0.125rem
   ),
   "title-lg": (
-    "size": var(--fz-display-md),
+    "size": var(--fz-title-lg),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.125rem
   ),
   "title-md": (
-    "size": var(--fz-h1),
+    "size": var(--fz-title-md),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.0625rem
   ),
   "title-sm": (
-    "size": var(--fz-h2),
+    "size": var(--fz-title-sm),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
     "ls": -0.0625rem
   ),
   "title-xs": (
-    "size": var(--fz-h5),
+    "size": var(--fz-title-xs),
     "weight": var(--fw-bold),
     "lh": 1.3,
   ),
@@ -236,7 +226,7 @@ $text-styles: (
     "case": var(--fc-upper),
   ),
   "logo": (
-    "size": var(--fz-h5),
+    "size": var(--fz-title-xs),
     "weight": var(--fw-bold),
     "color": var(--color-text-main)
   ),
@@ -254,11 +244,6 @@ $text-styles: (
   ),
 
   /* ---------- PARAGRAPH ---------- */
-  "desc-lg": (
-    "size": var(--fz-body-lg),
-    "weight": var(--fw-regular),
-    "lh": 1.6,
-  ),
   "desc-md": (
     "size": var(--fz-body-md),
     "weight": var(--fw-regular),

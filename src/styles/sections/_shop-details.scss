@@ -22,7 +22,6 @@
 
     &-price {
       @include text-style("title-sm");
-      font-size: var(--fz-h3);
       letter-spacing: 0;
     }
 
