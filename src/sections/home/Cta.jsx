@@ -1,6 +1,6 @@
 import React from 'react';
-import { useScrollFadeIn } from '../../../hooks/useScrollFadeIn';
-import Button from '../../../components/ui/Button';
+import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
+import Button from '../../components/ui/Button';
 
 const Cta = () => {
   const ctaRef = useScrollFadeIn(false, { target: '.cta__content', start: "top 85%" });

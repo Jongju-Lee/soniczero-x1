@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import Button from '../../../components/ui/Button';
+import Button from '../../components/ui/Button';
 
 const Main = () => {
   const containerRef = useRef(null);

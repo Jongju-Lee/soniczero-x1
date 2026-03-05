@@ -88,7 +88,7 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
   }, []); // isAncActiveRef로 최신값 참조하므로 의존성 배열 불필요
 
   return (
-    <section className="tech__anc">
+    <article className="tech__anc">
       {/* Intro Text */}
       <div className="tech__anc-intro tech-fade-up">
         <span className="tech__anc-badge">Technology</span>
@@ -192,7 +192,7 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
           />
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 
