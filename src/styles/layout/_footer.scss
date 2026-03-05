@@ -7,44 +7,76 @@
     max-width: var(--container-max-width);
     margin: 0 auto;
     padding: var(--spacing-64) var(--spacing-80);
+
+    @include mobile-lg {
+      padding: var(--container-padding);
+    }
   }
 
   &__top {
     display: flex;
-    margin-bottom: var(--spacing-64);
     flex-wrap: wrap;
     gap: var(--spacing-80);
+    margin-bottom: var(--spacing-64);
+
+    @include tablet {
+      row-gap: var(--spacing-64);
+    }
+
+    @include mobile-lg {
+      flex-direction: column;
+      margin-bottom: var(--container-padding);
+    }
+
+    @include mobile-sm {
+      gap: var(--spacing-48);
+    }
   }
 
   &__brand {
     flex: 1;
     max-width: 16.25rem; /* 260px */
+    min-width: 8.75rem; /* 140px */
+    
+    &-title {
+      @include text-style("logo");
+      margin-bottom: var(--spacing-16);
+    }
+  
+    &-desc {
+      @include text-style("tiny-lg");
+      pointer-events: none;
+    }
   }
 
-  &__brand-title {
-    @include text-style("logo");
-    margin-bottom: var(--spacing-16);
-  }
-
-  &__brand-desc {
-    @include text-style("tiny-lg");
-    pointer-events: none;
-  }
 
   &__links {
     flex: 1;
     display: flex;
     gap: var(--spacing-80);
-    flex-wrap: wrap;
+
+    @include tablet {
+      gap: var(--spacing-64)
+    }
+
+    @include mobile-lg {
+      flex-wrap: wrap
+    }
+
+    @include mobile-sm {
+      flex-direction: column;
+      gap: var(--spacing-48)
+    }
   }
 
   &__nav-group {
     @include text-style("tiny-lg");
     flex: 1;
-    max-width: 16.25rem; /* 260px */
     display: flex;
     flex-direction: column;
     gap: var(--spacing-16);
+    max-width: 16.25rem; /* 260px */
+    min-width: 8.75rem; /* 140px */
   }
 
   &__nav-title {
