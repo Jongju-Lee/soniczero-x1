@@ -22,21 +22,7 @@
 
   /* =============== TABLE SECTION =============== */
   &__table {
-    // @include flex-center-column;
-    // gap: var(--spacing-120);
     max-width: 60rem; // 960px
-
-    // @include laptop {
-    //   gap: var(--spacing-80)
-    // }
-
-    // @include mobile-lg {
-    //   gap: var(--spacing-64)
-    // }
-
-    // @include mobile-sm {
-    //   gap: var(--spacing-48)
-    // }
     
     &-wrapper {
       @include glass-effect;

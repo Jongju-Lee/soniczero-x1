@@ -98,6 +98,7 @@ a:not([class*="btn"]) {
     & > section {
       width: 100%;
 
+      /* 섹션 유형별 GAP 정형화 */
       &.section-lg {
         @include flex-center-column;
         gap: var(--spacing-120);
@@ -141,6 +142,9 @@ a:not([class*="btn"]) {
         }
       }
 
+      & > .intro {
+        text-align: center;
+      }
     }
   }
 }

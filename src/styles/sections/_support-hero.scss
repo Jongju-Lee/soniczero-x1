@@ -1,80 +1,99 @@
 @use '../abstracts/variables' as *;
 
-.support {
-  /* =============== SUPPORT HERO SECTION =============== */
-  &__hero {
-    @include flex-center-column;
-    width: 100%;
-    text-align: center;
+.support__search {
+  @include flex-center-column;
+  gap: var(--spacing-40);
+
+  @include mobile-sm {
+    gap: var(--spacing-28)
   }
 
-  &__hero-badge {
-    @include text-style("badge");
-    margin-bottom: var(--spacing-16)
+  /* =============== SUPPORT SEARCH INTRO =============== */
+  &-intro {
+    &-badge {
+      @include text-style("badge");
+      margin-bottom: var(--spacing-16)
+    }
+  
+    &-title {
+      @include text-style("title-lg");
+      margin-bottom: var(--spacing-24);
+    }
+  
+    &-desc {
+      @include text-style("caption-md");
+
+      span {
+        @include mobile-sm {
+          display: block
+        }
+      }
+    }
   }
 
-  &__hero-title {
-    @include text-style("title-lg");
-    margin-bottom: var(--spacing-24)
-  }
-
-  &__hero-desc {
-    @include text-style("caption-md");
-    margin-bottom: var(--spacing-40)
-  }
-
-  /* ---------- Search Box ---------- */
-  &__search {
+  /* =============== SUPPORT SEARCH WRAPPER =============== */
+  &-wrapper {
     width: 100%;
     max-width: 50rem;
+  }
 
-    &-icon {
-      width: 1.25rem; /* 20px */
-      height: 1.25rem; /* 20px */
-      margin-right: var(--spacing-16);
-      margin-left: var(--spacing-8);
+  &-icon {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem; /* 20px */
+    margin-right: var(--spacing-16);
+    margin-left: var(--spacing-8);
+  }
+
+  &-bar {
+    @include glass-effect;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.125rem;
+    padding: 0 0.6875rem 0 1.3125rem;
+    padding: 0 var(--spacing-12);
+    border-radius: var(--radius-24);
+    margin-bottom: var(--spacing-28);
+
+    input {
+      flex: 1;
+      @include text-style("desc-md");
+      color: var(--color-text-main);
+
+      &::placeholder {
+        @include mobile-sm {
+          visibility: hidden;
+        }
+      }
     }
 
-    &-bar {
-      @include glass-effect;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 4.125rem;
-      padding: 0 0.6875rem 0 1.3125rem;
-      padding: 0 var(--spacing-12);
-      border-radius: var(--radius-24);
-      margin-bottom: var(--spacing-28);
+    button {
+      line-height: 1.7;
+      padding: var(--spacing-8) var(--spacing-24);
+    }
+  }
 
-      input {
-        flex: 1;
-        @include text-style("desc-md");
-        color: var(--color-text-main);
-      }
+  &-tags {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: var(--spacing-12);
 
-      button {
-        line-height: 1.7;
-        padding: var(--spacing-8) var(--spacing-24);
-      }
+    @include mobile-sm {
+      gap: var(--spacing-8)
+    }
+    
+    span {
+      @include text-style("tiny-md");
+      font-weight: var(--fw-medium);
+      color: var(--color-text-sub);
     }
 
-    &-tags {
-      @include flex-center;
-      gap: var(--spacing-12);
-      
-      span {
-        @include text-style("tiny-md");
-        font-weight: var(--fw-medium);
-        color: var(--color-text-sub);
-      }
-
-      button {
-        /* 버튼 컴포넌트 폰트스타일 오버라이드 */
-        @include text-style("tiny-md");
-        padding: var(--spacing-4) var(--spacing-16);
-        border-radius: var(--radius-full);
-        line-height: 1.8;
-      }
+    button {
+      /* 버튼 컴포넌트 폰트스타일 오버라이드 */
+      @include text-style("tiny-md");
+      padding: var(--spacing-4) var(--spacing-16);
+      border-radius: var(--radius-full);
+      line-height: 1.8;
     }
   }
 }
