@@ -37,10 +37,10 @@ const SupportFaq = () => {
   };
 
   return (
-    <section className="support__faq" ref={sectionRef}>
+    <section className="support__faq section-sm" ref={sectionRef}>
       <div className="support__faq-header">
         <h2>Frequently Asked Questions</h2>
-        <p>SonicZero X1에 대해 가장 많이 문의하시는 질문들입니다.</p>
+        <p>SonicZero X1에 대해 <span>가장 많이 문의하시는 질문들입니다.</span></p>
       </div>
 
       <div className="support__faq-list">

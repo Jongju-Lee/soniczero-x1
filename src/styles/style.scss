@@ -10,7 +10,7 @@
 @use 'sections/tech-anc';
 @use 'sections/tech-features';
 @use 'sections/home-cta';
-@use 'sections/support-hero';
+@use 'sections/support-search';
 @use 'sections/support-faq';
 @use 'sections/support-downloads';
 @use 'sections/support-contact';
@@ -131,14 +131,14 @@ a:not([class*="btn"]) {
 
       &.section-sm {
         @include flex-center-column;
-        gap: var(--spacing-80);
+        gap: var(--spacing-60);
         
         @include laptop {
-          gap: var(--spacing-64)
+          gap: var(--spacing-48)
         }
   
         @include mobile-lg {
-          gap: var(--spacing-48)
+          gap: var(--spacing-36)
         }
       }
 

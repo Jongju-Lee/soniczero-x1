@@ -1,90 +1,112 @@
 @use '../abstracts/variables' as *;
 
-.support {
-  /* =============== FAQ SECTION =============== */
-  &__faq {
-    @include flex-center-column;
-    max-width: 55rem; /* 880px */
-    gap: var(--spacing-60);
+/* =============== FAQ SECTION =============== */
+.support__faq {
+  @include flex-center-column;
+  max-width: 55rem; /* 880px */
+  gap: var(--spacing-60);
 
-    &-header {
-      text-align: center;
-      
-      h2 {
-        @include text-style("title-sm");
-        margin-bottom: var(--spacing-12);
-      }
-
-      p {
-        @include text-style("caption-sm");
-      }
+  &-header {
+    text-align: center;
+    
+    h2 {
+      @include text-style("title-sm");
+      margin-bottom: var(--spacing-12);
     }
 
-    &-list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-12);
+    p {
+      @include text-style("caption-sm");
+
+      span {
+        @include mobile-sm {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-12);
+  }
+
+  &-item {
+    @include glass-effect;
+    border-radius: var(--radius-24);
+    overflow: hidden;
+    transition: background-color var(--transition-base);
+
+    &:hover,
+    &.is-active {
+      background-color: var(--color-glass-active);
+    }
+  }
+
+  &-question {
+    @include text-style("desc-md");
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-24) var(--spacing-32);
+    font-weight: var(--fw-s-bold);
+    color: var(--color-text-main);
+
+    @include mobile-sm {
+      padding: var(--spacing-20) var(--spacing-28);
+    }
+  }
+
+  &-icon {
+    @include flex-center;
+    width: 2rem; // 32px
+    height: 2rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+    flex-shrink: 0;
+
+    @include mobile-sm {
+      width: 1.8rem;
+      height: 1.8rem;
     }
 
-    &-item {
-      @include glass-effect;
-      border-radius: var(--radius-24);
+    &.is-active {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+
+    img {
+      width: 1rem; // 16px
+      transition: transform var(--transition-base);
+
+      @include mobile-sm {
+        width: 0.9rem;
+      }
+    }
+  }
+
+  &-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--transition-premium);
+    
+    .is-active & {
+      grid-template-rows: 1fr;
+    }
+
+    &-inner {
       overflow: hidden;
-      transition: background-color var(--transition-base);
-
-      &:hover,
-      &.is-active {
-        background-color: var(--color-glass-active);
-      }
     }
+    
+    &-content {
+    @include text-style("desc-sm");
+      padding: 0 var(--spacing-32) var(--spacing-28);
 
-    &-question {
-      @include text-style("desc-md");
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-24) var(--spacing-32);
-      font-weight: var(--fw-s-bold);
-      color: var(--color-text-main);
-    }
-
-    &-icon {
-      @include flex-center;
-      width: 2rem; // 32px
-      height: 2rem;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--color-border);
-      transition: all var(--transition-base);
-      flex-shrink: 0;
-
-      &.is-active {
-        background-color: var(--color-primary);
-        border-color: var(--color-primary);
-      }
-
-      img {
-        width: 1rem; // 16px
-        transition: transform var(--transition-base);
-      }
-    }
-
-    &-answer {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows var(--transition-premium);
-      
-      .is-active & {
-        grid-template-rows: 1fr;
-      }
-
-      &-inner {
-        overflow: hidden;
-      }
-      
-      &-content {
-      @include text-style("desc-sm");
-        padding: 0 var(--spacing-32) var(--spacing-32);
+      @include mobile-sm {
+        @include text-style("desc-md");
+        padding: var(--spacing-4) var(--spacing-28) var(--spacing-24);
       }
     }
   }

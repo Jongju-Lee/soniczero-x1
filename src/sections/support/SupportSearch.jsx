@@ -2,7 +2,7 @@ import React from 'react';
 import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 import Button from '../../components/ui/Button';
 
-const SupportHero = () => {
+const SupportSearch = () => {
   const sectionRef = useScrollFadeIn(false, { delay: 0.2 });
 
   return (
@@ -30,4 +30,4 @@ const SupportHero = () => {
   );
 };
 
-export default SupportHero;
+export default SupportSearch;
