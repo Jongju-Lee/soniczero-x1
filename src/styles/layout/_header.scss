@@ -179,10 +179,14 @@
     &-link {
       @include text-style("caption-md");
       display: block;
-      padding: var(--spacing-20) 0;
+      padding: var(--spacing-20) var(--spacing-8);
       font-family: var(--font-en);
       border-bottom: 1px solid var(--color-border);
       transition: color var(--transition-fast), background-color var(--transition-fast) !important;
+
+      @include mobile-sm {
+        padding: var(--spacing-16) var(--spacing-8);
+      }
 
       &:hover {
         background-color: var(--color-surface);
@@ -195,6 +199,10 @@
 
     &-footer {
       padding: var(--spacing-28) 0;
+
+      @include mobile-sm {
+        padding: var(--spacing-24) 0;
+      }
     }
   }
 }
