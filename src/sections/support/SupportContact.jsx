@@ -86,7 +86,6 @@ const SupportContact = () => {
 
     if (Object.keys(newErrors).length === 0) {
       // 폼 제출 로직 (정상 제출)
-      console.log('Form submitted successfully:', formData);
       alert('문의가 접수되었습니다.');
       // 폼 초기화 로직 등
     }
