@@ -6,7 +6,7 @@ const SupportDownloads = () => {
   const sectionRef = useScrollFadeIn();
 
   return (
-    <section className="support__downloads" ref={sectionRef}>
+    <section className="support__downloads section-sm" ref={sectionRef}>
       <div className="support__downloads-header">
         <h2>Downloads</h2>
         <p>최신 매뉴얼, 펌웨어, 보증 가이드를 다운로드하세요.</p>
