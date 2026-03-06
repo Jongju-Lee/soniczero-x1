@@ -1,9 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+  const isShopPage = location.pathname === '/shop';
+
   return (
-    <footer className="footer">
+    <footer className={`footer ${isShopPage ? 'footer--has-bottom-bar' : ''}`}>
       <div className="container footer__inner">
         
         {/* Top Footer Area */}

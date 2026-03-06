@@ -13,6 +13,13 @@
     }
   }
 
+  // Shop 페이지 전용 여백 (태블릿 이하 하단 고정 바 대응)
+  &--has-bottom-bar {
+    @include tablet {
+      padding-bottom: var(--spacing-100);
+    }
+  }
+
   &__top {
     display: flex;
     flex-wrap: wrap;

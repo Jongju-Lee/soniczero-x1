@@ -7,7 +7,14 @@
     @include flex-center-column;
     flex: 1;
     gap: var(--spacing-16);
-    max-width: 42.5rem; // 680px
+    max-width: 42.5rem; /* 680px */ 
+    min-width: 30rem;
+
+    @include tablet {
+      width: 100%;
+      max-width: none;
+      min-width: 0
+    }
 
     &-main {
       @include glass-effect;
@@ -15,6 +22,17 @@
       width: 100%;
       border-radius: var(--radius-24);
       padding: var(--spacing-80) var(--spacing-120);
+      touch-action: pan-y; /* 모바일 세로 스크롤 허용, 가로만 JS로 잡음 */
+      user-select: none; /* 드래그 시 텍스트/이미지 잔상 선택 방지 */
+
+      @include desktop {
+        padding: var(--spacing-64) var(--spacing-100);
+      }
+
+      @include tablet {
+        padding: 12% 20%
+      }
+      
 
       .shop__gallery-nav {
         @include flex-center;
@@ -30,16 +48,33 @@
         transition: background-color var(--transition-base), opacity var(--transition-base);
         z-index: 10;
 
+        @include mobile-sm {
+          width: 2.8rem;
+          height: 2.8rem;
+        }
+
         &--prev {
           left: 1.5rem; /* 24px */
+
+          @include mobile-sm {
+            left: 5%;
+          }
         }
 
         &--next {
           right: 1.5rem; /* 24px */
+
+          @include mobile-sm {
+            right: 5%;
+          }
         }
 
         &:hover {
           background-color: var(--color-glass-active);
+        }
+
+        img {
+          width: 1.5rem;
         }
       }
 
@@ -54,6 +89,10 @@
         left: 50%;
         transform: translateX(-50%);
         gap: var(--spacing-8);
+
+        @include tablet {
+          display: none;
+        }
 
         .dot {
           width: 0.5rem; // 8px
@@ -75,6 +114,10 @@
       display: flex;
       gap: var(--spacing-12);
       width: 100%;
+
+      @include tablet {
+        display: none
+      }
 
       .thumb {
         @include glass-effect;

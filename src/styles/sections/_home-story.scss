@@ -5,6 +5,10 @@
   gap: var(--spacing-48);
   margin-top: var(--spacing-64);
 
+  @include mobile-sm {
+    margin-top: var(--spacing-32);
+  }
+
   &__row {
     @include flex-center;
     gap: var(--spacing-80);

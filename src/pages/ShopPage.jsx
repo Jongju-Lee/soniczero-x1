@@ -61,24 +61,28 @@ const ShopPage = () => {
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       gsap.set(['.shop__hero-badge', '.shop__hero-title', '.shop__gallery', '.shop__details'], { opacity: 1, y: 0, x: 0 });
-       return;
+      gsap.set(['.shop__hero-badge', '.shop__hero-title', '.shop__gallery', '.shop__details'], { opacity: 1, y: 0, x: 0 });
+      return;
     }
 
     gsap.fromTo('.shop__hero-badge', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.2, ease: 'power4.out' });
     gsap.fromTo('.shop__hero-title', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.3, ease: 'power4.out' });
     gsap.fromTo('.shop__gallery', { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.8, delay: 0.4, ease: 'power4.out' });
-    gsap.fromTo('.shop__details', { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.8, delay: 0.5, ease: 'power4.out' });
+    gsap.fromTo(
+      ['.shop__details-header', '.shop__details-price', '.shop__details-color', '.shop__details-quantity', '.shop__details-includes'], 
+      { x: 60, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1.8, delay: 0.5, ease: 'power4.out' }
+    );
 
   }, { scope: shopRef });
 
   return (
-    <section className="shop" ref={shopRef}>
-      <div className='shop__inner'>
-        <section className="shop__hero">
-          <div className="shop__hero-badge">Pre-order</div>
-          <h1 className="shop__hero-title">Make It Yours</h1>
-        </section>
+    <article className="shop" ref={shopRef}>
+      <section className='shop__wrapper section-lg'>
+        <div className="shop__intro">
+          <div className="shop__intro-badge">Pre-order</div>
+          <h1 className="shop__intro-title">Make It Yours</h1>
+        </div>
       
         <section className="shop__content">
           <ShopGallery 
@@ -98,8 +102,8 @@ const ShopPage = () => {
             boxItems={boxItems}
           />
         </section>
-      </div>
-    </section>
+      </section>
+    </article>
   );
 };
 

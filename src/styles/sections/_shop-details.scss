@@ -7,8 +7,15 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--spacing-32);
     max-width: 42.5rem; // 680px
+    text-align: left;
+
+    @include tablet {
+      width: 100%;
+      max-width: none;
+    }
 
     &-title {
       @include text-style("title-sm");
@@ -26,18 +33,30 @@
     }
 
     &-color {
+      @include tablet {
+        order: -1;
+        align-self: center
+      }
 
       .label {
         @include text-style("desc-sm");
         font-family: var(--font-en);
         font-weight: var(--fw-medium);
         color: var(--color-text-main);
+
+        @include tablet {
+          display: none;
+        }
       }
 
       .color-options {
         display: flex;
         gap: var(--spacing-16);
         margin-top: var(--spacing-16);
+
+        @include tablet {
+          margin-top: 0;
+        }
 
         .color-btn {
           @include flex-center;
@@ -118,11 +137,57 @@
     }
 
     &-action {
+      width: 100%;
       margin-top: var(--spacing-16);
+
+      @include tablet {
+        @include flex-center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin-top: 0;
+        // iOS 홈 바(Safe Area) 침범을 막기 위해 기본 마진(16px)에 기기별 하단 안전 공간을 더함
+        padding: var(--spacing-16) var(--container-padding) calc(var(--spacing-16) + env(safe-area-inset-bottom, 0px));
+        background-color: var(--color-bg);
+        border-top: 1px solid var(--color-border);
+        gap: var(--spacing-24);
+        z-index: 100;
+
+        @include mobile-sm {
+          gap: var(--spacing-16);
+        }
+      }
+
+      .action-info {
+        display: none;
+
+        @include tablet {
+          @include flex-center-column;
+        }
+
+        .price {
+          @include text-style("title-sm");
+          font-size: calc(var(--fz-title-sm) - 0.25rem);
+          color: var(--color-text-main);
+        }
+
+        .meta {
+          @include text-style("tiny-lg");
+        }
+      }
 
       .cart-btn {
         margin-bottom: var(--spacing-16);
         gap: var(--spacing-8);
+        font-family: var(--font-ko);
+
+        @include tablet {
+          margin-bottom: 0;
+          width: auto;
+          flex: 1;
+          // max-width: 20rem; 
+        }
 
         img {
           width: 1.25rem; // 20px
@@ -133,16 +198,21 @@
       .guarantee {
         @include text-style("tiny-lg");
         text-align: center;
+
+        @include tablet {
+          display: none;
+        }
       }
     }
 
     &-includes {
       @include glass-effect;
-      border-radius: var(--radius-24);
-      padding: var(--spacing-24) var(--spacing-28);
       display: flex;
       flex-direction: column;
       gap: var(--spacing-16);
+      width: 100%;
+      padding: var(--spacing-24) var(--spacing-28);
+      border-radius: var(--radius-24);
 
       .box-title {
         @include text-style("desc-md");

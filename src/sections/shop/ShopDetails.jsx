@@ -59,10 +59,13 @@ const ShopDetails = ({
       </div>
 
       <div className="shop__details-action">
+        <div className="action-info">
+          <span className="price">${(399 * quantity).toFixed(2)}</span>
+          <span className="meta">{products[activeColorIndex].name} · {quantity}개</span>
+        </div>
         <Button size="lg" variant="primary" className="cart-btn">
           <img src="/assets/icons/shop-cart.svg" alt="Cart" />
-          <span>장바구니 담기 — ${(399 * quantity).toFixed(2)}</span>
-          {/* <span>장바구니 담기</span> */}
+          <span>장바구니 담기</span>
         </Button>
         <p className="guarantee">전 세계 무료 배송. 30일 이내 환불 보장.</p>
       </div>

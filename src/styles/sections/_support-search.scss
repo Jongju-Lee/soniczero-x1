@@ -42,6 +42,10 @@
     height: 1.25rem; /* 20px */
     margin-right: var(--spacing-16);
     margin-left: var(--spacing-8);
+
+    @include mobile-sm {
+      margin-right: var(--spacing-12);
+    }
   }
 
   &-bar {
@@ -56,8 +60,9 @@
     margin-bottom: var(--spacing-28);
 
     input {
-      flex: 1;
       @include text-style("desc-md");
+      flex: 1;
+      min-width: 0;
       color: var(--color-text-main);
 
       &::placeholder {
@@ -65,11 +70,6 @@
           visibility: hidden;
         }
       }
-    }
-
-    button {
-      line-height: 1.7;
-      padding: var(--spacing-8) var(--spacing-24);
     }
   }
 

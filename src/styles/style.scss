@@ -98,7 +98,7 @@ a:not([class*="btn"]) {
     & > section {
       width: 100%;
 
-      /* 섹션 유형별 GAP 정형화 */
+      /* ========== 섹션 유형별 GAP ========== */
       &.section-lg {
         @include flex-center-column;
         gap: var(--spacing-120);
