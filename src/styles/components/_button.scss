@@ -20,17 +20,29 @@
   &--sm {
     padding: var(--spacing-8) var(--spacing-20);
     font-size: var(--fz-body-sm);
+
+    @include tablet {
+      padding: var(--spacing-8) var(--spacing-16);
+    }
   }
 
   &--md {
     padding: var(--spacing-16) var(--spacing-40);
     font-size: var(--fz-body-lg);
+
+    @include tablet {
+      padding: var(--spacing-16) var(--spacing-32);
+    }
   }
 
   &--lg {
     padding: var(--spacing-16) var(--spacing-40);
     font-size: var(--fz-body-lg);
     width: 100%;
+
+    @include tablet {
+      line-height: 1.2;
+    }
   }
 
   // --------------------------------------------------
