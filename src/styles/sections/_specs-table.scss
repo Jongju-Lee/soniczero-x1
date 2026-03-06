@@ -22,61 +22,101 @@
 
   /* =============== TABLE SECTION =============== */
   &__table {
-    @include flex-center-column;
-    gap: var(--spacing-120);
-    width: 100%;
+    // @include flex-center-column;
+    // gap: var(--spacing-120);
     max-width: 60rem; // 960px
-  }
 
-  // Specs Table Layout
-  &__table-wrapper {
-    @include glass-effect;
-    border-radius: var(--radius-24);
-    width: 100%;
-    overflow: hidden;
+    // @include laptop {
+    //   gap: var(--spacing-80)
+    // }
 
-    .specs__table-header {
+    // @include mobile-lg {
+    //   gap: var(--spacing-64)
+    // }
+
+    // @include mobile-sm {
+    //   gap: var(--spacing-48)
+    // }
+    
+    &-wrapper {
+      @include glass-effect;
+      border-radius: var(--radius-24);
+      width: 100%;
+      overflow: hidden;
+      container-type: inline-size; // @container 트래킹을 위한 속성
+
+      @include mobile-lg {
+        max-width: 41.3rem;  
+      }
+    }
+
+    &-header {
       padding: var(--spacing-20) var(--spacing-32);
       background-color: var(--color-glass);
       border-bottom: 1px solid var(--color-border);
 
+      @include mobile-sm {
+        padding: var(--spacing-20) var(--spacing-24);
+      }
+
+      // 모던 브라우저에서는 부모(TABLE)의 크기 500px에서 속성 적용
+      @supports (container-type: inline-size) {
+        @container (max-width: 500px) {
+          padding: var(--spacing-20) var(--spacing-24);
+        }
+      }
+  
       h2 {
         @include text-style("caption-lg");
         font-size: var(--fz-body-lg);
         line-height: 1.4;
       }
     }
-
-    .specs__table-content {
+  
+    &-content {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
     }
+  
+    /* ----- TBODY ----- */
+    &-row {
+      @include text-style("desc-sm");
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-16) var(--spacing-32);
+      border-bottom: 1px solid var(--color-border);
+      
+      
+      @include mobile-sm {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--spacing-12) var(--spacing-24);
+      }
 
-    .specs__table-body {
-      .specs__table-row {
-        @include text-style("desc-sm");
-        border-bottom: 1px solid var(--color-border);
-        
-        &:last-child {
-          border-bottom: none;
+      // 모던 브라우저에서는 부모(TABLE)의 크기 500px에서 속성 적용
+      @supports (container-type: inline-size) {
+        @container (max-width: 500px) {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: var(--spacing-12) var(--spacing-24);
         }
+      }
 
-        th, td {
-          padding: var(--spacing-16) var(--spacing-32);
-          vertical-align: middle;
-        }
+      &:last-child {
+        border-bottom: none;
+      }
 
-        th.label {
-          font-weight: normal;
-        }
+      th.label {
+        font-weight: var(--fw-regular);
+      }
 
-        td.value {
-          font-weight: var(--fw-medium);
-          color: var(--color-text-main);
-          text-align: right;
-        }
+      td.value {
+        font-weight: var(--fw-medium);
+        color: var(--color-text-main);
       }
     }
   }
+  
 }

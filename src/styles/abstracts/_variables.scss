@@ -132,7 +132,8 @@ $bp-mobile-sm: 480px;
   @include laptop { --container-padding: var(--spacing-100); }
   @include tablet { --container-padding: var(--spacing-80); }
   @include mobile-lg { --container-padding: var(--spacing-40); }
-  @include mobile-sm { --container-padding: var(--spacing-28); }
+  @include mobile-sm { --container-padding: var(--spacing-28); } 
+  
 
   /* --- 4. Radius System --- */
   --radius-2: 0.125rem;

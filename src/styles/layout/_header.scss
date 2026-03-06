@@ -94,8 +94,8 @@
 
   &__menu-link {
     font-family: var(--font-en);
-    font-weight: var(--fw-medium);
     color: var(--color-text-sub);
+    transition: color var(--transition-fast);
 
     &.active {
       color: var(--color-text-main);

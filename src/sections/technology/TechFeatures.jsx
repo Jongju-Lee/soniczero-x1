@@ -29,7 +29,7 @@ const FEATURES_DATA = [
 
 const TechFeatures = () => {
   return (
-    <section className="tech__features">
+    <section className="tech__features section-md">
       <div className="tech__features-header tech-fade-up">
         <h2 className="tech__features-title">Built Different</h2>
         <p className="tech__features-desc">모든 부품이 최고의 성능을 위해 설계되었습니다.</p>

@@ -79,11 +79,10 @@ a:not([class*="btn"]) {
 
 .main-wrapper {
   min-height: 100vh;
-  padding: var(--container-padding);
-  padding-top: calc(4.75rem + var(--container-padding)); /* header 높이만큼 */
+  padding: calc(4.75rem + var(--container-padding)) var(--container-padding); /* header 높이만큼 */
 
   @include mobile-lg {
-    padding-top: calc(4.75rem + var(--spacing-64));
+    padding: calc(4.75rem + var(--spacing-64)) var(--container-padding) var(--spacing-80);
   }
 
   & > article {
@@ -98,6 +97,50 @@ a:not([class*="btn"]) {
 
     & > section {
       width: 100%;
+
+      &.section-lg {
+        @include flex-center-column;
+        gap: var(--spacing-120);
+        
+        @include laptop {
+          gap: var(--spacing-80)
+        }
+  
+        @include mobile-lg {
+          gap: var(--spacing-64)
+        }
+  
+        @include mobile-sm {
+          gap: var(--spacing-48)
+        }
+      }
+
+      &.section-md {
+        @include flex-center-column;
+        gap: var(--spacing-80);
+        
+        @include laptop {
+          gap: var(--spacing-64)
+        }
+  
+        @include mobile-lg {
+          gap: var(--spacing-48)
+        }
+      }
+
+      &.section-sm {
+        @include flex-center-column;
+        gap: var(--spacing-80);
+        
+        @include laptop {
+          gap: var(--spacing-64)
+        }
+  
+        @include mobile-lg {
+          gap: var(--spacing-48)
+        }
+      }
+
     }
   }
 }

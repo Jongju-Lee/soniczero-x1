@@ -29,8 +29,8 @@ const SpecsTable = () => {
   useGSAP(() => {
     // prefers-reduced-motion: 애니메이션 축소 모드일 시 바로 정적 표시
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-       gsap.set(['.specs__header-badge', '.specs__header-title', '.specs__header-desc', '.specs__table-wrapper', '.specs__table-row'], { opacity: 1, y: 0 });
-       return;
+      gsap.set(['.specs__header-badge', '.specs__header-title', '.specs__header-desc', '.specs__table-wrapper', '.specs__table-row'], { opacity: 1, y: 0 });
+      return;
     }
 
     // Header Animation
@@ -70,7 +70,7 @@ const SpecsTable = () => {
   }, { scope: containerRef });
 
   return (
-    <section className="specs__table" ref={containerRef}>
+    <section className="specs__table section-lg" ref={containerRef}>
       <div className="specs__header">
         <span className="specs__header-badge">Specifications</span>
         <h1 className="specs__header-title">Every Detail Matters</h1>

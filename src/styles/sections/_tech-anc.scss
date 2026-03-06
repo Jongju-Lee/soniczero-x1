@@ -2,9 +2,8 @@
 @use 'sass:color';
 
 .tech {
-  width: 100%;
 
-  .tech-fade-up {
+  &-fade-up {
     will-change: transform, opacity;
   }
 

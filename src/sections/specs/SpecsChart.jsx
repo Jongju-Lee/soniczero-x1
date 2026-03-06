@@ -79,7 +79,7 @@ const SpecsChart = () => {
   }, { scope: containerRef });
 
   return (
-    <section className="specs__chart" ref={containerRef}>
+    <section className="specs__chart section-md" ref={containerRef}>
       <div className="specs__chart-header">
         <h2>A Generational Leap</h2>
         <p>이전 세대 대비 X1의 주요 성능 지표를 비교해 보세요.</p>
@@ -87,29 +87,29 @@ const SpecsChart = () => {
       
       <div className="specs__chart-wrapper" aria-hidden="true">
         <div className="specs__chart-legend">
-          <div className="legend-item">
+          <div className="specs__chart-legend-item">
             <span className="dot current"></span>
             <span>SonicZero X1</span>
           </div>
-          <div className="legend-item">
+          <div className="specs__chart-legend-item">
             <span className="dot prev"></span>
             <span>이전 세대</span>
           </div>
         </div>
 
         <div className="specs__chart-container">
-          <div className="chart-rows">
+          <div className="specs__chart-rows">
             {chartData.map((item) => (
-              <div className="chart-row" key={item.label}>
-                <span className="chart-row__label">{item.label}</span>
-                <div className="chart-row__bars">
+              <div className="specs__chart-row" key={item.label}>
+                <span className="specs__chart-row__label">{item.label}</span>
+                <div className="specs__chart-row__bars">
                   {/*
                     GSAP 애니메이션이 0%에서 시작해 동작이 완료되면 clearProps를 통해 변수 값으로 최종 적용됩니다.
                   */}
-                  <div className="bar-track">
+                  <div className="specs__chart-bar-track">
                     <div className="bar-fill current" style={{ '--chart-width': `${item.current}%` }}></div>
                   </div>
-                  <div className="bar-track">
+                  <div className="specs__chart-bar-track">
                     <div className="bar-fill prev" style={{ '--chart-width': `${item.prev}%` }}></div>
                   </div>
                 </div>

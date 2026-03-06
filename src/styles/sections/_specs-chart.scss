@@ -1,14 +1,8 @@
 @use '../abstracts/variables' as *;
 
-.specs {
-  /* =============== CHART SECTION =============== */
-  &__chart {
-    width: 100%;
-    @include flex-center-column;
-    gap: var(--spacing-80);
-  }
-
-  &__chart-header {
+.specs__chart {
+  /* =============== CHART HEADER =============== */
+  &-header {
     text-align: center;
     
     h2 {
@@ -21,7 +15,8 @@
     }
   }
 
-  &__chart-wrapper {
+  /* =============== CHART WRAPPER =============== */
+  &-wrapper {
     @include glass-effect;
     display: flex;
     flex-direction: column;
@@ -31,127 +26,141 @@
     border-radius: var(--radius-24);
     padding: var(--spacing-32) var(--spacing-40);
 
-    .specs__chart-legend {
-      display: flex;
+    @include mobile-sm {
       gap: var(--spacing-24);
-      width: 100%;
-
-      .legend-item {
-        @include flex-center;
-        gap: var(--spacing-8);
-
-        span:not(.dot) {
-          @include text-style("tiny-md");
-          color: var(--color-text-sub);
-        }
-
-        .dot {
-          width: 0.75rem; /* 12px */
-          height: 0.75rem;
-          border-radius: var(--radius-full);
-
-          &.current {
-            background-color: var(--color-primary);
-          }
-
-          &.prev {
-            background-color: rgba(255, 255, 255, 0.15);
-          }
-        }
-      }
+      padding: var(--spacing-24) var(--spacing-28);
     }
   }
 
-  &__chart-container {
+  &-legend {
     display: flex;
-    flex-direction: column;
+    gap: var(--spacing-24);
+    width: 100%;
 
-    .chart-rows {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-4);
+    &-item {
+      @include flex-center;
+      gap: var(--spacing-8);
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: calc(5.5rem + var(--spacing-24));
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-image:
-        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
-        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
-        repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px);
-        background-size: 1px 7px, 1px 7px, 1px 7px;
-        background-position: 25% 0, 50% 0, 75% 0;
-        background-repeat: repeat-y;
-        pointer-events: none;
-        z-index: 0;
-      }
-    }
-
-    .chart-row {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-24);
-      min-height: 3rem;
-      z-index: 1;
-
-      &__label {
+      span:not(.dot) {
         @include text-style("tiny-md");
-        flex-shrink: 0;
-        width: 5.5rem;
-        text-align: right;
         color: var(--color-text-sub);
       }
 
-      &__bars {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4);
-      }
-    }
-
-    .bar-track {
-      width: 100%;
-      height: 1.125rem;
-
-      .bar-fill {
-        width: var(--chart-width, 0%);
-        height: 100%;
-        border-radius: 0 var(--radius-4) var(--radius-4) 0;
+      .dot {
+        width: 0.75rem; /* 12px */
+        height: 0.75rem;
+        border-radius: var(--radius-full);
 
         &.current {
           background-color: var(--color-primary);
         }
+
         &.prev {
           background-color: rgba(255, 255, 255, 0.15);
         }
       }
     }
+  }
 
-    .x-axis {
-      position: relative;
-      height: 2rem;
-      margin-left: calc(5.5rem + var(--spacing-24));
-      border-top: 1px solid var(--color-border);
+  /* =============== CHART CONTAINER =============== */
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
 
-      span {
-        @include text-style("tiny-sm");
-        position: absolute;
-        top: var(--spacing-8);
-        font-family: var(--font-en);
-        font-weight: var(--fw-light);
+  &-rows {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
 
-        &:nth-child(1) { left: 0; }
-        &:nth-child(2) { left: 25%; transform: translateX(-50%); }
-        &:nth-child(3) { left: 50%; transform: translateX(-50%); }
-        &:nth-child(4) { left: 75%; transform: translateX(-50%); }
-        &:nth-child(5) { right: 0; }
+    &::before {
+      content: '';
+      position: absolute;
+      left: calc(5.5rem + var(--spacing-24));
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-image:
+      repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+      repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px),
+      repeating-linear-gradient(to bottom, transparent 0px, transparent 4px, var(--color-border) 4px, var(--color-border) 7px);
+      background-size: 1px 7px, 1px 7px, 1px 7px;
+      background-position: 25% 0, 50% 0, 75% 0;
+      background-repeat: repeat-y;
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  &-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-24);
+    min-height: 3rem;
+    z-index: 1;
+
+    &__label {
+      @include text-style("tiny-md");
+      flex-shrink: 0;
+      width: 5.5rem;
+      text-align: right;
+      color: var(--color-text-sub);
+
+      @include mobile-sm {
+        width: 4rem;
       }
+    }
+
+    &__bars {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-4);
+    }
+  }
+
+  &-bar-track {
+    width: 100%;
+    height: 1.125rem;
+
+    .bar-fill {
+      width: var(--chart-width, 0%);
+      height: 100%;
+      border-radius: 0 var(--radius-4) var(--radius-4) 0;
+
+      &.current {
+        background-color: var(--color-primary);
+      }
+      &.prev {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
+  }
+
+  .x-axis {
+    position: relative;
+    height: 1.5rem;
+    margin-left: calc(5.5rem + var(--spacing-24));
+    border-top: 1px solid var(--color-border);
+
+    @include mobile-sm {
+      margin-left: calc(4rem + var(--spacing-24));
+    }
+
+    span {
+      @include text-style("tiny-sm");
+      position: absolute;
+      top: var(--spacing-8);
+      font-family: var(--font-en);
+      font-weight: var(--fw-light);
+
+      &:nth-child(1) { left: 0; }
+      &:nth-child(2) { left: 25%; transform: translateX(-50%); }
+      &:nth-child(3) { left: 50%; transform: translateX(-50%); }
+      &:nth-child(4) { left: 75%; transform: translateX(-50%); }
+      &:nth-child(5) { right: 0; }
     }
   }
 }
