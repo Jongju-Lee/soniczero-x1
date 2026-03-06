@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Agent environments
+.agent
+.agents
+_agent
+_agents
