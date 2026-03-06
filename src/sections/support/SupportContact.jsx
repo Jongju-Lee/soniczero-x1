@@ -93,15 +93,15 @@ const SupportContact = () => {
   };
 
   return (
-    <section className="support__contact" ref={sectionRef}>
+    <section className="support__contact section-sm" ref={sectionRef}>
       <div className="support__contact-header">
         <h2>Contact Us</h2>
         <p>FAQ에서 답을 찾지 못하셨나요? 직접 문의해 주세요.</p>
       </div>
 
       <form className="support__contact-form" onSubmit={handleContactSubmit} noValidate>
-        <div className="form-row">
-          <div className={`form-group ${touched.contactName && errors.contactName ? 'has-error' : ''}`}>
+        <div className="support__contact-form-row">
+          <div className={`support__contact-form-group ${touched.contactName && errors.contactName ? 'has-error' : ''}`}>
             <label htmlFor="contactName">성함 <span className="required">*</span></label>
             <input 
               type="text" 
@@ -112,7 +112,7 @@ const SupportContact = () => {
             />
             {touched.contactName && errors.contactName && <span className="error-msg">{errors.contactName}</span>}
           </div>
-          <div className={`form-group ${touched.contactEmail && errors.contactEmail ? 'has-error' : ''}`}>
+          <div className={`support__contact-form-group ${touched.contactEmail && errors.contactEmail ? 'has-error' : ''}`}>
             <label htmlFor="contactEmail">이메일 <span className="required">*</span></label>
             <input 
               type="email" 
@@ -125,7 +125,7 @@ const SupportContact = () => {
           </div>
         </div>
 
-        <div className={`form-group ${touched.contactType && errors.contactType ? 'has-error' : ''}`}>
+        <div className={`support__contact-form-group ${touched.contactType && errors.contactType ? 'has-error' : ''}`}>
           <label htmlFor="contactType">문의 유형 <span className="required">*</span></label>
           <CustomSelect
             id="contactType"
@@ -137,7 +137,7 @@ const SupportContact = () => {
           {touched.contactType && errors.contactType && <span className="error-msg">{errors.contactType}</span>}
         </div>
 
-        <div className={`form-group ${touched.contactMessage && errors.contactMessage ? 'has-error' : ''}`}>
+        <div className={`support__contact-form-group ${touched.contactMessage && errors.contactMessage ? 'has-error' : ''}`}>
           <label htmlFor="contactMessage">메시지 <span className="required">*</span></label>
           <textarea 
             id="contactMessage" 

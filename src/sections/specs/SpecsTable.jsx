@@ -70,7 +70,7 @@ const SpecsTable = () => {
   }, { scope: containerRef });
 
   return (
-    <section className="specs__table section-lg" ref={containerRef}>
+    <section className="specs__table section-md" ref={containerRef}>
       <div className="specs__header">
         <span className="specs__header-badge">Specifications</span>
         <h1 className="specs__header-title">Every Detail Matters</h1>
