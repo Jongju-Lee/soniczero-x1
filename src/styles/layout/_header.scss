@@ -93,6 +93,8 @@
   }
 
   &__actions {
+    padding-left: var(--spacing-40);
+
     @include mobile-lg {
       display: none;
     }

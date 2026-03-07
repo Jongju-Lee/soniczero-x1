@@ -70,6 +70,7 @@
 
       input, select, textarea {
         @include text-style("desc-md");
+        min-width: 0;
         padding: var(--spacing-16);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-12);
