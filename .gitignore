@@ -28,3 +28,6 @@ dist-ssr
 .agents
 _agent
 _agents
+
+# Local Sandbox Test Environment
+portfolio-test/
