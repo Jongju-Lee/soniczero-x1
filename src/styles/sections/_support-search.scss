@@ -61,6 +61,7 @@
 
     input {
       @include text-style("desc-md");
+      font-size: max(1rem, 16px); /* iOS Safari: font-size < 16px 탭 시 뷰포트 자동 줌 방지 */
       flex: 1;
       min-width: 0;
       color: var(--color-text-main);

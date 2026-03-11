@@ -3,10 +3,6 @@
 
 .tech {
 
-  &-fade-up {
-    will-change: transform, opacity;
-  }
-
   &__anc {
     @include flex-center-column;
     gap: var(--spacing-64);

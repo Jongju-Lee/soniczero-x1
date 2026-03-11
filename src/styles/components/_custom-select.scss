@@ -20,7 +20,7 @@
     color: var(--color-text-main);
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 
-    &:focus {
+    &:focus-visible {
       @include focus-ring;
     }
 
@@ -111,6 +111,13 @@
 
     &--selected {
       color: var(--color-primary);
+    }
+
+    // 키보드 탐색 포커스 상태 (aria-activedescendant 기반)
+    &--focused {
+      background-color: var(--color-glass-active);
+      color: var(--color-text-main);
+      outline: none;
     }
   }
 }

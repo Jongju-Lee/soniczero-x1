@@ -68,7 +68,6 @@ input,
 button,
 textarea,
 select {
-  outline: none;
   font: inherit;
   color: inherit;
   background: none;
@@ -76,9 +75,23 @@ select {
   padding: 0;
 }
 
+/* iOS Safari auto-zoom prevention: font-size < 16px 시 입력 필드 탭할 때 뷰포트 줌 발생
+   html { font-size: 87.5% } 적용 시 1rem = 14px가 되므로 최소 16px 강제 */
+input,
+textarea {
+  font-size: max(1rem, 16px);
+}
+
 /* 8. Button reset - 버튼 요소의 기본 인터랙션 설정 */
 button {
   cursor: pointer;
+  touch-action: manipulation; /* 더블탭 줌 방지 (iOS Safari, Samsung Internet) */
+}
+
+/* 탭 하이라이트 제거 - 커스텀 hover/active 스타일이 인터랙션 피드백을 대체 (iOS Safari, Android) */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* 9. Remove all animations, transitions and smooth scroll for people that prefer not to see them - 웹 접근성 */

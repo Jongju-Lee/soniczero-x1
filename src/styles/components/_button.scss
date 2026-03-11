@@ -128,7 +128,6 @@
   opacity: 0;
   pointer-events: none;
   z-index: 0;
-  will-change: transform, opacity;
 
   // 각 파티클의 위치·크기
   &--1 {

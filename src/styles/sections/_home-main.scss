@@ -44,13 +44,10 @@
     margin-bottom: var(--spacing-16);
     
     &-text {
-      will-change: transform, opacity;
-
     }
   
     &-highlight {
       color: var(--color-primary);
-      will-change: transform, opacity;
     }
   }
 
@@ -125,10 +122,5 @@
         filter: blur(4rem);
       }
     }
-  
-    &-image {
-      will-change: transform, opacity;
-    }
   }
-
 }
