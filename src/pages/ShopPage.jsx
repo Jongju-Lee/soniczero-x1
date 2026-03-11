@@ -17,19 +17,19 @@ const ShopPage = () => {
     {
       name: 'Midnight Black',
       image: '/assets/images/shop-gallery-1.webp',
-      thumbImage: '/assets/images/shop-gallery-1.webp',
+      thumbImage: '/assets/images/shop-gallery-thum-1.webp',
       colorCode: '#1A1A1C'
     },
     {
       name: 'Stellar-Silver',
       image: '/assets/images/shop-gallery-2.webp',
-      thumbImage: '/assets/images/shop-gallery-2.webp',
+      thumbImage: '/assets/images/shop-gallery-thum-2.webp',
       colorCode: '#8E8E93'
     },
     {
       name: 'Electric Blue',
       image: '/assets/images/shop-gallery-3.webp',
-      thumbImage: '/assets/images/shop-gallery-3.webp',
+      thumbImage: '/assets/images/shop-gallery-thum-3.webp',
       colorCode: '#0047AB'
     }
   ];
@@ -84,7 +84,7 @@ const ShopPage = () => {
           <h1 className="shop__intro-title">Make It Yours</h1>
         </div>
       
-        <section className="shop__content">
+        <section className="shop__content" aria-label="제품 구매 옵션">
           <ShopGallery 
             products={products}
             activeColorIndex={activeColorIndex}

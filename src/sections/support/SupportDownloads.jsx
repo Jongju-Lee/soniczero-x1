@@ -23,8 +23,14 @@ const SupportDownloads = () => {
             <span className="size">12.4 MB</span>
           </div>
           <p className="desc">SonicZero X1 사용 설명서 전체 버전</p>
-          <Button size="sm" variant="primary" className="download-btn">
-            <img src="/assets/icons/downloads-btn.svg" alt="" />
+          <Button
+            size="sm"
+            variant="primary"
+            href="/assets/downloads/SonicZero_X1_Manual.pdf"
+            download="SonicZero_X1_Manual.pdf"
+            className="download-btn"
+          >
+            <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />
             <span>Download</span>
           </Button>
         </div>
@@ -39,8 +45,14 @@ const SupportDownloads = () => {
             <span className="size">48.2 MB</span>
           </div>
           <p className="desc">최신 안정화 펌웨어 (2026.02 릴리즈)</p>
-          <Button size="sm" variant="primary" className="download-btn">
-            <img src="/assets/icons/downloads-btn.svg" alt="" />
+          <Button
+            size="sm"
+            variant="primary"
+            href="/assets/downloads/SonicZero_X1_Firmware_v1.2.4.bin"
+            download="SonicZero_X1_Firmware_v1.2.4.bin"
+            className="download-btn"
+          >
+            <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />
             <span>Download</span>
           </Button>
         </div>
@@ -55,8 +67,14 @@ const SupportDownloads = () => {
             <span className="size">3.1 MB</span>
           </div>
           <p className="desc">보증 정책 및 서비스 안내 문서</p>
-          <Button size="sm" variant="primary" className="download-btn">
-            <img src="/assets/icons/downloads-btn.svg" alt="" />
+          <Button
+            size="sm"
+            variant="primary"
+            href="/assets/downloads/SonicZero_X1_Warranty.pdf"
+            download="SonicZero_X1_Warranty.pdf"
+            className="download-btn"
+          >
+            <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />
             <span>Download</span>
           </Button>
         </div>

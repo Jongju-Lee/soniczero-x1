@@ -14,6 +14,8 @@ const Button = ({
   size = 'md',
   variant = 'primary',
   to,
+  href,
+  download,
   className = '',
   children,
   onClick,
@@ -43,6 +45,14 @@ const Button = ({
   }
 
   const baseClasses = `btn btn--${size} btn--${variant}${className ? ` ${className}` : ''}`;
+
+  if (href) {
+    return (
+      <a href={href} download={download} className={baseClasses} onClick={onClick} {...rest}>
+        {children}
+      </a>
+    );
+  }
 
   if (to) {
     return (

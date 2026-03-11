@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const FEATURES_DATA = [
   {
@@ -27,7 +27,7 @@ const FEATURES_DATA = [
   },
 ];
 
-const TechFeatures = () => {
+const TechFeatures = memo(function TechFeatures() {
   return (
     <section className="tech__features section-md">
       <div className="tech__features-header tech-fade-up">
@@ -48,6 +48,6 @@ const TechFeatures = () => {
       </div>
     </section>
   );
-};
+});
 
 export default TechFeatures;

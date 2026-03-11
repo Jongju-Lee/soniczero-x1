@@ -43,17 +43,18 @@ const ShopDetails = ({
           <button 
             type="button" 
             onClick={handleDecrease} 
-            aria-label="Decrease"
+            aria-label="수량 줄이기"
             disabled={quantity <= 1}
           >
             <img 
               src={quantity <= 1 ? "/assets/icons/shop-minus-disabled.svg" : "/assets/icons/shop-minus.svg"} 
-              alt="Minus" 
+              alt=""
+              aria-hidden="true"
             />
           </button>
           <span className="value">{quantity}</span>
-          <button type="button" onClick={handleIncrease} aria-label="Increase">
-            <img src="/assets/icons/shop-plus.svg" alt="Plus" />
+          <button type="button" onClick={handleIncrease} aria-label="수량 늘리기">
+            <img src="/assets/icons/shop-plus.svg" alt="" aria-hidden="true" />
           </button>
         </div>
       </div>

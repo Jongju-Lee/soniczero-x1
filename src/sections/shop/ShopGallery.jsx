@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
+import React, { memo, useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-const ShopGallery = ({ 
+const ShopGallery = memo(function ShopGallery({ 
   products, 
   activeColorIndex, 
   setActiveColorIndex, 
   handlePrevSlide, 
   handleNextSlide 
-}) => {
+}) {
   const galleryImgRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -105,7 +105,8 @@ const ShopGallery = ({
               type="button"
               className={`dot ${activeColorIndex === index ? 'active' : ''}`}
               onClick={() => setActiveColorIndex(index)}
-              aria-label={`Select Color ${index + 1}`}
+              aria-label={`${products[index].name} 색상 선택`}
+              aria-pressed={activeColorIndex === index}
             ></button>
           ))}
         </div>
@@ -118,13 +119,14 @@ const ShopGallery = ({
             className={`thumb ${activeColorIndex === index ? 'active' : ''}`} 
             onClick={() => setActiveColorIndex(index)}
             style={{ backgroundImage: `url(${product.thumbImage})`}}
-            aria-label={`Thumbnail ${index + 1}`}
+            aria-label={`${product.name} 썸네일`}
+            aria-pressed={activeColorIndex === index}
           >
           </button>
         ))}
       </div>
     </div>
   );
-};
+});
 
 export default ShopGallery;

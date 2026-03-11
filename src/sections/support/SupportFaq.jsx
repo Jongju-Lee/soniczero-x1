@@ -61,7 +61,7 @@ const SupportFaq = () => {
                   <img src={`/assets/icons/${isActive ? 'support-minus' : 'support-plus'}.svg`} alt={isActive ? "Collapse" : "Expand"} loading="lazy" />
                 </span>
               </button>
-              <div className="support__faq-answer" id={faqId}>
+              <div className="support__faq-answer" id={faqId} aria-hidden={!isActive}>
                 <div className="support__faq-answer-inner">
                   <div className="support__faq-answer-content">
                     {faq.a}

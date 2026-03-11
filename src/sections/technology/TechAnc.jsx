@@ -85,7 +85,7 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
         cancelAnimationFrame(animFrameRef.current);
       }
     };
-  }, []); // isAncActiveRef로 최신값 참조하므로 의존성 배열 불필요
+  }, []);
 
   return (
     <article className="tech__anc">
@@ -104,7 +104,11 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
           <div className="tech__anc-monitor-header">
             <div className="tech__anc-status-wrapper">
               <h2 className="tech__anc-monitor-title">Sound Wave Monitor</h2>
-              <p className="tech__anc-monitor-subtitle" key={isAncActive}>
+              <p
+                className="tech__anc-monitor-subtitle"
+                aria-live="polite"
+                aria-atomic="true"
+              >
                 {isAncActive ? 'ANC 활성 — 소음이 중화되었습니다' : 'ANC 비활성 — 주변 소음이 감지됩니다'}
               </p>
             </div>
@@ -112,6 +116,8 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
               size="sm"
               variant={isAncActive ? 'primary' : 'outline'}
               type="button"
+              aria-label="ANC 토글"
+              aria-pressed={isAncActive}
               className={`tech__btn-toggle ${isAncActive ? 'tech__btn-toggle--on' : 'tech__btn-toggle--off'}`}
               onClick={() => setIsAncActive(!isAncActive)}
             >
@@ -127,6 +133,7 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
               </span>
             </Button>
           </div>
+
 
           <div className="tech__wave-container">
             <svg
@@ -171,13 +178,13 @@ const TechAnc = ({ isAncActive, setIsAncActive }) => {
           <div className="tech__anc-footer">
             <div className="tech__anc-stats">
               <span className={`tech__anc-stat-dot ${isAncActive ? 'tech__anc-stat-dot--active' : 'tech__anc-stat-dot--inactive'}`}></span>
-              <p className="tech__anc-monitor-desc" key={isAncActive}>
+              <p className="tech__anc-monitor-desc">
                 {isAncActive
                   ? '소음 차단율: 98.7%'
                   : '소음 차단율: 0%'}
               </p>
             </div>
-            <p className="tech__anc-latency" key={isAncActive}>
+            <p className="tech__anc-latency">
               지연 시간: {isAncActive ? '0.3ms' : '—'}
             </p>
           </div>

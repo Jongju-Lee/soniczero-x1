@@ -13,14 +13,19 @@ const CustomSelect = ({
   placeholder = '선택해 주세요',
   onChange,
   value,
+  id,
   className = '',
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(-1);
   const containerRef = useRef(null);
+  const listRef = useRef(null);
 
   const selectedOption = options.find((opt) => opt.value === value);
+  // id prop을 기준으로 옵션 id 접두사 생성
+  const optionIdPrefix = id ? `${id}-option` : 'c-select-option';
 
   // 외부 클릭 시 닫기
   useEffect(() => {
@@ -39,11 +44,15 @@ const CustomSelect = ({
     let timerId;
     if (isOpen) {
       setIsVisible(true);
+      // 열릴 때: 현재 선택된 옵션으로 인덱스 초기화 (없으면 0번째로)
+      const selectedIndex = options.findIndex(opt => opt.value === value);
+      setFocusedIndex(selectedIndex >= 0 ? selectedIndex : 0);
       rafId1 = requestAnimationFrame(() => {
         rafId2 = requestAnimationFrame(() => setIsOpening(true));
       });
     } else {
       setIsOpening(false);
+      setFocusedIndex(-1);
       timerId = setTimeout(() => setIsVisible(false), 600);
     }
     return () => {
@@ -53,17 +62,56 @@ const CustomSelect = ({
     };
   }, [isOpen]);
 
+  // focusedIndex 변경 시 해당 옵션을 스크롤하여 화면에 표시 (긴 목록 대비)
+  useEffect(() => {
+    if (!isOpen || focusedIndex < 0 || !listRef.current) return;
+    const optionEl = listRef.current.querySelector(`#${optionIdPrefix}-${focusedIndex}`);
+    optionEl?.scrollIntoView({ block: 'nearest' });
+  }, [focusedIndex, isOpen]);
+
   const handleSelect = (optionValue) => {
     onChange?.(optionValue);
     setIsOpen(false);
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setIsOpen((prev) => !prev);
+    switch (e.key) {
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        // 열릴 상태에서 Enter/Space: 현재 focusedIndex 옵션 선택
+        if (isOpen && focusedIndex >= 0) {
+          handleSelect(options[focusedIndex].value);
+        } else {
+          setIsOpen(prev => !prev);
+        }
+        break;
+      case 'Escape':
+        setIsOpen(false);
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+        } else {
+          setFocusedIndex(prev => Math.min(prev + 1, options.length - 1));
+        }
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setFocusedIndex(prev => Math.max(prev - 1, 0));
+        break;
+      case 'Home':
+        e.preventDefault();
+        setFocusedIndex(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        setFocusedIndex(options.length - 1);
+        break;
+      default:
+        break;
     }
-    if (e.key === 'Escape') setIsOpen(false);
   };
 
   return (
@@ -74,11 +122,13 @@ const CustomSelect = ({
       {/* 트리거 버튼 */}
       <button
         type="button"
+        id={id}
         className={`c-select__trigger${!selectedOption ? ' c-select__trigger--placeholder' : ''}`}
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={handleKeyDown}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-activedescendant={isOpen && focusedIndex >= 0 ? `${optionIdPrefix}-${focusedIndex}` : undefined}
       >
         <span>{selectedOption ? selectedOption.label : placeholder}</span>
         <svg
@@ -102,11 +152,12 @@ const CustomSelect = ({
 
       {/* 드롭다운 목록 */}
       {isVisible && (
-        <ul className={`c-select__list${isOpening ? ' is-opening' : ''}`} role="listbox">
-          {options.map((option) => (
+        <ul className={`c-select__list${isOpening ? ' is-opening' : ''}`} role="listbox" ref={listRef}>
+          {options.map((option, index) => (
             <li
               key={option.value}
-              className={`c-select__option${option.value === value ? ' c-select__option--selected' : ''}`}
+              id={`${optionIdPrefix}-${index}`}
+              className={`c-select__option${option.value === value ? ' c-select__option--selected' : ''}${focusedIndex === index ? ' c-select__option--focused' : ''}`}
               role="option"
               aria-selected={option.value === value}
               onClick={() => handleSelect(option.value)}

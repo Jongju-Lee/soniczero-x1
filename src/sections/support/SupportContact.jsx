@@ -24,6 +24,7 @@ const SupportContact = () => {
   // 에러 상태 및 터치 상태 관리
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const validateField = (name, value) => {
     let error = '';
@@ -85,9 +86,8 @@ const SupportContact = () => {
     setTouched(allTouched);
 
     if (Object.keys(newErrors).length === 0) {
-      // 폼 제출 로직 (정상 제출)
-      alert('문의가 접수되었습니다.');
-      // 폼 초기화 로직 등
+      // 폼 제출 성공: aria-live 영역에 성공 메시지 표시
+      setIsSubmitted(true);
     }
   };
 
@@ -148,10 +148,24 @@ const SupportContact = () => {
         </div>
 
         <button type="submit" className="support__contact-submit btn btn--primary btn--lg">
-          <img src="/assets/icons/support-send.svg" alt="" className="btn-icon" aria-hidden="true" />
           <span>문의하기</span>
         </button>
-        <p className="support__contact-subtext">영업일 기준 1~2일 이내 이메일로 답변드립니다.</p>
+
+        {/* subtext ↔ live-region 컨로스페이드 영역 */}
+        <div className="support__contact-status-wrap">
+          <p className={`support__contact-subtext${isSubmitted ? ' is-submitted' : ''}`}>
+            영업일 기준 1~2일 이내 이메일로 답변드립니다.
+          </p>
+          {/* DOM에 항상 존재해야 aria-live가 유효 */}
+          <div
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            className={`support__contact-live-region${isSubmitted ? ' is-submitted' : ''}`}
+          >
+            {isSubmitted && '문의가 접수되었습니다. 영업일 기준 1~2일 이내로 답변드립니다.'}
+          </div>
+        </div>
       </form>
     </section>
   );

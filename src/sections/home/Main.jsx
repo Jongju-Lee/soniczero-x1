@@ -84,7 +84,9 @@ const Main = () => {
           <img 
             src="./assets/images/hero-img.webp" 
             alt="SonicZero X1 Midnight Black" 
-            className="hero__visual-image" 
+            className="hero__visual-image"
+            fetchpriority="high"
+            loading="eager"
           />
         </div>
       </div>

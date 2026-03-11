@@ -16,7 +16,11 @@ const SupportSearch = () => {
       <div className="support__search-wrapper">
         <div className="support__search-bar">
           <img src="/assets/icons/support-magnifier.svg" alt="" className="support__search-icon" />
-          <input type="text" placeholder="도움이 필요하신 내용을 검색해 보세요." />
+          <input
+            type="text"
+            aria-label="검색어 입력"
+            placeholder="도움이 필요하신 내용을 검색해 보세요."
+          />
           <Button size="sm" variant="primary">Search</Button>
         </div>
         <div className="support__search-tags">

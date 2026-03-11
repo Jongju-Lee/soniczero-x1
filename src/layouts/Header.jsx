@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import { scrollToTop } from '../hooks/useScrollTriggerCleanup';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +11,14 @@ const Header = () => {
   const rafRef = useRef(null);
   const timerRef = useRef(null);
   const menuRef = useRef(null);
+  const hamburgerRef = useRef(null);  // 포커스 복귀 대상 (메뉴 닫힐 때)
+  const closeButtonRef = useRef(null); // 메뉴 열릴 때 초기 포커스 대상
+
+  // 포커스 트랩: 모바일 메뉴 열림 시 내부에서만 Tab 순환, 닫힘 시 햄버거로 복귀
+  useFocusTrap(menuRef, isMenuOpen, {
+    initialFocusRef: closeButtonRef,
+    returnFocusRef: hamburgerRef,
+  });
 
   // 메뉴 열기
   const handleOpen = () => {
@@ -81,10 +90,10 @@ const Header = () => {
       </div>
 
       {/* Main Navigation Area */}
-      <nav className="header__nav">
+      <nav className="header__nav" aria-label="메인 네비게이션">
         <div className="container header__nav-inner">
-          <Link to="/" className="header__logo">
-            <img src="./assets/icons/logo.svg" alt="SonicZero Logo" className="header__logo-icon" />
+          <Link to="/" className="header__logo" aria-label="SonicZero 홈으로 이동">
+            <img src="./assets/icons/logo.svg" alt="" aria-hidden="true" className="header__logo-icon" />
             <span className="header__logo-text">SonicZero</span>
           </Link>
 
@@ -106,6 +115,7 @@ const Header = () => {
 
           {/* 햄버거 버튼 (mobile-lg 이하에서만 표시) */}
           <button
+            ref={hamburgerRef}
             type="button"
             className="header__hamburger"
             onClick={handleOpen}
@@ -130,11 +140,12 @@ const Header = () => {
         >
           {/* 상단: 로고 + 닫기 버튼 */}
           <div className="header__mobile-menu-top">
-            <Link to="/" className="header__logo" onClick={handleClose}>
-              <img src="./assets/icons/logo.svg" alt="SonicZero Logo" className="header__logo-icon" />
+            <Link to="/" className="header__logo" aria-label="SonicZero 홈으로 이동" onClick={handleClose}>
+              <img src="./assets/icons/logo.svg" alt="" aria-hidden="true" className="header__logo-icon" />
               <span className='header__logo-text'>SonicZero</span>
             </Link>
             <button
+              ref={closeButtonRef}
               type="button"
               className="header__mobile-menu-close"
               onClick={handleClose}
