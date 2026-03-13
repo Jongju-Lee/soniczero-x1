@@ -36,6 +36,10 @@
 ### 4. 인터랙티브 UX를 위한 시각적 제어 (GSAP)
 *   **Scroll 애니메이션 연출:** 몰입감 높은 스크롤 애니메이션을 구현하되, 렌더링 부하를 줄이고 재사용성을 높이기 위해 로직을 `useScrollFadeIn` 커스텀 훅(Hook)으로 분리했습니다.
 
+### 5. 사용자 경험(UX) 및 접근성을 고려한 커스텀 토스트 알림 (Toast Notification)
+*   **성능 최적화 및 CSS 가속 연동:** 여러 알림이 겹쳐지는(Stacking) 동작을 구현할 때, 복잡한 JS 연산을 배제하고 순수 CSS 변수(`--toast-depth`)와 `transform`, `opacity` 속성에 렌더링 제어권을 위임하여 성능 부하를 줄였습니다.
+*   **웹 접근성 강화:** 3개가 넘어가는 오래된 알림은 스크린 리더가 읽지 않도록 동적 `aria-hidden` 처리를 덧붙였으며, `prefers-reduced-motion` 미디어 쿼리를 사용해 OS 설정에 따른 애니메이션 대체안도 구현했습니다.
+
 ---
 
 ## 🛠 운영 및 기술 스택 (Tech Stack)
@@ -111,8 +115,8 @@ npm run preview
 ```
 src/
 ├── pages/          # 라우트 단위 페이지 컴포넌트 (코드 스플리팅 적용)
-├── sections/       # 페이지별 섹션 컴포넌트 (home / shop / specs / support / technology)
-├── components/     # 공통 UI 컴포넌트 (Button, CustomSelect 등)
+├── sections/       # 페이지별 섹션 컴포넌트 (home / technology / specs / support / shop)
+├── components/     # 공통 UI 컴포넌트 (Button, CustomSelect, Toast 등)
 ├── layouts/        # 전체 레이아웃 (Header, Footer, RootLayout)
 ├── hooks/          # 재사용 커스텀 훅 (스크롤 애니메이션, 포커스 트랩 등)
 └── styles/         # SCSS 아키텍처 (abstracts / base / components / layout / sections)
