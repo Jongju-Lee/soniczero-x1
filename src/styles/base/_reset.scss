@@ -143,14 +143,3 @@ table {
   scrollbar-width: thin;
   scrollbar-color: #3a3a3a #0a0a0a;
 }
-
-/* 모바일 환경에서는 스크롤바 숨김 (레이아웃 시프트 방지) */
-@media (max-width: 768px) {
-  ::-webkit-scrollbar {
-    display: none;
-  }
-
-  * {
-    scrollbar-width: none;
-  }
-}

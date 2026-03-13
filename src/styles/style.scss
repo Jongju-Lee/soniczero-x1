@@ -40,6 +40,17 @@ html {
   }
 }
 
+/* 태블릿 사이즈부터는 스크롤바 숨김 처리 */
+@include tablet {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    scrollbar-width: none;
+  }
+}
+
 body {
   font-family: var(--font-ko);
   color: var(--color-text-sub);
