@@ -42,7 +42,15 @@
 
 ---
 
-## 🛠 운영 및 기술 스택 (Tech Stack)
+## � Lighthouse 성능 지표
+
+![Lighthouse Score](public/assets/images/score.webp)
+
+> 접근성 · 권장사항 · 검색엔진 최적화 100점 달성. 성능 부분의 85점은 GSAP ScrollTrigger의 강제 리플로우 및 Variable Font 로딩 지연이 주요 원인으로, 개발자 통제 가능 영역은 지속 개선 중입니다.
+
+---
+
+## 🛠� 운영 및 기술 스택 (Tech Stack)
 
 ### Core
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
