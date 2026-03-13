@@ -19,7 +19,8 @@ const SpecsChart = () => {
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.set(['.specs__chart-header', '.specs__chart-wrapper', '.bar-fill'], { opacity: 1, y: 0, width: 'var(--chart-width)' });
+      gsap.set(['.specs__chart-header', '.specs__chart-wrapper'], { opacity: 1, y: 0 });
+      gsap.set('.bar-fill', { width: 'var(--chart-width)' });
       return;
     }
 
