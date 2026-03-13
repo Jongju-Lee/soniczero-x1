@@ -10,7 +10,7 @@ const SupportSearch = () => {
       <div className='support__search-intro intro'>
         <div className="support__search-intro-badge">Support Center</div>
         <h1 className="support__search-intro-title">HOW CAN WE HELP?</h1>
-        <p className="support__search-intro-desc">SonicZero X1에 대한 <span>모든 궁금증을 해결해 드립니다.</span></p>
+        <p className="support__search-intro-desc">SonicZero-X1에 대한 <span>모든 궁금증을 해결해 드립니다.</span></p>
       </div>
 
       <div className="support__search-wrapper">
