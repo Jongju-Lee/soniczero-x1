@@ -97,19 +97,6 @@ const ShopGallery = memo(function ShopGallery({
         >
           <img src="/assets/icons/shop-gallery-next.svg" alt="" aria-hidden="true" />
         </button>
-        
-        <div className="shop__gallery-dots">
-          {products.map((_, index) => (
-            <button 
-              key={index}
-              type="button"
-              className={`dot ${activeColorIndex === index ? 'active' : ''}`}
-              onClick={() => setActiveColorIndex(index)}
-              aria-label={`${products[index].name} 색상 선택`}
-              aria-pressed={activeColorIndex === index}
-            ></button>
-          ))}
-        </div>
       </div>
       <div className="shop__gallery-thumbs">
         {products.map((product, index) => (

@@ -21,7 +21,7 @@
       position: relative;
       width: 100%;
       border-radius: var(--radius-24);
-      padding: var(--spacing-80) var(--spacing-120);
+      padding: var(--spacing-64) var(--spacing-120);
       touch-action: pan-y; /* 모바일 세로 스크롤 허용, 가로만 JS로 잡음 */
       user-select: none; /* 드래그 시 텍스트/이미지 잔상 선택 방지 */
 
@@ -74,33 +74,6 @@
 
         img {
           width: 1.5rem;
-        }
-      }
-
-      .shop__gallery-dots {
-        @include flex-center;
-        position: absolute;
-        bottom: var(--spacing-36);
-        left: 50%;
-        transform: translateX(-50%);
-        gap: var(--spacing-8);
-
-        @include tablet {
-          display: none;
-        }
-
-        .dot {
-          width: 0.5rem; // 8px
-          height: 0.5rem;
-          background-color: rgba(255, 255, 255, 0.3);
-          border-radius: var(--radius-full);
-          transition: var(--transition-base);
-          cursor: pointer;
-
-          &.active {
-            width: 1.5rem; // 24px
-            background-color: var(--color-bg-white);
-          }
         }
       }
     }
