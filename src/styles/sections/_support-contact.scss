@@ -70,7 +70,12 @@
 
       input, select, textarea {
         @include text-style("desc-md");
-        font-size: max(1rem, 16px); /* iOS Safari: font-size < 16px 탭 시 뷰포트 자동 줌 방지 */
+        
+        /* iOS Safari: input 탭 시 뷰포트 자동 줌(Auto Zoom) 현상 방지 */
+        @supports (-webkit-touch-callout: none) {
+          font-size: 16px;
+        }
+
         min-width: 0;
         padding: var(--spacing-16);
         border: 1px solid var(--color-border);
