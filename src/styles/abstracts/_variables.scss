@@ -58,6 +58,9 @@ $bp-mobile-sm: 480px;
   --color-border-accent: rgba(var(--color-primary-rgb), 0.7);
   --color-border-danger: rgba(var(--color-danger-rgb), 0.7);
 
+  /* Shadow */
+  --shadow-normal: 0 4px 24px rgba(0, 0, 0, 0.5);
+
   /* --- 2. Typography Hierarchy (16px based) --- */
   --font-ko: 'Pretendard Variable', -apple-system, sans-serif;
   --font-en: 'Inter Variable', sans-serif;

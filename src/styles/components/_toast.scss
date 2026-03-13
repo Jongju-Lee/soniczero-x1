@@ -1,0 +1,109 @@
+@use '../abstracts/variables' as *;
+
+.toast-container {
+  position: fixed;
+  bottom: var(--spacing-24);
+  right: var(--spacing-24);
+  pointer-events: none;
+  z-index: 9999;
+
+  @include mobile-lg {
+    bottom: calc(var(--spacing-16) + env(safe-area-inset-bottom, 0px));
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.toast-item {
+  @include glass-effect;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform-origin: bottom center;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-16) var(--spacing-20);
+  border-radius: var(--radius-12);
+  width: 25rem;
+  max-width: calc(100vw - var(--spacing-32));
+  box-shadow: var(--shadow-normal);
+  background-color: var(--color-surface);
+  pointer-events: auto;
+  
+  /* Depth 기반 동적 스타일링 */
+  --toast-depth: 0;
+  /* 활성 상태 */
+  transform: translateY(calc(var(--toast-depth) * -1rem)) scale(calc(1 - var(--toast-depth) * 0.05));
+  z-index: calc(100 - var(--toast-depth));
+  opacity: 1;
+  visibility: visible;
+  transition: transform var(--transition-fast), opacity var(--transition-fast), visibility var(--transition-fast);
+
+  @include mobile-lg {
+    width: 100%;
+    right: auto;
+    left: 0; 
+    margin: 0 16px;
+  }
+
+  /* 등장 전 */
+  &.toast-entering {
+    opacity: 0;
+    transform: translateY(calc(var(--toast-depth) * -1rem + 1rem)) scale(0.95);
+  }
+
+  /* 3개 초과, 또는 3초 뒤 퇴장 시 숨김 처리 */
+  &[aria-hidden="true"] {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-main);
+    
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  &__title {
+    @include text-style("desc-md");
+    font-weight: var(--fw-s-bold);
+    color: var(--color-text-main);
+  }
+
+  &__desc {
+    @include text-style("desc-sm");
+    color: var(--color-text-sub);
+  }
+}
+
+/* 사용자가 애니메이션 효과 제거시 (접근성) */
+@media (prefers-reduced-motion: reduce) {
+  .toast-item {
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    transform: none !important;
+
+    &.toast-entering {
+      opacity: 0;
+    }
+    
+    &[aria-hidden="true"] {
+      opacity: 0;
+    }
+  }
+}

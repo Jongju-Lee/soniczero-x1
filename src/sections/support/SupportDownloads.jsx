@@ -1,15 +1,21 @@
 import React from 'react';
 import { useScrollFadeIn } from '../../hooks/useScrollFadeIn';
 import Button from '../../components/ui/Button';
+import { useToast } from '../../contexts/ToastContext';
 
 const SupportDownloads = () => {
   const sectionRef = useScrollFadeIn();
+  const { addToast } = useToast();
+
+  const handleDownloadClick = (fileName) => {
+    addToast(Date.now(), `${fileName} 파일 다운로드가 시작되었습니다.`);
+  };
 
   return (
     <section className="support__downloads section-sm" ref={sectionRef}>
       <div className="support__downloads-header">
         <h2>Downloads</h2>
-        <p>최신 매뉴얼, 펌웨어, 보증 가이드를 다운로드하세요.</p>
+        <p>최신 메뉴얼, 펌웨어, 보증 가이드를 다운로드하세요.</p>
       </div>
 
       <div className="support__downloads-grid">
@@ -17,7 +23,7 @@ const SupportDownloads = () => {
           <div className="icon-box">
             <img src="/assets/icons/downloads-paper.svg" alt="Manual Icon" />
           </div>
-          <h3>사용자 매뉴얼</h3>
+          <h3>사용자 메뉴얼</h3>
           <div className="meta">
             <span className="format">PDF</span>
             <span className="size">12.4 MB</span>
@@ -26,8 +32,7 @@ const SupportDownloads = () => {
           <Button
             size="sm"
             variant="primary"
-            href="/assets/downloads/SonicZero_X1_Manual.pdf"
-            download="SonicZero_X1_Manual.pdf"
+            onClick={() => handleDownloadClick('사용자 메뉴얼')}
             className="download-btn"
           >
             <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />
@@ -48,8 +53,7 @@ const SupportDownloads = () => {
           <Button
             size="sm"
             variant="primary"
-            href="/assets/downloads/SonicZero_X1_Firmware_v1.2.4.bin"
-            download="SonicZero_X1_Firmware_v1.2.4.bin"
+            onClick={() => handleDownloadClick('최신 펌웨어 v1.2.4')}
             className="download-btn"
           >
             <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />
@@ -70,8 +74,7 @@ const SupportDownloads = () => {
           <Button
             size="sm"
             variant="primary"
-            href="/assets/downloads/SonicZero_X1_Warranty.pdf"
-            download="SonicZero_X1_Warranty.pdf"
+            onClick={() => handleDownloadClick('제품 보증 안내')}
             className="download-btn"
           >
             <img src="/assets/icons/downloads-btn.svg" alt="" aria-hidden="true" />

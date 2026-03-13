@@ -27,7 +27,7 @@ const SupportSearch = () => {
           <span>자주 찾는 :</span>
           <Button size="sm" variant="outline">정품 등록</Button>
           <Button size="sm" variant="outline">서비스 상태</Button>
-          <Button size="sm" variant="outline">매뉴얼 다운로드</Button>
+          <Button size="sm" variant="outline">메뉴얼 다운로드</Button>
         </div>
       </div>
     </section>

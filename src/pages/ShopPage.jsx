@@ -68,15 +68,12 @@ const ShopPage = () => {
     gsap.fromTo('.shop__intro-title', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8, delay: 0.3, ease: 'power4.out' });
     gsap.fromTo('.shop__gallery', { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 1.8, delay: 0.4, ease: 'power4.out' });
     
-    // 내용물 그룹: x축 슬라이드 인
     gsap.fromTo(
       ['.shop__details-header', '.shop__details-price', '.shop__details-color', '.shop__details-quantity', '.shop__details-includes'], 
       { x: 60, opacity: 0 }, 
       { x: 0, opacity: 1, duration: 1.8, delay: 0.5, ease: 'power4.out' }
     );
 
-    // 하단 플로팅 바(.shop__details-action): y축으로 살짝 올라오며 나타나지만,
-    // 종료 후 transform 찌꺼기를 지워야(clearProps) 모바일(tablet 이하) 환경에서 bottom: 0 고정이 풀리지 않음.
     gsap.fromTo(
       '.shop__details-action',
       { y: 40, opacity: 0 },
@@ -86,7 +83,7 @@ const ShopPage = () => {
         duration: 1.8, 
         delay: 0.6, 
         ease: 'power4.out',
-        clearProps: 'transform' // CSS position: fixed 기준점(Viewport) 복구의 핵심
+        clearProps: 'transform'
       }
     );
 

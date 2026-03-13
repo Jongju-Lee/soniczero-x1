@@ -96,7 +96,7 @@ npm run preview
 |---|---|
 | SupportSearch | 키워드 검색 |
 | SupportFaq | 자주 묻는 질문 아코디언 |
-| SupportDownloads | 매뉴얼·드라이버 다운로드 목록 |
+| SupportDownloads | 메뉴얼·드라이버 다운로드 목록 |
 | SupportContact | 문의 채널 안내 |
 
 ### 쇼핑 (`/shop`)

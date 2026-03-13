@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 // Layout
 import RootLayout from './layouts/RootLayout';
+import { ToastProvider } from './contexts/ToastContext';
 
 // Pages — 코드 스플리팅: 각 페이지를 방문할 때만 JS 로드
 const Home = lazy(() => import('./pages/Home'));
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ToastProvider>
+      <RouterProvider router={router} />
+    </ToastProvider>
+  );
 };
 
 export default App;
