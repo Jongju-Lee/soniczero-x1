@@ -95,6 +95,10 @@
   
     &-monitor-title {
       @include text-style("title-xs");
+
+      @include mobile-sm {
+        font-size: var(--fz-caption-lg);
+      }
     }
   }
 
