@@ -43,13 +43,13 @@ const Footer = () => {
               <h4 className="footer__nav-title">Legal</h4>
               <ul className="footer__nav-list">
                 <li className="footer__nav-item">
-                  <a href="#" className="footer__nav-link" aria-label="개인정보 처리방침 (준비 중인 페이지)" onClick={(e) => e.preventDefault()}>개인정보 처리방침</a>
+                  <button className="footer__nav-link" aria-label="개인정보 처리방침 (준비 중인 페이지)" disabled>개인정보 처리방침</button>
                 </li>
                 <li className="footer__nav-item">
-                  <a href="#" className="footer__nav-link" aria-label="이용약관 (준비 중인 페이지)" onClick={(e) => e.preventDefault()}>이용약관</a>
+                  <button className="footer__nav-link" aria-label="이용약관 (준비 중인 페이지)" disabled>이용약관</button>
                 </li>
                 <li className="footer__nav-item">
-                  <a href="#" className="footer__nav-link" aria-label="쿠키 정책 (준비 중인 페이지)" onClick={(e) => e.preventDefault()}>쿠키 정책</a>
+                  <button className="footer__nav-link" aria-label="쿠키 정책 (준비 중인 페이지)" disabled>쿠키 정책</button>
                 </li>
               </ul>
             </div>
