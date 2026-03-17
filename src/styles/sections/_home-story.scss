@@ -59,7 +59,7 @@
     
     span {
       @include text-style("badge");
-      letter-spacing: 0.0375rem;
+      letter-spacing: var(--ls-comport);
     }
   }
 

@@ -29,7 +29,7 @@
       @include text-style("badge");
       font-weight: var(--fw-medium);
       text-transform: capitalize;
-      letter-spacing: 0;
+      letter-spacing: var(--ls-normal);
     }
 
     &-icon {
@@ -54,10 +54,9 @@
 
   &__desc {
     @include text-style("caption-lg");
-    line-height: 1.6;
     margin-bottom: var(--spacing-8);
     max-width: 35rem; /* 560px */
-    word-break: keep-all;
+    letter-spacing: var(--ls-normal);
     
     &--sub {
       margin-bottom: var(--spacing-40);

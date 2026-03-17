@@ -97,6 +97,13 @@ $bp-mobile-sm: 480px;
   --fw-regular: 400;
   --fw-light: 400;
 
+  /* Letter Spacing */
+  --ls-tight: -0.021em;
+  --ls-normal: -0.025em;
+  --ls-comport: 0.046em;
+  --ls-relaxed: 0.0875em;
+  --ls-wide: 0.108em;
+
   /* TEXT TRANSFORM */
   --fc-upper: uppercase;
 
@@ -194,30 +201,31 @@ $text-styles: (
     "size": var(--fz-display-xl),
     "weight": var(--fw-black),
     "lh": 1.1,
-    "ls": -0.125rem
+    "ls": var(--ls-tight),
   ),
   "title-lg": (
     "size": var(--fz-title-lg),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
-    "ls": -0.125rem
+    "ls": var(--ls-tight),
   ),
   "title-md": (
     "size": var(--fz-title-md),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
-    "ls": -0.0625rem
+    "ls": var(--ls-normal),
   ),
   "title-sm": (
     "size": var(--fz-title-sm),
     "weight": var(--fw-e-bold),
     "lh": 1.2,
-    "ls": -0.0625rem
+    "ls": var(--ls-normal),
   ),
   "title-xs": (
     "size": var(--fz-title-xs),
     "weight": var(--fw-bold),
     "lh": 1.3,
+    "ls": var(--ls-normal),
   ),
 
   /* ---------- CAPTION & LABEL ---------- */
@@ -226,14 +234,14 @@ $text-styles: (
     "size": var(--fz-tiny-md),
     "weight": var(--fw-bold),
     "lh": 1.5,
-    "ls": 0.0875rem,
+    "ls": var(--ls-wide),
     "color": var(--color-primary),
     "case": var(--fc-upper),
   ),
   "logo": (
     "size": var(--fz-title-xs),
     "weight": var(--fw-bold),
-    "color": var(--color-text-main)
+    "color": var(--color-text-main),
   ),
   "caption-lg": (
     "size": var(--fz-caption-lg),
@@ -263,26 +271,25 @@ $text-styles: (
     "size": var(--fz-tiny-lg),
     "weight": var(--fw-medium),
     "lh": 1.6,
-    "color": var(--color-text-mute)
+    "color": var(--color-text-mute),
   ),
   "tiny-md": (
     "size": var(--fz-tiny-md),
     "weight": var(--fw-regular),
     "lh": 1.6,
-    "color": var(--color-text-mute)
+    "color": var(--color-text-mute),
   ),
   "tiny-sm": (
     "size": var(--fz-tiny-sm),
     "weight": var(--fw-medium),
     "lh": 1.6,
-    "color": var(--color-text-mute)
+    "color": var(--color-text-mute),
   ),
 );
 
-// 2. Main Unified Mixin
+// 2. Mixin Functions
 @mixin text-style($type) {
   $style: map.get($text-styles, $type);
-  
   @if map.has-key($style, "family") { font-family: map.get($style, "family"); }
   @if map.has-key($style, "size") { font-size: map.get($style, "size"); }
   @if map.has-key($style, "weight") { font-weight: map.get($style, "weight"); }
