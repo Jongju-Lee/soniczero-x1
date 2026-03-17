@@ -29,7 +29,7 @@
       @include text-style("badge");
       font-weight: var(--fw-medium);
       text-transform: capitalize;
-      letter-spacing: var(--ls-normal);
+      letter-spacing: 0;
     }
 
     &-icon {
