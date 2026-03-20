@@ -43,14 +43,10 @@
     @include flex-center-column;
     margin-bottom: var(--spacing-16);
     
-    &-text {
-    }
-  
     &-highlight {
       color: var(--color-primary);
     }
   }
-
 
   &__desc {
     @include text-style("caption-lg");
